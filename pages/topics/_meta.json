@@ -1,10 +1,10 @@
 {
   "index": "Home",
   "introduction": "Introduction",
-  "screen-readers": "🔊 ⏐ Screen Readers",
-  "accessibility-debugging": "🔍 ⏐ Debugging",
-  "accessible-HTML": "🧱 ⏐ Accessible HTML",
-  "ARIA": "⚡️ ⏐ ARIA",
-  "focus-management": "⌨️ | Focus Management",
-  "visual-considerations": "🎨 | Visual Considerations"
+  "screen-readers": "Screen Readers",
+  "accessibility-debugging": "Debugging",
+  "accessible-HTML": "Accessible HTML",
+  "ARIA": "ARIA",
+  "focus-management": "Focus Management",
+  "visual-considerations": "Visual Considerations"
 }

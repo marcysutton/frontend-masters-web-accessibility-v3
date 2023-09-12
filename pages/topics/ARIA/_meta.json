@@ -1,8 +1,8 @@
 {
-  "introduction": "1. What is ARIA",
-  "resources": "2. ARIA Resources",
-  "accessible-names-descriptions": "3. Accessible Names & Descriptions",
-  "roles-states-properties": "4. Roles, States, & Properties",
-  "live-regions": "5. Live Regions",
-  "exercise": "6. ARIA Exercise"
+  "introduction": "What is ARIA?",
+  "resources": "ARIA Resources",
+  "roles-states-properties": "Roles, States, & Properties",
+  "accessible-names-descriptions": "Accessible Names & Descriptions",
+  "live-regions": "Live Regions",
+  "exercise": "Exercise"
 }

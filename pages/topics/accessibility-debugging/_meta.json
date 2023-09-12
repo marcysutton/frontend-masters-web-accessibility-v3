@@ -1,7 +1,7 @@
 {
-  "getting-started": "1. Getting Started",
-  "linters-and-devtools": "2. Linters & DevTools",
-  "going-beyond-compliance": "3. Going Beyond Compliance",
-  "larger-codebases": "4. Working with Larger Codebases",
-  "exercise": "5. Debugging Exercise"
+  "getting-started": "Getting Started",
+  "linters-and-devtools": "Linters & DevTools",
+  "going-beyond-compliance": "Going Beyond Compliance",
+  "larger-codebases": "Working with Larger Codebases",
+  "exercise": "Exercise"
 }

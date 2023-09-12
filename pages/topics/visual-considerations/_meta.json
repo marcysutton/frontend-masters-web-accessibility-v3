@@ -1,8 +1,8 @@
 {
-  "color-contrast": "1. Color/Visual Contrast",
-  "reflow": "2. Reflow, Zoom & Magnification",
-  "reducing-motion": "4. Reducing Motion",
-  "prefers-color-scheme": "5. Prefers Color Scheme",
-  "exercise": "6. Design Exercise",
-  "performance-considerations": "7. Accessibility & Performance"
+  "color-contrast": "Color Contrast",
+  "reflow": "Reflow, Zoom & Magnification",
+  "reducing-motion": "Reducing Motion",
+  "prefers-color-scheme": "Prefers Color Scheme",
+  "performance-considerations": "Accessibility & Performance",
+  "exercise": "Exercise"
 }

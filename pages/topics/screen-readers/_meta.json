@@ -1,8 +1,8 @@
 {
-  "introduction": "1. Introduction",
-  "how-ATs-work": "2. How Assistive Technologies Work",
-  "how-to-enable": "3. How to Enable Screen Readers",
-  "alternative-text": "4. Alternative Text",
-  "exercise": "5. Screen Reader Exercise",
-  "other-ATs": "6. Other Assistive Technologies"
+  "introduction": "Introduction",
+  "how-SRs-work": "How Screen Readers Work",
+  "how-to-enable": "How to Enable Screen Readers",
+  "alternative-text": "Alternative Text",
+  "other-ATs": "Other Assistive Technologies",
+  "exercise": "Exercise"
 }

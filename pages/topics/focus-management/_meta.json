@@ -1,9 +1,9 @@
 {
-  "keyboard-only": "1. Keyboard Only Mindset",
-  "skip-links": "2. Skip Links",
-  "tab-key-navigation": "3. Tab Key Navigation",
-  "active-element": "4. Active Element",
-  "keyboard-trapping": "5. Keyboard Trapping",
-  "shortcuts": "6. Keyboard Shortcuts",
-  "exercise": "7. Exercise"
+  "keyboard-only": "Keyboard Only",
+  "skip-links": "Skip Links",
+  "tab-key-navigation": "Tab Key Navigation",
+  "active-element": "Active Element",
+  "keyboard-trapping": "Keyboard Trapping",
+  "shortcuts": "Keyboard Shortcuts",
+  "exercise": "Exercise"
 }
