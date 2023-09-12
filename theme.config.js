@@ -1,29 +1,26 @@
 const theme = {
-  titleSuffix: " | Web Accessibility, V2",
-  search: true,
-  unstable_flexsearch: true,
-  unstable_staticImage: true,
-  floatTOC: true,
-  font: false,
-  github: "https://github.com/marcysutton/FEM-web-accessibility",
-  projectLink: "https://github.com/marcysutton/FEM-web-accessibility",
+  docsRepositoryBase: "https://github.com/marcysutton/FEM-web-accessibility",
+  project: {
+    link: "https://github.com/marcysutton/FEM-web-accessibility"
+  },
   logo: () => (
     <>
       <img
-        src="/logo.svg"
+        alt=""
+        src="/universal-access-icon.png"
         height="25"
         width="25"
         style={{ marginRight: "1em" }}
       />
       <h1>
-        Web Accessibility, V2 <span style={{ opacity: 0.2 }}></span>
+        Web Accessibility, V2
       </h1>
     </>
   ),
   head: function Head(props) {
     return (
       <>
-        <meta charset="utf-8" />
+        <meta charSet="utf-8" />
         <meta name="theme-color" content="#000" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="apple-touch-icon" sizes="180x180" href="/universal-access-icon.png" />
@@ -73,10 +70,21 @@ const theme = {
       </>
     );
   },
+  sidebar: {
+    defaultMenuCollapseLevel: 1,
+    autoCollapse: true
+  },
   darkMode: true,
-  footerText: `${new Date().getFullYear()} © Marcy Sutton Todd`,
+  footer: {
+    text: `${new Date().getFullYear()} © Marcy Sutton Todd`
+  },
   nextThemes: {
     defaultTheme: "dark",
   },
+  useNextSeoProps() {
+    return {
+      titleTemplate: '%s – Web Accessibility, V2'
+    }
+  }
 };
 export default theme;
