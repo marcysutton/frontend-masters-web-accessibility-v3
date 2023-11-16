@@ -55,3 +55,7 @@ p > strong {
 a > h1 {
   font-weight: 500;
 }
+
+ul.first\:nx-mt-0 {
+  margin-top: 0;
+}

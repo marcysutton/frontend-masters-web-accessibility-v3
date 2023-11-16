@@ -1,3 +1,13 @@
 import Callout from "../../../components/Callout";
 
 # What is ARIA?
+
+ARIA stands for Accessible Rich Internet Applications. It's a standard set of attributes for plumbing accessibility information through web applications. 
+
+ARIA shouldn't be the first thing you reach for: it's an advanced tool. That's because it's easy to mess up, which I have done. Fortunately, the developer tools we use today make it a bit easier to highlight potential problems with ARIA usage. However, it's imperative to test your markup with ARIA attributes on it to make sure things are working as intended.
+
+HTML and ARIA work very closely together. Both standards affect how HTML tags become objects in the rendered output in a browser. You can think of accessibility information in semantic HTML elements as built-in, while ARIA attributes get bolted-on.
+
+The current version of ARIA is 1.2: https://www.w3.org/TR/wai-aria-1.2/
+
+> ⚠️ Please reference the standard when applying ARIA to your web pages and make sure you're using it correctly. Slapping on some attributes that you _think_ might work but not testing them in Assistive Technology can actually make things worse. ⚠️

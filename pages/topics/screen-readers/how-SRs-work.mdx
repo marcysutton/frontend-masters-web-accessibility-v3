@@ -1,4 +1,35 @@
-import Callout from "../../../components/Callout";
-import StackBlitz from "../../../components/StackBlitz";
-
 # How Screen Readers Work
+
+Screen readers (a type of Assistive Technology) are both software and hardware that people use to interact with a computer. They convert text and graphics on a screen to speech or Braille output.
+
+The iPhone has a screen reader built-in (VoiceOver for iOS), as do Mac computers and other devices. On Windows, users can employ the built-in screen reader Narrator or install third-party software like NVDA or JAWS.
+
+When users turn on their device, the screen reader takes input from the platform applications in use: Settings apps, a Web Browser, YouTube, etc. and renders output aloud or in another a tactile device like a refreshable Braille display.
+
+It's quite amazing, really, and we as develoeprs can do a huge service in making our software more screen reader accessible.
+
+Read about screen readers from Daniel Göransson: https://axesslab.com/what-is-a-screen-reader/
+
+- Browser & Assistive Tech (AT) combos -> nod to WebAIM surveys
+- Using site analytics to narrow down a test matrix
+- Platform similarities and differences (brief mention of accessibility APIs)
+
+## Platform Accessibility APIs
+
+Each platform has its own platform accessibility APIs (Apple OSX, Apple iOS, Windows, Android) that translate input into speech output. It's a big part of [how browsers work](https://web.dev/articles/howbrowserswork), in fact, as [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) and [ARIA](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA) provide mechanisms to plumb accessibility information and structure through web pages.
+
+One tangible difference with various accessibility APIs as a developer is that the output can vary from platform-to-platform. For example, the `aria-haspopup` state has wildly different results: https://www.matuzo.at/blog/2023/aria-haspopup/
+
+Apple also has iOS web browsers locked down to only use Webkit under the hood (such as Mobile Chrome and Firefox). VoiceOver testing results can vary between Apple iOS webkit and browsers on a Mac computer.
+
+## How to prioritize various platforms
+
+Want to know which screen readers to test, with which browser combinations? Screen reader makers don't share usage stats for privacy reasons. But we do have highly-respected survey data from the dedicated folks at WebAIM.
+
+The WebAIM screen reader surveys can help you understand the types of Assistive Technologies that people with disabilities use: 
+https://webaim.org/projects/screenreadersurvey9/
+
+Cross-reference that with any analytics data you have for your site. Voilà, a semi-prioritized testing matrix emerges!
+
+You could also check out AssistivLabs to run screen readers in the cloud: 
+https://assistivlabs.com/

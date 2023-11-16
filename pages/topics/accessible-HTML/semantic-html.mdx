@@ -2,3 +2,25 @@ import Callout from "../../../components/Callout";
 import StackBlitz from "../../../components/StackBlitz";
 
 # Semantic HTML
+
+Avoid DIV soup!
+- Show an example (inspired by Rippling)
+
+Elements with more functionality: <input> <button> <textarea> <a>
+
+Landmark elements have semantic meaning AND functionality in assistive tech (aside, footer, header, etc.)
+- Mention aria labeling on nav/section
+Headings and structure
+When to use nav and anchors vs. unordered lists
+Show the VO rotor, Accessibility Insights
+Explain using CSS classes to style things while using the right element (e.g. h2)
+Forms
+- Labeling inputs/textareas/etc.
+    - Explicit and implicit pairings (when for is not required)
+- Only certain elements can be labeled/named
+- How and when to use visually-hidden class (punt on aria-label until later)
+
+Buttons
+- Compare button to DIV button
+- Focusability, role, events (div[aria-label] in Jon's example isn't needed - but test it)
+- Compare button to link

@@ -1,0 +1,69 @@
+.bookATrip {
+    border: 2px solid currentColor;
+    border-radius: 10px;
+    max-width: 540px;
+
+    fieldset {
+        margin: 0;
+        padding: 0;
+    }
+    fieldset legend {
+        background-color: rgba(255, 255, 255, 0.15);
+        border-bottom: 2px solid currentColor;
+        display: block;
+        font-weight: bold;
+        padding: 1em;
+        width: 100%;
+    }
+    .checkboxGroup {
+        display: flex;
+        flex-direction: row;
+        padding: 1em 1em 0;
+    }
+    .formGroup {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding: 1em 1em 0;
+    }
+    .chkLabel {
+        display: flex;
+        margin: 1em 1.5em 0 0;
+    }
+    input[type='checkbox'] {
+        display: block;
+        margin-left: 0;
+        margin-right: 0.5em;
+    }
+    .inputTextlabel {
+        display: flex;
+        flex-direction: column;
+        margin: 0em 1em 1em 0;
+    }
+    .inputTextlabel[hidden] {
+        display: none;
+    }
+    .inputTextlabel input[type="text"],
+    .inputTextlabel input[type="date"],
+    .inputTextlabel select,
+    .childrenDropDownToggle {
+        display: block;
+        height: 2em;
+        margin-top: 0.5em;
+    }
+    .childrenDropDownToggle {
+        align-items: center;
+        appearance: auto;
+        background-color: field;
+        line-height: inherit;
+        font-size: 100%;
+        overflow: hidden;
+        padding: 0;
+        padding-block: 1px;
+        padding-inline: 2px;
+        padding-inline-start: 1px;
+        text-align: start;
+    }
+    .dropdownMenu {
+
+    }
+}

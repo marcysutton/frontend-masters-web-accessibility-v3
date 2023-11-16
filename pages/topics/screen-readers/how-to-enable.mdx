@@ -1,4 +1,64 @@
-import Callout from "../../../components/Callout";
-import StackBlitz from "../../../components/StackBlitz";
-
 # How to Enable Screen Readers
+
+These are some of the common screen readers I've used in my testing. Keep in mind that there are large numbers of people using all of these, sometimes multiple for various life scenarios.
+
+## VoiceOver for Mac
+
+Voiceover is a helpful tool for Mac that is used by many people. It works best with Safari, though Chrome and Firefox have improved over recent years.
+
+I use VoiceOver regularly in conjunction with browser DevTools and extensions to test my markup for accessibility.
+
+<details>
+<summary>**Common VoiceOver desktop commands**</summary>
+    - How to toggle on and off: 
+        - Command (⌘) F5
+        - Fn Command (⌘) F5 on a laptop
+    - Using the VoiceOver Activation keys:
+        - Control + Option (VO) 
+    - Navigating a page:
+        - Using the TAB / Shift+TAB keys. This will cycle through focusable elements.
+        - Using the Arrow keys. This will cycle through various pieces of content on the page, depending on the mode.
+        - While holding the VO keys, many other commands. See [cheat sheet](https://dequeuniversity.com/screenreaders/voiceover-keyboard-shortcuts).
+        - Launching the VoiceOver Rotor:
+            - With VO enabled, hit VO + U. Use arrow keys to navigate sections.
+        - Use Escape to close as a convention.
+    - Silence with command key:
+        - Hold the command key while the screen reader is speaking to make it quiet immediately. Helpful for doing demos!
+    - Changing screen reader speaking rate
+        - In the VoiceOver Utility app under Speech, change rate for any voice available.
+</details>
+
+VoiceOver for desktop cheat sheet: https://dequeuniversity.com/screenreaders/voiceover-keyboard-shortcuts
+
+
+## VoiceOver for iOS
+iOS is a flavor of Voiceover for mobile devices such as iPhones, iPads, Apple Watches, and more. On an iOS device, check out Settings > Accessibility to set up VoiceOver or Switch Control to launch with a triple tap of the power button.
+
+It's worth testing with VoiceOver for iOS if you have an Apple device because of how popular it is with people with disabilities. An iOS emulator could help in a pinch, but testing with an actual device can be a helpful experience.
+
+VoiceOver for iOS cheat sheet: https://dequeuniversity.com/screenreaders/voiceover-ios-shortcuts
+
+## NVDA and JAWS for Windows
+
+NVDA (Non-Visual Desktop Access) and JAWS (Job Access With Speech) are extremely popular screen readers used by people on Windows. They are both worth considering for your testing workflow, as they work quite differently than Apple VoiceOver.
+
+- [NVDA](https://www.nvaccess.org/download/) is a free open source screen reader developed on GitHub.
+- [JAWS](https://www.freedomscientific.com/products/software/jaws/) is commercial screen reader software that requires a license, but also includes a 40-minute demo mode.
+
+I use a virtual machine on my Mac to test with Windows screen readers. Parallels has worked well for me, but there are other options including VMWare, VirtualBox (which stopped working for me a long time ago), and possibly Windows 365 Cloud PC which I haven't tried.
+
+Here's a how to set up NVDA on Parallels, which also [requires a Windows license](https://kb.parallels.com/9003): 
+- https://jerryjones.dev/2020/08/06/setting-up-nvda-on-parallels-with-macos/
+
+### Common Windows commands
+- NVDA cheat sheet: https://dequeuniversity.com/screenreaders/nvda-keyboard-shortcuts
+- JAWS cheat sheet: https://dequeuniversity.com/assets/pdf/screenreaders/jaws.pdf
+
+
+## Android Accessibility
+
+Android Accessibility (historically referred to as TalkBack) is also a well-used platform by millions! I've had the most success with an actual device, but an emulator could be worth investigating.
+
+- Tips for testing with Android: https://developer.android.com/guide/topics/ui/accessibility/testing
+- TalkBack cheat sheet: https://dequeuniversity.com/screenreaders/talkback-shortcuts
+- Deque and Evinced also offer mobile testing tools that could be beneficial.
