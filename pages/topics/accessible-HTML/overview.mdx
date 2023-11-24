@@ -1,0 +1,27 @@
+import {DropCapQuote} from '/components/DropCap'
+
+# HTML for an Accessible Foundation
+
+Allow me to set the scene: you’re building a web application with the hottest new JavaScript stack (Svelte and D3, Astro, GraphQL APIs, Vite...you name it). Perhaps as part of your development process you do some UI prototyping without the same constrants to validate an approach.
+
+Whether your putput is in vanilla HTML/CSS/JavaScript or more robust frontend JavaScript frameworks: 
+
+<DropCapQuote>
+The basics always apply.
+</DropCapQuote>
+
+What gets _rendered in a browser_ is the important part for users. That means that your HTML needs to be valid, well-structured, and using as many defaults as possible.
+
+## What do you mean by “well-structured”?
+
+HTML provides structural semantics that are extremely helpful in screen readers and other reader modes. H1-H6 headings and landmark elements can provide a non-visual, consumable structure that goes beyond the way something looks.
+
+## As many defaults as possible?
+
+HTML and browsers also provide a ton of built-in components, with more improving by the day (finally, in 2023!).
+
+Form elements are more easily styled than they used to be. Buttons, inputs, selects...try to use the built-in ones as much as possible and take advantage of the behavior you get for free.
+
+Many of these components have default features that we take for granted. It’s nice to skip having to manually write code for _everything_, such as selecting multiple `<option>`s, wiring up every keyboard shortcut, or managing browser history for custom links.
+
+Reference MDN to see what’s available, and push for using browser defaults with your teams. When PMs and designers hear how much work will go into recreating an accessible custom scrollbar or form component, they might all of a sudden find a simpler alternative that saves time and money.

@@ -17,24 +17,24 @@ Alternative text describes the appearance or function of an image on a page. Alt
 </div>
 
 <DropCapQuote>
-It's <em>alt text</em>, not alt tags!
+It’s <em>alt text</em>, not alt tags!
 </DropCapQuote>
 
-It's important to get the right terminology. _Alt text_ is employed with the _alt attribute_ on an HTML _image tag_.
+It’s important to get the right terminology. _Alt text_ is employed with the _alt attribute_ on an HTML _image tag_.
 
-Alt text also displays in place of an image if it fails to load and is indexed by search engine bots to better understand the content of your page. Googlebot is like the world's largest blind user!
+Alt text also displays in place of an image if it fails to load and is indexed by search engine bots to better understand the content of your page. Googlebot is like the world’s largest blind user!
 
 ## Common use and risks of not including alt text
 
-Without alternative text, your images will have no context to people who can't see. The `src` attribute will be read instead, which can be a uniquely terrible experience with many build systems, where cached filenames or data-URI values would be read aloud:
+Without alternative text, your images will have no context to people who can’t see. The `src` attribute will be read instead, which can be a uniquely terrible experience with many build systems, where cached filenames or data-URI values would be read aloud:
 
 <DropCapQuote>
 Data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABA.....
 </DropCapQuote>
 
-Icons and emojis are definitely types of graphical content that need text alternatives. There are specific requirements depending on how the icons are used: within links or buttons, within bodies of text, or if they're decorative. More info from Suzanne Aitchison: https://www.upyoura11y.com/images-icons-and-emojis/
+Icons and emojis are both types of graphical content that need text alternatives. There are specific requirements depending on how the icons are used: within links or buttons, within bodies of text, or if they’re decorative. More info from Suzanne Aitchison: https://www.upyoura11y.com/images-icons-and-emojis/
 
-It's also important for user-generated content (like CMS content or social media) to include text alternatives. At scale, automated alt text with the option to override it has become common: Facebook and Twitter both have technology in place for this (see more info below). There is some risk that users won't know what alt text is for, or they'll misuse/abuse it. But anyone in charge of content in a CMS should be aware of the requirements for alternative text.
+It’s also important for user-generated content (like CMS content or social media) to include text alternatives. At scale, automated alt text with the option to override it has become common: Facebook and Twitter both have technology in place for this (see more info below). There is some risk that users won’t know what alt text is for, or they’ll misuse/abuse it. But anyone in charge of content in a CMS should be aware of the requirements for alternative text.
 
 ## Skipping over images with empty alt=""
 
@@ -46,7 +46,7 @@ Some images are [decorative](https://www.w3.org/WAI/tutorials/images/decorative/
 
 ## W3C Alt-decision tree
 
-It can be challenging to decide whether an image is decorative, or how to effectively describe it in alternative text. One of my favorite resources that could come in handy is the W3C's Alt Decision tree:
+It can be challenging to decide whether an image is decorative, or how to effectively describe it in alternative text. One of my favorite resources that could come in handy is the W3C’s Alt Decision tree:
 
 https://www.w3.org/WAI/tutorials/images/decision-tree/
 
@@ -54,13 +54,13 @@ https://www.w3.org/WAI/tutorials/images/decision-tree/
 
 Sometimes graphic content is supplied through a CSS background image rather than an HTML image tag. It could be for scalable images in responsive design, infographics with a ton of content in them, or some other purpose.
 
-Here is a [code example](https://stackblitz.com/edit/web-platform-ddeyuo?file=index.html) of how I would supply a text alternative to a CSS background image. I used a similar technique for financial data in one of Target's Annual Reports:
+Here is a [code example](https://stackblitz.com/edit/web-platform-ddeyuo?file=index.html) of how I would supply a text alternative to a CSS background image. I used a similar technique for financial data in one of Target’s Annual Reports:
 
 <StackBlitz name="web-platform-ddeyuo" view="both" />
 
 ## APIs or tools for generating alt text
 
-You might wonder, is there a way to provide automatic alt text like Facebook or Twitter? There are tools developing for this using computer vision and AI, but they haven't historically been accurate (yet). Still, a quick search yielded a few results in 2023:
+You might wonder, is there a way to provide automatic alt text like Facebook or Twitter? There are tools developing for this using computer vision and AI, but they haven’t historically been accurate (yet). Still, a quick search yielded a few results in 2023:
 
 - https://alttext.ai/
 - https://www.sentisight.ai/automated-alt-text-api/
