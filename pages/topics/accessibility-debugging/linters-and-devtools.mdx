@@ -1,12 +1,72 @@
+import { DropCapEmoji, DropCapGrid } from '/components/DropCap';
 
 # Accessibility Linters & DevTools
 
-Chrome, Firefox, and Safari DevTools
+There are many options for testing tools these days! My workflow includes Chrome, Firefox, and Safari DevTools, both built-in and added-on. There are also linters for VS Code and other text editors/IDEs that can come in handy day-to-day, among other tools.
 
-Notable parts of Axe:
-- Checking rendered source at run-time - run again with components open/active/etc.
-- Labels and tags: WCAG violations vs. best practices
-- Debug by clicking through to source elements
+## Built-in Browser DevTools
 
-ESLint plugins
+<DropCapGrid>
+    <DropCapEmoji>
+        <a href="https://developer.chrome.com/docs/devtools/" title="Chrome Developer Tools"><img src="/chrome.png" alt="Chrome logo" className="mt-2 max-w-[48px]" /></a>
+    </DropCapEmoji>
+    <div>
+        **[Chrome](https://developer.chrome.com/docs/devtools/)** has a robust set of developer tools for accessibility testing that have become my favorites: the Elements inspector, Styles pane, Accessibilty Information Tab, Responsive Device Toolbar, Lighthouse, and Console, just to name _a few_.
+    </div>
+</DropCapGrid>
 
+<DropCapGrid>
+    <DropCapEmoji>
+        <a href="https://firefox-source-docs.mozilla.org/devtools-user/" title="Firefox Developer Tools"><img src="/firefox.png" alt="Firefox logo" className="mt-2 max-w-[48px]" /></a>
+    </DropCapEmoji>
+    <div>
+        **[Firefox](https://firefox-source-docs.mozilla.org/devtools-user/)** provides some accessibility tooling along with general web dev tools, including a great CSS flexbox and grid layout visualizer. The Firefox color picker has a contrast ratio inspector that's worth checking out, too.
+    </div>
+</DropCapGrid>
+
+<DropCapGrid>
+    <DropCapEmoji>
+        <a href="https://developer.apple.com/safari/tools/" title="Safari Tools"><img src="/safari.png" alt="Safari logo" className="mt-2 max-w-[48px]" /></a>
+    </DropCapEmoji>
+    <div>
+    **[Safari](https://developer.apple.com/safari/tools/)** has its own set of tools, including an Accessibility inspector, Audit feature, and Responsive Design Mode. When you tether an iOS device to desktop Safari, you can also debug mobile Safari webpages.
+    </div>
+</DropCapGrid>
+
+### Chrome Lighthouse
+
+
+<DropCapGrid>
+    <DropCapEmoji>
+        <a href="https://developer.chrome.com/docs/lighthouse/overview" title="Chrome Lighthouse Overview"><img src="/lighthouse.svg" alt="Lighthouse logo" className="mt-2 max-w-[48px]" /></a>
+    </DropCapEmoji>
+    <div>
+    **[Lighthouse](https://developer.chrome.com/docs/lighthouse/overview)** is a web app auditing tool built-into Chrome that includes categories on Performance, Accessibility, Best Practices, SEO, and Progressive Web Apps. The accessibility section uses the axe-core JavaScript API and other rules to return 
+    </div>
+</DropCapGrid>   
+
+## Browser Extensions
+
+There are so many other browser extensions (also called add-ons)! Here is a small sampling of my favorites to get you started:
+
+1. **[Axe by Deque Systems](https://www.deque.com/axe/devtools/)** in Chrome is my daily-driver accessibility testing tool. (I worked on Deque's Axe product team a while back, and I still love their extensions.)
+    - You can check the rendered source of a page at runtime, and again with components opened or active to surface more issues.
+    - Observe the labels and tags for issues returned, including WCAG violations versus optional best practices.
+    - Debug issues by clicking through to source elements and highlighting nodes.
+    - The [axe-core engine](https://github.com/dequelabs/axe-core) powers other free and paid tools for the Software Development Lifecycle, so it can provide some nice consistency in [larger organizations](/topics/working-with-codebases).
+
+2. **[Accessibility Insights for Web](https://accessibilityinsights.io/docs/web/overview/)** from Microsoft is another great tool!
+    - It uses the axe-core automation engine under the hood, along with its own manual evaluation tools.
+    - I like the Tab Stops tool for visualizing the keyboard tab order!
+
+3. **[The Web Developer Toolbar](https://chrispederick.com/work/web-developer/)** for Firefox and Chrome has been around forever.
+    - The Headings visualizer under Information > View Document Outline has been one of my favorites for years, as it shows the overall heading structure in a useful way. (I wish a similar Headings tool existed in browser DevTools!)
+
+## ESLint and other text editor plugins
+
+While browser extensions are essential to review and debug pieces of UIs, linters for your text editor can be useful as well.
+
+- **[ESLint-Plugin-JSX-A11y](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y)** is a standard eslint plugin for React applications.
+- **[Axe Linter](https://www.deque.com/axe/devtools/linter/)** is another tooling suite from Deque. There are some really helpful looking tools here, including GitHub actions and other integrations.
+
+You might need to tweak linter config settings to get output that works for your team. Keep in mind that markup in a text editor will only highlight part of the picture. CSS and JavaScript could impact the accessibility of a rendered component (why I do browser debugging)!

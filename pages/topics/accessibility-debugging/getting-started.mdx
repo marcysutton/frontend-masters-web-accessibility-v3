@@ -1,3 +1,67 @@
-# How to Get Started with Accessibility Testing
+import { DropCapEmoji, DropCapGrid } from '../../../components/DropCap';
 
-Sample workflow / checklist
+# How to Get Started with Web Accessibility Testing
+
+Accessibility testing is a regular part of my workflow, and it should be part of yours too! The more frequently you investigate the interactibility and content structure of your pages and components, the easier it will be to keep up with improvements.
+
+Here are the steps I take when I test a site for accessibility on a regular basis:
+
+<DropCapGrid>
+    <DropCapEmoji>⌨</DropCapEmoji>
+    <div>
+    **1. Use your Tab key to navigate through the page.**
+        - Can you reach and operate every interactive control (button, link, dropdown, etc.)?
+        - Can you see where your focus point is on screen?
+        - Do you get trapped anywhere that you can't escape, or behind a modal layer?
+        - Can you use other common key commands like the Arrow keys, Escape key, Space key?
+    </div>
+</DropCapGrid>
+
+<figure className="flex flex-row mt-6 gap-5">
+    <div>
+        **2. Open a browser DevTools extension like Axe for Chrome, Firefox, or Edge.**
+            - Run the extension for each page state, including open modals and menus.
+            - Debug issues using the Elements inspector, Styles, and Accessibility panes in Chrome.
+            - Prioritize accessibility violations over best practices.
+    </div>
+    <DropCapEmoji>💻</DropCapEmoji>
+</figure>
+
+<figure className="flex flex-row mt-6 gap-5">
+    <DropCapEmoji>🔎</DropCapEmoji>
+    <div>
+        **3. Zoom the page in your browser to at least 200%.**
+            - Make sure layouts reflow and components are still operable.
+        
+        **4. Test other visual modes.**
+            - Test light and dark mode. Windows High Contrast Mode can be helpful, too.
+            - Ensure animation and motion can be turned off with Reduced Motion.
+    </div>
+</figure>
+
+<figure className="flex flex-row mt-6 gap-5">
+    <div>
+        **5. Run a screen reader like VoiceOver or NVDA.**
+            - Follow [cheat sheets](/topics/screen-readers/how-to-enable/) to use common commands.
+            - Double-check that an issue is really an issue, as it could be operator error!
+            - Work with people who use screen readers regularly whenever possible.
+    </div>
+    <DropCapEmoji>🗣️</DropCapEmoji>
+</figure>
+
+<figure className="flex flex-row mt-6 gap-5">
+    <DropCapEmoji>📝</DropCapEmoji>
+    <div>
+        **5. Gather missing transcripts or captions.**
+            - Make note of any missing transcripts, captions, and other alternative content.
+            - Ensure media players and pages can accommodate this content.
+    </div>
+</figure>
+
+## Where these steps can apply
+
+Any website or web application could be tested with these techniques. It's helpful to have some development chops to debug things in the browser DevTools, but a lot of accessibility testing can be done by anyone with a browser and a keyboard alone.
+
+I often test out web applications when I'm evaluating a product, like cloud-based tools such as Microsoft 365 or Sanity Studio. For teams procuring software, it's essential that accessibility not block someone's civil right to work. You know, to underscore the importance of what we're talking about here.
+
+Native mobile apps will benefit from device-specific testing tools, some of which are listed in [the screen reader section](/topics/screen-readers/how-to-enable).

@@ -13,7 +13,7 @@ const theme = {
         style={{ marginRight: "1em" }}
       />
       <h1>
-        Web Accessibility, V2
+        Web Accessibility, V3
       </h1>
     </>
   ),
@@ -83,7 +83,7 @@ const theme = {
   },
   useNextSeoProps() {
     return {
-      titleTemplate: '%s – Web Accessibility, V2'
+      titleTemplate: '%s – Web Accessibility, V3'
     }
   }
 };

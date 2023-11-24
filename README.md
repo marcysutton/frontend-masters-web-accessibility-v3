@@ -1,7 +1,7 @@
 
-# Web Accessibility, V2
+# Web Accessibility, V3
 
-This repo includes the public source code for the [course website](https://web-accessibility.vercel.app/) related to the [FrontendMasters workshop on Web Accessibility](https://frontendmasters.com/courses/web-accessibility-v2/).
+This repo includes the public source code for the [course website](https://web-accessibility.vercel.app/) related to the [FrontendMasters workshop on Web Accessibility](https://frontendmasters.com/courses/web-accessibility-v3/).
 
 Topics:
 

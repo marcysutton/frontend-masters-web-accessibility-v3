@@ -1,7 +1,30 @@
+import Links from '/components/Links.tsx'
+
 # Going Beyond Compliance
 
-Not relying on tooling or WCAG completely (e.g. Lighthouse scores of 100%)
+Just because a site claims to be "compliant with WCAG" doesn't mean it's necessarily a good accessible user experience. "Compliant" could _maybe_ even be true only for a short time until a site is updated and it needs to be re-tested. And don't get me started on [overlay tools](https://overlayfactsheet.com/) that claim to make a site "accessible" with one line of code.
 
-Mention Manuel Matuzovic's lighthouse article https://www.matuzo.at/blog/building-the-most-inaccessible-site-possible-with-a-perfect-lighthouse-score/
+A better way to think about accessibility and compliance is two-fold:
+- It needs to be part of the design, its product DNA. The earlier, the better.
+- It's a constant work in progress.
 
+As you learn about issues, fix them. Repeat. Try to anticipate accessibility going forward as a general matter of software design and quality. It's a culture!
 
+Make it possible to receive user feedback for accessibility with an [Accessibility Statement](https://www.w3.org/WAI/planning/statements/). There's bound to be room for regular improvement, especially when someone tests your site with a workflow or condition you hadn't yet considered (usability with keyboard? other Assistive Tech? interaction flow on small/zoomed viewports?). You might not be able to fix every issue for every person, but obvious blockers should be prioritized.
+
+Tooling is an essential part of accessibility testing, but it can only highlight a subset of issues. We are limited by what can be automated for accessibility and also our own biases when testing.
+
+Even the Web Content Accessibility Guidelines are just a starting point while developing a delightful Accessibility User Experience (AUX).
+
+We can't rely on tooling or WCAG completely, like "calling it good" after getting a Lighthouse score of 100% or a perfect Axe result. There is an epic article that highlights this problem from Manuel Matuzovic you should read called [Building the Most Inaccessible Site Possible with a Perfect Lighthouse Score](https://www.matuzo.at/blog/building-the-most-inaccessible-site-possible-with-a-perfect-lighthouse-score/).
+
+Eric Bailey also wrote a nice piece on the [Importance of Manual Accessibility Testing](https://www.smashingmagazine.com/2018/09/importance-manual-accessibility-testing/) for Smashing Magazine that gets to the heart of it.
+
+Working with people with disabilities is a great way to go beyond the minimum for crafting an accessible user experience. In fact, it's really essential to gather feedback from the people affected by an inaccessible user interface. Companies like [Fable](https://makeitfable.com/) in Toronto can connect you with a community of disabled testers whom you can pay to provide critical product feedback at any time (though the earlier in a project, the better).
+
+<Links>
+- https://www.w3.org/WAI/planning/statements/
+- https://www.matuzo.at/blog/building-the-most-inaccessible-site-possible-with-a-perfect-lighthouse-score/
+- https://www.smashingmagazine.com/2018/09/importance-manual-accessibility-testing/
+- https://makeitfable.com/
+</Links>

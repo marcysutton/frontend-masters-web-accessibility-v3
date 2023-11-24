@@ -59,3 +59,7 @@ a > h1 {
 ul.first\:nx-mt-0 {
   margin-top: 0;
 }
+
+main a {
+  font-weight: bold;
+}
