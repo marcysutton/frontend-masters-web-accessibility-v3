@@ -30,6 +30,9 @@ video {
 .dark p, .dark ol, .dark li {
   color: #e3e3e3;
 }
+.light p, .light ol, .light li {
+  color: #000;
+}
 
 iframe {
   border-radius: 7px;

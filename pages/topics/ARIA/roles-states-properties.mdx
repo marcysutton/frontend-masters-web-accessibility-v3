@@ -1,11 +1,62 @@
-import Callout from "../../../components/Callout";
-
 # Roles, States, and Properties
 
-Show MDN page
+The major categories of ARIA attributes are **roles, states, and properties.** Each one of the attributes fits into a category, such as `role="button"` or `aria-hidden="true"`.
 
-How to check support for a role, state, or property (e.g. aria-autocomplete)
+The [ARIA specification](https://www.w3.org/TR/wai-aria-1.2/) details all of the concepts and details of attributes that are available to you. Some are better supported in browsers and Assistive Tech than others–there have been many excellent ideas over the years, without the necessary adoption from browser makers for various reasons.
 
-Using ARIA in CSS selectors
+## ARIA Roles
 
-Discuss states & how they do or don't affect the frontend (e.g. aria-hidden, aria-disabled, etc.)
+There are multiple types of roles we use in our markup: **widget roles** that are often interactive, **document structure roles** that organize content on a page, **landmark roles** for special navigational landmarks, **live region roles** for screen reader announcements, and **window roles** for dialogs. 
+
+Many HTML elements have roles built-in, such as `<button>` and `<main>`. Role attributes can also be bolted-on to override the default semantics of an element, although you should take care to avoid wiping out a default role unless absolutely necessary.
+
+```html
+<button>  <!-- implicit 'button' role -->
+```
+
+```html
+<div role="button"> <!-- explicit 'button' role -->
+```
+
+Use `<div role>` for a custom component if for some reason you can’t use a native HTML element with a role built-in. Why? Because elements with implicit roles provide behavior for free and often support is better.
+
+## How to check support for an ARIA role, state, or property 
+
+There are many promising ARIA attributes that unfortunately don’t have great support. If you have a use case for something, say `aria-autocomplete`, here are some recommendations on how to test it:
+
+1. Check [A11ySupport.io](https://a11ysupport.io) to see if the attribute is listed.
+1. Test it in the screen readers that are [commonly used](https://webaim.org/projects/screenreadersurvey9/#browsercombos) with your most popular browsers.
+1. Read up on mailing lists like the [WAI-ARIA GitHub](https://github.com/w3c/aria/issues), [NVDA GitHub](https://github.com/nvaccess/nvda/issues) and [WebAIM Email Archives](https://webaim.org/discussion/).
+
+## Using ARIA in CSS selectors
+
+ARIA attributes can provide some helpful selectors in CSS, such as:
+
+<div className="grid grid-cols-2 gap-6 my-6">
+<figure>
+```javascript
+<div
+    aria-disabled="true"
+    aria-label="Subscribe"
+    role="checkbox"
+    tabIndex={0}
+    onKeyUp={keyHandler}
+    >
+</div>
+```
+</figure>
+<figure>
+```css
+[role="checkbox"] {
+    /* custom checkbox styles here */
+}
+[role="checkbox"][aria-disabled="true"] {
+    /* disabled checkbox styles here */
+}
+```
+</figure>
+</div>
+
+Now, you should really question whether it’s worth it to recreate a checkbox or other custom component when there are default components available for free. But elevating ARIA attributes to the style layer can make them less easy to ignore, and weave accessible state through your culture of styling.
+
+I could see a use case for styling `aria-disabled` since my team frequently discusses whether to use the `disabled` attribute on form components. There are plenty of other use cases where ARIA could make sense for styling hooks. My goal is to make you aware of attribute selectors as they apply to ARIA. Possibilities exist, and you can use them!

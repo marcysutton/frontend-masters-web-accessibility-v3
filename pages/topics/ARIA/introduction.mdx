@@ -1,13 +1,37 @@
-import Callout from "../../../components/Callout";
-
 # What is ARIA?
 
-ARIA stands for Accessible Rich Internet Applications. It's a standard set of attributes for plumbing accessibility information through web applications. 
+ARIA stands for **Accessible Rich Internet Applications**. It’s a specification and a standard set of HTML attributes for plumbing accessibility information through web applications. That means you can’t make up your own attributes.
 
-ARIA shouldn't be the first thing you reach for: it's an advanced tool. That's because it's easy to mess up, which I have done. Fortunately, the developer tools we use today make it a bit easier to highlight potential problems with ARIA usage. However, it's imperative to test your markup with ARIA attributes on it to make sure things are working as intended.
+The current version of ARIA (as of Winter 2023) is 1.2: https://www.w3.org/TR/wai-aria-1.2/
 
-HTML and ARIA work very closely together. Both standards affect how HTML tags become objects in the rendered output in a browser. You can think of accessibility information in semantic HTML elements as built-in, while ARIA attributes get bolted-on.
+ARIA shouldn’t be the first thing you reach for: it’s an advanced tool. That’s because it’s easy to mess up, which I personally have done. Part of the problem is that the major impact of ARIA is on users of Assistive Technology and the attributes get used a lot more than they are actually tested. Support can also vary cross-platform.
 
-The current version of ARIA is 1.2: https://www.w3.org/TR/wai-aria-1.2/
+<figure className="text-center">
+    <img alt="Homer Simpson meme: 'To ARIA! The Solution to, and Cause of, all our accessibility problems" src="/aria-toast.jpg" className="block mx-auto my-4" />
+    <figcaption>Kudos to WebAIM: https://webaim.org/blog/aria-cause-solution/</figcaption>
+</figure>
 
-> ⚠️ Please reference the standard when applying ARIA to your web pages and make sure you're using it correctly. Slapping on some attributes that you _think_ might work but not testing them in Assistive Technology can actually make things worse. ⚠️
+Fortunately, the developer tools we use today make it easier to spot potential problems with ARIA usage. However, you must still test your ARIA markup with Assistive Technology to make sure things are working as intended.
+
+> ⚠️ Please reference [the standard](https://www.w3.org/TR/wai-aria-1.2/) when applying ARIA to your web pages and make sure you’re using it correctly. Slapping on some attributes that you _think_ might work but not testing them in Assistive Technology can actually make things worse. ⚠️
+
+## HTML and ARIA
+
+[HTML and ARIA](https://web.dev/learn/accessibility/aria-html) work very closely together. Both standards affect how HTML tags turn into element objects that are rendered in a browser and screen readers.
+
+> You can think of accessibility information that comes from semantic HTML elements as built-in, while ARIA attributes are bolted-on.
+
+In future sections, we will dig into the parts and mechanics of ARIA so you can learn how to apply it to your own code responsibly.
+
+## Which docs should I use?
+
+It can be confusing to know which docs online to reference. Even the W3C specifications themselves can be outdated when we search, and it’s unclear what is current.
+
+- The [WAI-ARIA standard from the W3C](https://www.w3.org/TR/wai-aria-1.2/) itself is the best source of truth. I typically have it open in a browser tab when I’m working so I can look up required roles, combinations, and other rules.
+    - [ARIA is also developed in the open on GitHub](https://github.com/w3c/aria) where you can search the archives and ask new questions.
+
+- [MDN](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA) is a great resource for learning about ARIA as they seem to care about keeping things up to date.
+
+- [Web.dev](https://web.dev/articles/semantics-aria?hl=en) also has some great ARIA information.
+
+- [HTML5 Doctor](https://html5doctor.com/) has historically included some helpful details about ARIA and HTML that could aid in understanding.

@@ -1,0 +1,9 @@
+# Focus Management Exercise
+
+Let’s add focus management to a chat widget!
+
+Chat widgets are all over the web, and they have some unique focus management concerns. When a chat widget or other layer opens, we need to send focus into it. When it is closed, we need to restore focus where it was.
+
+Chat widgets could mostly be considered non-modal dialogs. This means that we don’t trap focus in the layer, so elements in the background should stay interactive. A skip link or keyboard shortcut to reach the chat widget could be helpful depending on where in the DOM the widget is located.
+
+

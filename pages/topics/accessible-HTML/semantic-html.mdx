@@ -1,26 +1,40 @@
-import Callout from "../../../components/Callout";
-import StackBlitz from "../../../components/StackBlitz";
-
 # Semantic HTML
 
-Avoid DIV soup!
-- Show an example (inspired by Rippling)
+HTML (HyperText Markup Language) is a major part of building an accessible website. There are a ton of elements that provide behavior that works with the keyboard and screen readers for free.
 
-Elements with more functionality: <input> <button> <textarea> <a>
+Learn about the elements and use them! My favorite resource is [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML).
+
+Each HTML tag you use becomes an object in the browser (i.e., part of the Document Object Model). Elements have names, properties, and attributes that are important and helpful to users of Assistive Technology. This is why it's important to avoid using generic elements for everything when more dedicated built-in elements exist.
+
+## Avoid DIV soup
+
+Unfortunately, many sites overuse the `<div>` element rather than creating a semantic structure with landmarks, forms, buttons, etc.
+
+When the DOM on a site shows DIVs all the way down, we call it "Div Soup" or "Divitis". It should really be avoided at all costs.
+
+![Twitter's DIV Soup](/div-soup.png)
+
+## Look for built-in functionality
+
+Aside from landmark elements like `<nav>`, `<main>`, `<section>`, `<header>`, etc., there are numerous structural and grouping elements you can use. Unordered and ordered lists `<ul>` and `<ol>`, `<h1>` through `<h6>` tags, `<form>` `<fieldset>` and `<legend>`, and so much more.
+
+There are a ton of elements that provide interactive functionality, too: `<input>`, `<button>`, `<textarea>`, `<a>`, `<select>`, and more.
 
 Landmark elements have semantic meaning AND functionality in assistive tech (aside, footer, header, etc.)
 - Mention aria labeling on nav/section
-Headings and structure
+
+## Headings and structure
 When to use nav and anchors vs. unordered lists
 Show the VO rotor, Accessibility Insights
 Explain using CSS classes to style things while using the right element (e.g. h2)
-Forms
+
+## Forms
 - Labeling inputs/textareas/etc.
     - Explicit and implicit pairings (when for is not required)
 - Only certain elements can be labeled/named
 - How and when to use visually-hidden class (punt on aria-label until later)
 
-Buttons
+## Buttons
 - Compare button to DIV button
 - Focusability, role, events (div[aria-label] in Jon's example isn't needed - but test it)
 - Compare button to link

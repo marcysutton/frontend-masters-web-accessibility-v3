@@ -1,5 +1,46 @@
+import StackBlitz from '/components/StackBlitz';
+
 # Setting the Language and Fixing Markup
 
-Page level vs. element level lang: how does this affect ATs?
-Discuss validators vs. accessibility tools - checking for well-formed/nested HTML
-- Parsing 4.1.1 was removed from WCAG 2.2 (used in Jon's course)
+One easy win you can do is setting the document language for a given page on the HTML tag:
+
+```html
+<html lang="en">
+```
+
+This will tell Assistive Technology (AT) what language a page is in, affecting how content is read aloud.
+
+For sites with multiple languages, you can set the lang attribute value dynamically in a template.
+
+## Element level vs. page level language
+
+You might also need to indicate a different language on a specific element as opposed to the overall page.
+
+Fortunately, you can reuse the `lang` attribute on a child element to override just that section in AT. This can effectively change the way text is read aloud -- for example, changing from an English accent to a French accent.
+
+```html
+<html lang="en">
+    <body>
+        <p lang="fr"></p>
+    </body>
+</html>
+```
+
+Try the rendered source of this example full-screen in a screen reader:
+
+<StackBlitz name="web-platform-li6gwd" view="both" />
+
+## Validators vs. accessibility tools
+
+You might wonder whether it makes sense to use an HTML validator these days.
+
+With a modern web stack including tools like ESLint, TypeScript, React, and more, it's become less and less important as our tools will warn us about invalid markup in development mode.
+
+However, also with a big stack of components that each bring in their own markup and styles, it can be easy to lose track of the overall page structure.
+
+You should definitely check your rendered page source regularly to get a sense of the markup you're putting out. 
+
+Parsing 4.1.1 was removed from WCAG 2.2 since browsers and ATs are so much more robust these days. They clean up a lot of broken markup miraculously, and there aren't really accessibility issues stemming from this specifically anymore.
+
+You should still run accessibility tools as part of your process to ensure your markup is well-formed and not creating any clear accessibility blockers.
+

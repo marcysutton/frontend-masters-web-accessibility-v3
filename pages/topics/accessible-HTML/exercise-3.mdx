@@ -1,12 +1,31 @@
-import Callout from "../../../components/Callout";
-import StackBlitz from "../../../components/StackBlitz";
+import ProductPage from 'components/ProductPage';
+import {ProductDogHarness} from 'data';
 
 # HTML Exercise
 
-Interact and fix code in an HTML example
+Let’s fix some HTML code in an example!
 
-Form fields + labels, DIV buttons with styling, Image alt text, Link text
+Go through the form fields, “buttons”, images, links and content sections. See what markup and controls (interactive components) you can improve with standard HTML elements and attributes.
 
-Prioritize on-screen link text over aria-label - Label in name etc.
+Play with labeling of controls, keeping in mind the [Label in Name](https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html) criteron in the Web Content Accessibility Guidelines (among other success criteria). See [debugging tips](#debugging-tips-) below.
 
-Show how to verify with Chrome DevTools and VO
+- Inspiration: https://www.backcountry.com/backcountry-x-petco-the-dog-sleeping-bag
+
+- Code playground 👇
+
+<ProductPage productData={ProductDogHarness} />
+
+## Debugging tips 🧐
+
+To debug and verify behavior of your HTML, use these tools and techniques:
+
+- Use your keyboard to ensure controls are reachable and operable.
+- Try out Landmarks, Headings, and Accessible Names under _Ad-hoc tools_ in [Accessibility Insights](https://chrome.google.com/webstore/detail/accessibility-insights-fo/pbjjkligggfmakdaogkfomddhfmpjeni).
+- Inspect the DOM to see how content and controls are marked up:
+    - Are prominent pieces of text in `h1-h6` tags, creating an overall outline?
+    - Are groups of items in unordered or ordered lists?
+    - Are HTML elements used according to their specifications, such as listitems as children of a list?
+    - How are forms marked up? Are individual fields properly labeled? Are there fieldset groups?
+    - Do buttons look like buttons, and links look like links?
+- Run an extension like [Axe](https://chrome.google.com/webstore/detail/axe-devtools-web-accessib/lhdoppojpmngadmnindnejefpokejbdd?hl=en-US&branded&utm_term=axe%20extension&utm_campaign=Search%20-%20axe%20DevTools%20-%20Checker&utm_source=adwords&utm_medium=ppc&hsa_src=g&hsa_ad=626089536234&hsa_tgt=kwd-1186988429648&hsa_mt=p&hsa_ver=3&hsa_acc=7854167720&hsa_kw=axe%20extension&hsa_grp=142979637091&hsa_cam=17378411167&hsa_net=adwords&gad_source=1&gclid=CjwKCAiA9dGqBhAqEiwAmRpTC_3LZFHWcrcgCqvVeYsGiBVHn-kYO6U4kBr_IupwYBQE0hEa3eHBRhoC4q8QAvD_BwE) to see if there are any other violations related to HTML content structure, landmarks, or ARIA (sneak peek to the next section).
+- [Fire up VoiceOver or NVDA](/topics/screen-readers/how-to-enable/) and navigate through the page. How are interactive components presented? What can you learn from the VoiceOver rotor or NVDA Elements List?

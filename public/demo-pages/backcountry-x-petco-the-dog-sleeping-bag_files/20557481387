@@ -1,0 +1,155 @@
+
+(function() {
+  !function(){"use strict";function e(){return window&&window.performance&&window.performance.mark&&window.performance.measure&&window.performance.getEntriesByName}function t(...e){return window.performance.getEntriesByName(...e)}function n(...e){return window.performance.mark(...e)}function i(...e){return window.performance.measure(...e)}function r(){return window.performance.now()}var o={t:e,i:t,o:n,u:i,l:r};let s={};function a(e){return s[e]}function c(e,t){Object.assign(s,{[e]:t})}function u(){s={}}var d={get:a,set:c,reset:u};const l=(e,t)=>{for(var n in e)e.hasOwnProperty(n)&&t(e[n],n)},h=e=>"function"==typeof e,_=e=>!!e&&"object"==typeof e,f=e=>"string"==typeof e,p=e=>void 0===e,g=e=>Array.isArray(e);let w=0;const m=()=>w++;function v(e){let t=document.createElement("a");return t.href=e,t}function b(e){return new Function("return "+e)()}var y={h:e=>{var t=document.createElement("script");t.type="text/javascript",t.src=e;var n=document.querySelector("head");n.insertBefore(t,n.firstChild)},_:e=>{var t=document.createElement("link");t.href=e,t.as="script",t.rel="preload";var n=document.querySelector("head");n.insertBefore(t,n.firstChild)},p:e=>Array.prototype.slice.call(e.querySelectorAll("*")),g:b,m:h,k:_,A:f,I:g,O:p,T:l,C:()=>{w=0},D:m};function E(){O("debug",[].slice.call(arguments))}function k(){O("info",[].slice.call(arguments))}function A(){O("warn",[].slice.call(arguments))}function I(){O("error",[].slice.call(arguments))}const O=(e,t)=>{var n,i=console;switch(e){case"debug":n=i.debug;break;case"warn":n=i.warn;break;case"error":n=i.error;break;default:n=i.log,e="info"}n.apply(console,C(t))};function T(){if(!o.t())return null;let e=d.get("timeOrigin");if(!y.O(e))return e;const t=o.i("edge-begin")[0],n=t?t.startTime:null;return d.set("timeOrigin",n),n}function C(e){const t=T();if(!t)return[`Optly-μ / ${e[0]}`].concat(e.slice(1));return[`${("     "+Math.round(o.l()-t)).slice(-6)}| Optly-μ / ${e[0]}`].concat(e.slice(1))}var D={S:E,P:I,j:k,R:A};function S(e){window.optimizely.push({type:"clientMetadata",clientName:"edge",clientVersion:"____v1_42_0",forceVariationIds:e.forceVariationIds})}const P=e=>{var t=window.optimizely.push.bind(window.optimizely);e.errorData&&t({type:"microsnippetError",engine:"microsnippet",errorData:e.errorData}),e.logLevel&&t({type:"log",level:e.logLevel}),e.visitorId&&t({type:"user",visitorId:e.visitorId,IP:e.visitorIp,location:e.location,queryParams:e.queryParams,url:e.targetPageURL}),e.priorRedirectCookie&&t({type:"priorRedirectString",value:e.priorRedirectCookie}),e.decisions&&e.decisions.forEach((e=>{t({type:"event",eventType:"decision",eventData:{layerId:e.layerId,isLayerHoldback:e.isLayerHoldback||!1,experimentId:e.experimentId,variationId:e.variationId}})})),e.activeViews&&e.activeViews.forEach((e=>{t({type:"event",eventType:"pageview",eventData:{id:e.id,apiName:e.apiName}})})),e.viewStates&&0!==Object.keys(e.viewStates).length&&t({type:"initialViewStates",states:e.viewStates})};function j(e){window.optimizely.push({type:"event",eventType:"click",eventData:{id:e.id,apiName:e.apiName,eventFilter:{selector:e.selector}}})}var R={N:S,M:P};function N(e,{message:t,err:n=null,args:i=[]},r=!0){let o=t,s=[o].concat(i);if(n&&(s=s.concat(n)),D.P.apply(this,s),r&&!d.get("disableTracking")){const e={errorData:{code:o,metadata:{},msVersion:d.get("msVersion"),requestId:d.get("requestId"),projectId:d.get("projectId")}};n&&(e.errorData.metadata.err=n),i.length&&(e.errorData.args=i),R.M(e)}}var M={$:{L:1e3,U:10},F:{V:"after",W:"append",G:"before",q:"prepend"},B:{H:"afterbegin",J:"afterend",X:"beforebegin",K:"beforeend"},Y:"optly_change_",Z:{attributes:!0,childList:!0,subtree:!0,characterData:!0},ee:{te:"class",ne:"href",ie:"html",re:"src",oe:"style",se:"text",ae:"remove",ce:"hide"}};const x="Observe Selector",$=document;let L,U;const F=()=>{L={},U=new MutationObserver((function(){this.disconnect(),Object.keys(L).forEach(W),this.observe($,M.Z)}))},z=()=>{U.observe($,M.Z)},V=(e,t)=>{U||F();const n=m();return L[n]={selector:e,callback:t},setTimeout(W.bind(null,n),0),z(),()=>{delete L[n],0===Object.keys(L).length&&U.disconnect()}},W=e=>{let t;try{if(t=L[e],!t||!t.selector)return void delete L[e];let n=[];n=document.querySelectorAll(t.selector),Array.prototype.forEach.call(n,(n=>{n.optimizelyEdgeObserveSelectorIds&&n.optimizelyEdgeObserveSelectorIds[e]||(n.optimizelyEdgeObserveSelectorIds=n.optimizelyEdgeObserveSelectorIds||{},n.optimizelyEdgeObserveSelectorIds[e]=!0,t.callback(n))}))}catch(n){N(x,{err:n,message:"3.0: Error using selector:",args:[t.selector]}),delete L[e]}};var G={ue:()=>{U&&(L=null,U.disconnect(),U=null)},de:F,le:V};const q=20,B=e=>new Promise((function(t){V(e,t)}));const H={utils:{observeSelector:V,waitUntil:e=>new Promise((function(t){if(e())return void t();const n=setInterval((function(){e()&&(clearInterval(n),t())}),q)})),waitForElement:B},state:{getActiveExperiments:()=>{let e,t;return window.optimizely.get?(e=window.optimizely.get("state").getExperimentStates({isActive:!0}),e=Object.keys(e).filter((t=>!e[t].isInExperimentHoldback)).map((t=>e[t])),t=e=>({id:e.id,name:e.experimentName,variation:{id:e.variation.id,name:e.variation.name}})):(e=d.get("data").decisions.filter((e=>e.variationId)),t=e=>({id:e.experimentId,name:e.experimentName,variation:{id:e.variationId,name:e.variationName}})),e.reduce(((e,n)=>{const i=t(n);return e[i.id]=i,e}),{})},getActivePages:()=>{let e;return window.optimizely.get?(e=window.optimizely.get("state").getPageStates({isActive:!0}),e=Object.keys(e).map((t=>e[t]))):e=d.get("data").activeViews,e.reduce(((e,t)=>(e[t.id]={id:t.id,apiName:t.apiName},e)),{})},getRedirectInfo:()=>d.get("data").redirectInfo||null}};function J(e){if(e in H)return H[e]}function X(e){window.optimizely.push(e)}var K={he:()=>{window.optimizely&&(D.R("DEPRECATION: window.optimizely is defined, but it ought not be used on pages running Performance Edge. window.optimizelyEdge is the object hosting the Performance Edge API; any push API calls should be made to it instead."),d.set("unsafeTrackingGlobalPushUsed",!0)),window.optimizely instanceof Array||(window.optimizely=[]),window.optimizelyEdge instanceof Array&&(window.optimizely=window.optimizely.concat(window.optimizelyEdge)),window.optimizelyEdge={get:J,push:X,_e:!0}}};const Y="Widget Change Applier";function Z(e,t){this.fe={},Object.assign(this.fe,e),Object.assign(this.fe,t)}Z.prototype.pe=function(){try{this.fe.showFn({data:this.fe})}catch(e){N(Y,{message:"1.4: Apply WidgetChange Error",err:e})}},Z.prototype.ge=function(){try{this.fe.hideFn({data:this.fe})}catch(e){N(Y,{message:"1.4: Undo WidgetChange Error",err:e},!1)}};const Q="Plugin Manager";var ee=new(function(){var e=null,t={};function n(){return e||(e=this),e}return n.prototype.registerWidget=function(e){t[e.widgetId]=e},n.prototype.getPluginInfo=function(e){return t[e]},n.prototype.getPlugins=function(){const e=[];for(var n in t)e.push(t[n]);return e},n.prototype.clearPlugins=function(){t={}},n.prototype.newWidgetChange=function(e){var t=null;if(e&&e.widget_id){const n=this.getPluginInfo(e.widget_id);n?t=new Z(e,n):N(Q,{message:`1.4: Requested widget is not in PluginManager: ${e.widget_id}`})}else N(Q,{message:`1.4: New Widget Change requested with no change.widget_id defined: ${e}`});return t},n}());const te="ProjectJS";var ne={pe:e=>{try{h(e)?e():N(te,{message:"2.0: ProjectJS is not a function"})}catch(t){N(te,{message:"2.1: Error executing ProjectJS:",err:t},!1)}}};function ie(){let e,t,n=new Promise((function(n,i){e=n,t=i}));return n.resolve=function(){return e.apply(null,Array.from(arguments)),n},n.reject=function(){return t.apply(null,Array.from(arguments)),n},n}const re="optimizelyChangeData";function oe(e,t){return e[re]&&e[re][t]?e[re][t]:null}function se(e,t){e[re]&&delete e[re][t]}function ae(e,t,n){if("object"!=typeof n)throw new Error("setData expects an object");e[re]||(e[re]={}),e[re][t]=n}var ce={we:oe,me:se,ve:ae};function ue(){return window.location.hostname}function de(e,t){return window.setTimeout((function(){try{e()}catch(t){D.R("Deferred function threw error:",t)}}),t)}var le={be:ue,ye:de};function he(e){this.Ee=e,this.ke=0,this.Ae={},this.Ie=!1}he.prototype.Oe=function(){this.Ie||(this.Ie=!0,this.Te(),le.ye((()=>{this.Ie=!1}),0))},he.prototype.Te=function(){this.ke+=1;const e=this.Ae[String(this.ke)];e&&e.forEach((e=>{e()})),le.ye((()=>{this.Ce()}),this.Ee)},he.prototype.Ce=function(){this.ke-=1,this.ke<0&&(D.R("Decremented down to negative count: ",this.ke),this.ke=0)},he.prototype.De=function(e,t){this.Ae[e]||(this.Ae[e]=[]),this.Ae[e].push(t)};const _e="Append Change Applier";function fe(e){this.fe=e,this.Se=new he(M.$.L),this.Se.De(M.$.U,(()=>{D.R(`${_e} / Change has overheated and will no longer apply or reapply`,this),this.Pe()}))}function pe(e){const t=document.createElement("div");return t.innerHTML=e,t.childNodes.length}function ge(e,t,n){let i=e;const r=[];for(let o=0;o<t;o++)n?(r.push(i.nextSibling),i=i.nextSibling):(r.push(i.previousSibling),i=i.previousSibling);return r}function we(e){let t=e.parentNode;for(;t.nodeType!==Node.ELEMENT_NODE;)t=t.parentNode;return t}function me(e,t,n){const i=ce.we(n,e)||[];Array.prototype.forEach.call(i,(e=>{e.parentNode.removeChild(e)})),n.removeAttribute(t),ce.me(n,e),y.p(n).forEach((e=>{e.removeAttribute(t)}))}fe.prototype.pe=function(){return this.je=ie(),this.Re=y.D(),this.Ne=G.le(this.fe.selector,this.Me.bind(this,this.fe,this.Re)),this.je},fe.prototype.Me=function(e,t,n){const i=M.Y+t;n.hasAttribute(i)||(this.Se.Oe(),this.xe(e,t,n,i)),this.je.resolve()},fe.prototype.xe=function(e,t,n,i){let r;switch(e.operator){case M.F.V:r=M.B.J;break;case M.F.W:r=M.B.K;break;case M.F.G:r=M.B.X;break;case M.F.q:r=M.B.H;break;default:r=M.B.K}n.insertAdjacentHTML(r,e.value);const o=pe(e.value)-1;let s,a;r===M.B.K?(s=n.lastChild,a=ge(s,o,!1)):r===M.B.H?(s=n.firstChild,a=ge(s,o,!0)):r===M.B.X?(s=n.previousSibling,a=ge(s,o,!1)):r===M.B.J&&(s=n.nextSibling,a=ge(s,o,!0)),a.unshift(s),Array.prototype.forEach.call(a,(e=>{const n=e.nodeType===Node.ELEMENT_NODE?e:we(e);n.setAttribute(i,"");const r=ce.we(n,t)||[];r.push(e),ce.ve(n,t,r),y.p(n).forEach((e=>{e.setAttribute(i,"")}))}))},fe.prototype.Pe=function(){this.Ne&&this.Ne()},fe.prototype.ge=function(){const e=M.Y+this.Re,t=document.querySelectorAll("["+e+"]");Array.prototype.forEach.call(t,me.bind(null,this.Re,e))};const ve=(e,t)=>{if(0===Object.keys(t.css))return t.attributes.style;var n="",i=t.attributes&&t.attributes.style||"";return l(t.css,((e,t)=>{new RegExp(t+"\\s?:").test(i)||(n+=t+":"+e+";")})),p(t.attributes.style)?(e||"")+n:n+i};var be={$e:e=>new MutationObserver(e),Le:(e,t)=>{e.observe(t,M.Z)}};const ye="Attribute Change Applier";function Ee(e){this.fe=e,this.Ue=[],this.Se=new he(M.$.L),this.Se.De(M.$.U,(()=>{D.R(`${ye} / Change has overheated and will no longer apply or reapply`,this),this.Pe()})),this.Fe=!1}function ke(e,t){const n=ce.we(t,e);n&&y.T(n,(function(e,n){switch(n){case M.ee.te:t.className=e;break;case M.ee.ne:t.href=e;break;case M.ee.ie:t.innerHTML=e;break;case M.ee.re:t.src=e;break;case M.ee.oe:t.style.cssText=e;break;case M.ee.se:t.textContent=e;break;default:throw new Error("Unrecognized attribute: "+n)}})),t.removeAttribute(M.Y+e),ce.me(t,e)}Ee.prototype.pe=function(){this.Re=y.D(),this.je=ie();const e=this.Me.bind(this,this.fe,this.Re);this.Ne=G.le(this.fe.selector,e);const t=document.querySelectorAll(this.fe.selector);return t?Array.prototype.forEach.call(t,e):this.je.resolve(`${ye} / AttributeChange not being applied. Element does not exist in DOM`),this.je},Ee.prototype.Me=function(e,t,n){const i=M.Y+t;if(n.hasAttribute(i))return void this.je.resolve();this.Se.Oe();const r=this.xe.bind(this,n,e,t,i);if(r(),d.get("dynamicWebsiteSupport")){const e=()=>{le.ye((()=>{this.Fe||be.Le(t,n)}))},t=be.$e((()=>{this.Se.Oe(),t.disconnect(),r(),e()}));e(),this.Ue.push(t.disconnect.bind(t))}this.je.resolve()},Ee.prototype.xe=function(e,t,n,i){const r={};y.T(t.attributes,((t,n)=>{switch(n){case M.ee.te:y.O(e.className)||(r[M.ee.te]=e.className,e.className=t);break;case M.ee.ne:y.O(e.href)||(r[M.ee.ne]=e.href,e.href=t);break;case M.ee.ie:y.O(e.innerHTML)||(r[M.ee.ie]=e.innerHTML,e.innerHTML=t,y.p(e).forEach((e=>{e.setAttribute(i,"")})));break;case M.ee.re:y.O(e.src)||(r[M.ee.re]=e.src,e.src=t);break;case M.ee.oe:break;case M.ee.se:y.O(e.textContent)||(r[M.ee.se]=e.textContent,e.textContent=t);break;default:N(ye,{message:"1.1: Unrecognized attribute:",args:[n]})}}));const o=ve(e.style.cssText,t);y.A(o)&&(r[M.ee.oe]=e.style.cssText,e.style.cssText=o),e.setAttribute(i,""),ce.ve(e,n,r)},Ee.prototype.Pe=function(){this.Ne&&this.Ne(),this.Ue.forEach((e=>{try{e()}catch(t){}})),this.Fe=!0},Ee.prototype.ge=function(){const e=document.querySelectorAll("["+M.Y+this.Re+"]");Array.prototype.forEach.call(e,ke.bind(null,this.Re))};const Ae="Custom Code Change Applier";function Ie(e){this.fe=e}function Oe(e){this.fe=e}function Te(e,t){const n=ce.we(t,e),i=n.element.parentNode.removeChild(n.element),r=n.undoElement,o=r.parentNode;let s;switch(n.undoType){case M.F.V:o.insertBefore(i,r.nextSibling);break;case M.F.q:s=r.firstChild,r.insertBefore(i,s)}t.removeAttribute(M.Y+e),ce.me(t,e)}function Ce(e){if(!e)return null;const t=document.createElement("a");return t.href=e,t}Ie.prototype.pe=function(){try{this.fe.value()}catch(e){N(Ae,{message:"1.2: Apply Custom JS Error",err:e},!1)}},Oe.prototype.pe=function(){this.Re=y.D(),Promise.all([new Promise((e=>{this.Ne=G.le(this.fe.selector,e)})),new Promise((e=>{this.ze=G.le(this.fe.insertSelector,e)}))]).then(this.Me.bind(this,this.fe))},Oe.prototype.Me=function(e){const t=document.querySelectorAll(e.selector);Array.prototype.forEach.call(t,(t=>{const n={undoElement:t.previousSibling,undoType:M.F.V};t.parentNode.firstChild===t&&(n.undoElement=t.parentNode,n.undoType=M.F.q);const i=t.parentNode.removeChild(t),r=document.querySelector(e.insertSelector),o=r.parentNode;let s;switch(n.element=i,e.operator){case M.F.G:o.insertBefore(i,r);break;case M.F.V:o.insertBefore(i,r.nextSibling);break;case M.F.q:s=r.firstChild,r.insertBefore(i,s);break;case M.F.W:r.appendChild(i)}i.setAttribute(M.Y+this.Re,""),ce.ve(i,this.Re,n)}))},Oe.prototype.Pe=function(){this.Ne&&this.Ne(),this.ze&&this.ze()},Oe.prototype.ge=function(){const e=document.querySelectorAll("["+M.Y+this.Re+"]");Array.prototype.forEach.call(e,Te.bind(null,this.Re))};const De="Redirect Change Applier";function Se(e){this.fe=e}Se.prototype.pe=function(){const e=this.fe;h(e.dest)&&(e.dest=e.dest()),f(e.dest)?(document.cookie=e.cookie.replace(/(^|&)t=(&|$)/,`$1t=${Date.now()}$2`).replace(/(^|&)r=(&|$)/,`$1r=${encodeURIComponent(document.referrer)}$2`),this.Ve(e,this.We(e))):N(De,{message:"1.3.1 Redirect destination function did not evaluate to a string",args:[String(e.dest)]})},Se.prototype.We=function(e){const t=Ce(e.dest);if(e.preserveParameters){const e=this.Ge();e&&(t.search?t.search+="&"+e.substr(1):t.search=e)}return t.toString()},Se.prototype.Ve=function(e,t){(!e.hasOwnProperty("hidePage")||e.hidePage)&&this.qe(),this.Be(t)},Se.prototype.qe=function(){const e=document.createElement("style");e.setAttribute("type","text/css"),e.innerHTML="body{display:none;visibility:hidden;}",document.head.appendChild(e)},Se.prototype.Be=function(e){window.location.replace(e)},Se.prototype.Ge=function(){return window.location.search};const Pe="Change Applier";function je(e){const t=new Ne(e);return t.pe(),t}function Re(e){window.optimizely.push({type:"addListener",filter:{type:"lifecycle",name:"pageDeactivated"},handler:function(t){const n=t.data.page,i=e[n.id];i&&n.deactivationEnabled&&(i.forEach((e=>e.Pe())),n.undoOnDeactivation&&i.forEach((e=>e.ge()))),delete e[n.id]}})}function Ne(e){this.He=[],e.forEach((e=>{let t;switch(e.type){case"attribute":t=new Ee(e);break;case"append":t=new fe(e);break;case"custom_code":t=new Ie(e);break;case"rearrange":t=new Oe(e);break;case"redirect":t=new Se(e);break;case"widget":t=ee.newWidgetChange(e);break;default:N(Pe,{message:"1.0: Unknown change type:",args:[e.type]})}t&&this.He.push(t)}))}Ne.prototype.pe=function(){this.He.forEach((e=>e.pe()))},Ne.prototype.Pe=function(){this.He.forEach((e=>{e.Pe&&e.Pe()}))},Ne.prototype.ge=function(){this.He.forEach((e=>{e.ge&&e.ge()}))};var Me={Je:je,Xe:Ne,Ke:Re};let xe;const $e="Click Tracking";function Le(){xe||(xe=new Ve((function(e){j(e)})))}function Ue(e){xe||Le(),xe.Ye()||xe.Ze(),xe.Qe(e)}function Fe(e){xe.et(e),xe.Ye()||xe.tt()}function ze(e){window.optimizely.push({type:"addListener",filter:{type:"lifecycle",name:"pageDeactivated"},handler:function(t){const n=t.data.page.id;e[n]&&e[n].forEach(Fe)}})}class Ve{constructor(e){this.nt=e,this.it=[],this.rt=null,this.ot=function(e){this.it.forEach(function(t){try{var n=t.selector;We(e,n)&&this.nt(t)}catch(i){N($e,{message:"Click handler error:",err:i},!1)}}.bind(this))}.bind(this)}Ze(){this.rt=document.addEventListener("click",this.ot,!0)}tt(){this.rt&&(this.rt(),this.rt=null)}Ye(){return this.it.length>0}Qe(e){this.it.push(e)}et(e){this.it=this.it.filter((function(t){return t.apiName!==e.apiName}))}}function We(e,t){for(var n=e.target;n;){var i;try{i=n.matches(t)}catch(r){return!1}if(i)return!0;n=n.parentElement}return!1}var Ge={st:Ue,ct:Le,ut:ze};var qe={dt:function(e,t,n,i){var r={id:e,policy:"single_experiment",holdback:0,experiments:[{id:t||"",variations:[{id:n||"",actions:[]}]}],integrationStringVersion:1};return i&&Object.assign(r,{pageIds:[i]}),r},lt:function(e,t,n,i){return{campaignId:e,decision:{campaignId:e,experimentId:t,variationId:n,isCampaignHoldback:i||!1},decisionTicket:{audienceIds:[]}}}};const Be={LIFECYCLE:"lifecycle"},He={CAMPAIGN_DECIDED:"campaignDecided",INITIALIZED:"initialized"};var Je={ht:function(e){var t=qe.dt(e.layerId,e.experimentId,e.variationId,e.viewId),n=qe.lt(e.layerId,e.experimentId,e.variationId,e.isLayerHoldback);return{type:Be.LIFECYCLE,name:He.CAMPAIGN_DECIDED,data:{campaign:t,decisionTicket:n.decisionTicket,decision:n.decision}}},_t:()=>({type:Be.LIFECYCLE,name:He.INITIALIZED})};const Xe="Side Emitter";function Ke(e){return _(e)&&e.type&&"addListener"===e.type&&e.filter&&_(e.filter)&&h(e.handler)}function Ye(e){var t=[];return g(window.optimizely)&&window.optimizely.forEach((n=>{Ke(n)&&n.filter.type===e.type&&n.filter.name===e.name&&t.push(n.handler)})),t}function Ze(e){Ye(e).forEach((t=>{try{t.call(void 0,e)}catch(n){N(Xe,{message:"4.0: Error in listener handler for event:",err:n,args:[e]})}}))}var Qe={ft:e=>{let t=[Je._t()];e.decisions&&(t=t.concat(e.decisions.map(Je.ht))),t.forEach(Ze)}};function et(){return document.currentScript}function tt(e){document.cookie=e}var nt={gt:et,wt:tt};function it(e){nt.wt(e)}function rt(e,t="/"){const n=le.be().split(".");for(;n.length>0;)this.vt(`${e}=;expires=${new Date(0)};path=${t};domain=.${n.join(".")}`),n.shift()}var ot={vt:it,bt:rt};const st="Main",at="optimizelyOptOut",ct=()=>window&&document&&window.MutationObserver,ut=()=>window&&window.optlyDesktop&&void 0!==window.optlyDesktop.p13nInner;var dt=(e,t=null)=>{if(K.he(),ut())return void D.j(`${st} /  Disabling because of desktop app.`);if(!y.k(e))return void N(st,{message:"0.1: Not a valid input"});const n=e.snippetURL;if(n){let t,i,r;const o=()=>y.h(n),s=e.experimental&&e.experimental.features.tracking_snippet_install;if(s){s.enabled&&(({install_mode:t,delay:i,preload:r}=s),t=t.toLowerCase());const e=i>=0?()=>setTimeout(o,i):o;"load"===t?window.onload=e:"domcontentloaded"===t?window.addEventListener("DOMContentLoaded",e):(t&&D.R(`Ignoring unknown install mode: ${t}`),e()),r&&y._(n)}else e.trackingSnippetOnload?window.onload=o:o()}if(ct()){if(e.optIn&&(D.j(`${st} / Processing opt in`),ot.bt(at)),e.visitorIdCookie&&ot.vt(e.visitorIdCookie),"projectJS"in e&&ne.pe(e.projectJS),e.pluginsPayload)try{y.g(e.pluginsPayload)(ee)}catch(i){N(st,{message:"0.4: Error Registering Plugins",err:i},!1)}if(e.disableTracking||(R.N(e),R.M(e)),e.disableTracking||Qe.ft(e),"changeSets"in e){const t=e.changeSets.reduce(((e,t)=>{const{changes:n,viewId:i}=t;return e[i]||(e[i]=[]),e[i].push(Me.Je(n)),e}),{});Object.keys(t).length&&Me.Ke(t)}if("activeClickEvents"in e&&!e.disableTracking){const t=Object.keys(e.activeClickEvents);t.length&&(Ge.ct(),t.forEach((t=>e.activeClickEvents[t].forEach(Ge.st))),Ge.ut(e.activeClickEvents))}}else N(st,{message:"0.2: Not a supported environment"})};const lt="https://rum.optimizely.com/rum";function ht(e,t){const{accountId:n,activeExt:i,dynamicWebsiteSupport:r,experimental:o,groups:s,projectId:a,revision:c,rum:u,webManExt:d}=e,{id:l,inRumSample:h,sampleRate:_}=u;if(!h)return window.optimizely.push({type:"rum",eventData:{inRumSample:h}}),Promise.resolve();const f={sampleRate:_,extras:{edge:Object.assign(_t(),{activeExt:i||0,groups:s||0,microsnippetTimestamp:t,spa:r||!1,webManExt:d||0}),experimental:o}};window.optimizely.push({type:"rum",eventData:{id:l,inRumSample:h,data:f}});const p=Object.assign({id:l,v:"1.0",account:n,project:a,revision:c,clientVersion:"____v1_42_0"},f),g=(e,t)=>Object.assign({},e,{extras:Object.assign({},e.extras,{[t]:!0,beacon:{microsnippet:!0}})});return"function"==typeof navigator.sendBeacon&&navigator.sendBeacon(lt,JSON.stringify(g(p,"sendBeacon"))),fetch(lt,{method:"POST",credentials:"include",body:JSON.stringify(g(p,"fetch")),headers:{"Content-Type":"text/plain;charset=UTF-8"}})}function _t(){const{async:e}=nt.gt(),{defer:t,src:n}=nt.gt();return{async:e,defer:t,performanceMeasures:pt(),subresource:ft(n),unsafeTrackingGlobalPushUsed:d.get("unsafeTrackingGlobalPushUsed")||!1}}function ft(e){if(!e)return;const t=v(e),n=o.t()?o.i(e)[0].toJSON():null;return{scheme:t.protocol.slice(0,-1),host:t.host,path:t.pathname,resourceTiming:n}}function pt(){if(!o.t())return;const e={"time-to-edge-complete":[void 0,"edge-end"],"edge-execution":["edge-begin","edge-end"]};return Object.keys(e).reduce(((t,n)=>{o.u(n,e[n][0],e[n][1]);const{startTime:i,duration:r}=o.i(n)[0];return t[n]={startTime:i,duration:r},t}),{})}var gt="Index";try{wt()}catch(mt){try{N(gt,{message:"0.0: Main: Unhandled error",err:mt})}catch(vt){console.warn(mt)}}function wt(){if(window.optimizelyEdge&&window.optimizelyEdge._e||window.optimizely&&window.optimizely.initialized)console.warn("Disabling this snippet because Optimizely has already initialized on this page load. Are there multiple snippets on the page?");else{o.t()&&o.o("edge-begin");var e={"accountId":"70125074","activeClickEvents":{"24782020096":[{"apiName":"20557481387_home_promotion_elements_click","id":"24785630771","selector":"#content > div div:nth-last-child(n+4) div.chakra-linkbox,#content picture > a"}]},"activeExt":0,"activeViews":[{"id":"23177090048","apiName":"20557481387_all_pages"},{"id":"24782020096","apiName":"20557481387_home"}],"changeSets":[],"decisions":[],"dynamicWebsiteSupport":true,"forceVariationIds":[],"groups":0,"pluginsPayload":"","projectId":"20557481387","projectJS":function(){var CUSTOM_DIMENSION = 46; //Dimension used on GA for tracking
+
+window.optimizely = window.optimizely || [];
+window.optimizely.push({
+  type: 'addListener',
+  filter: {
+    type: 'lifecycle',
+    name: 'campaignDecided',
+  },
+  handler: function() {
+    if (window.EventBus && window.EventBus.emit) {
+      window.EventBus.emit('opti.campaignDecided');
+    }
+  },
+});
+
+window.optlyHelper = (function () {
+  return {
+    v: "1.26",
+    getCookieValue: function (a) {
+      var b = document.cookie.match('(^|[^;]+)\\s*' + a + '\\s*=\\s*([^;]+)');
+      return b ? b.pop() : '';
+    },
+    setCookieValue: function (cname, cvalue, exdays) {
+      var d = new Date();
+      d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+      var expires = "expires=" + d.toUTCString();
+      document.cookie = cname + "=" + cvalue + ";" + expires + ";domain=.backcountry.com;path=/";
+    },
+    activeExperiments: {}
+  };
+})();
+window.optlyHelper.getExperimentInfo = (function () {
+  var activeExperiments,
+    redirectCookie,
+    redirectVariables;
+  function _getCookieValue(a) {
+    var b = document.cookie.match('(^|[^;]+)\\s*' + a + '\\s*=\\s*([^;]+)');
+    return b ? b.pop() : '';
+  }
+  function _getQueryVariable(cookieValue) {
+    var query = {};
+    var pairs = (cookieValue[0] === '?' ? cookieValue.substr(1) : cookieValue).split('&');
+    for (var i = 0; i < pairs.length; i++) {
+      var pair = pairs[i].split('=');
+      query[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1] || '');
+    }
+    return query;
+  }
+  function _writeRedirectInfo(r) {
+    optlyHelper.redirectInfo = r;
+  }
+  function init() {
+    activeExperiments = window.optimizelyEdge.get('state').getActiveExperiments();
+    redirectCookie = _getCookieValue("optimizelyRedirectData");
+    if (redirectCookie.length > 0) {
+      redirectVariables = _getQueryVariable(redirectCookie);
+      if (redirectVariables.hasOwnProperty('r')) {
+        _writeRedirectInfo(redirectVariables);
+      }
+      // Override Referrer of Page
+      if (redirectVariables.hasOwnProperty('r') && redirectVariables.r.length > 0) {
+        Object.defineProperty(document, "referrer", { get: function () { return redirectVariables.r; } });
+      }
+      activeExperiments[redirectVariables.x] = {
+        'id': redirectVariables.x,
+        'variation': {
+          'id': redirectVariables.v
+        }
+      };
+    }
+    optlyHelper.activeExperiments = activeExperiments;
+  }
+  return {
+    init: init
+  };
+})();
+// GA INTEGRATION MODULE
+window.optlyHelper.gaIntegration = (function () {
+  var allActiveExperiments;
+  function _sendGaEvent(decisionString) {
+    if (!!decisionString) {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'campaign-decided',
+        'optimizely-dimension-number': CUSTOM_DIMENSION,
+        'optimizely-dimension-value': decisionString,
+      });
+    }
+  }
+  function _getDecisionString(experimentInfo) {
+    return "(" + experimentInfo.id + ":" + experimentInfo.variation.id + ")";
+  }
+  function init() {
+    allActiveExperiments = optlyHelper.activeExperiments;
+
+    for (var exp in allActiveExperiments) {
+      if (allActiveExperiments.hasOwnProperty(exp)) {
+        var experimentInfo = allActiveExperiments[exp];
+        var decisionString = _getDecisionString(experimentInfo);
+        _sendGaEvent(decisionString);
+      }
+    }
+  }
+  return {
+    init: init
+  };
+})();
+window.optlyHelper.getExperimentInfo.init();
+window.optlyHelper.gaIntegration.init();
+
+
+// Content Swap in Apache implementation
+window.bcOpti = (function() {
+  return {
+    contentSwap: function (src, dest) {
+      const COOKIE_NAME = "ABTESTS";
+
+      function getExpiresDate(){
+        const d = new Date();
+        d.setTime(d.getTime() + (24*60*60*1000));
+        return "expires="+ d.toUTCString();
+      }
+
+      function getCookie() {
+        let name = `${COOKIE_NAME}=`;
+        let decodedCookie = decodeURIComponent(document.cookie);
+        let ca = decodedCookie.split(";");
+        for (let i = 0; i < ca.length; i++) {
+          let c = ca[i];
+          while (c.charAt(0) == " ") {
+            c = c.substring(1);
+          }
+          if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+          }
+        }
+        return "";
+      }
+
+      let value = `${src},${dest}`;
+      const cookie = getCookie();
+      const expires = getExpiresDate();
+      if (cookie.includes(`${dest}`)) return;
+
+      if (cookie) value = `${cookie}|${value}`;
+      document.cookie = `${COOKIE_NAME}=${value};${expires}`;
+    }
+  };
+})();
+},"queryParams":[],"requestId":"82bcd794bda8c694","revision":"2843","rum":{"inRumSample":false,"sampleRate":0.003},"snippetURL":"https://cdn.optimizely.com/public/70125074/20557481387/2843_c7924a1eb38cdbc866e2fc72c6d86e86be6343fd6dc8435e35ba157952bc2405_edge_helper.js","targetPageURL":"https://www.backcountry.com/","trackingSnippetOnload":false,"viewStates":{"21861921613":false,"22042283623":false,"22117541746":false,"22119621352":false,"22159030484":false,"22522740589":false,"23177090048":true,"23291270046":false,"24129400231":false,"24294660403":false,"24304060456":false,"24308620234":false,"24326570380":false,"24460671194":false,"24712170256":false,"24740480044":false,"24782020096":true,"24924090111":false,"25011100649":false,"25098500032":false,"25230161203":false,"25231730731":false,"25245232198":false,"25410490087":false,"25411640113":false,"25422340122":false,"25432120064":false,"25436030021":false},"visitorId":"oeu1700946245879r0.6938549336337512","visitorIdCookie":"optimizelyEndUserId=oeu1700946245879r0.6938549336337512; Max-Age=15552000; Domain=backcountry.com; Path=/","visitorIp":"76.147.132.190","webManExt":0},t=null;d.set("msVersion","____v1_42_0"),d.set("requestId",e.requestId),d.set("projectId",e.projectId),d.set("data",e),d.set("disableTracking",e.disableTracking),d.set("dynamicWebsiteSupport",e.dynamicWebsiteSupport),dt(e,t),o.t()&&(o.o("edge-end"),o.u("edgeExecution","edge-end","edge-begin")),"rum"in e&&ht(e,Date.now()).then((e=>{e&&e.status&&D.j(`${gt} / Tracked RUM: ${e.status}`)}),(e=>{N(gt,{message:"0.3: RUM Error",err:e})}))}}}();
+
+})()

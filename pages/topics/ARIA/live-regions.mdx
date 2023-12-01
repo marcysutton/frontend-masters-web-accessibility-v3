@@ -1,14 +1,27 @@
-import Callout from "../../../components/Callout";
-import StackBlitz from "../../../components/StackBlitz";
-
 # Live Regions
 
-What are they, how to use them: levels, role vs. attribute, include on page load, put an .sr-only class on it (but make sure it's rendered)
+Sometimes screen reader users need to be made aware of things happening without their focus being moved: auto-save in a form, banner alerts and chat widgets, to name a few. Live regions can also be used in conjunction with other techniques to craft a full accessible experience, such as with [client-side routing](https://www.gatsbyjs.com/blog/2019-07-11-user-testing-accessible-client-routing/).
 
-How to populate content in a live region, how to limit it to certain announcements
+Fortunately, we have a modern tool to make announcements in Assistive Technology in exactly this way: [ARIA Live Regions](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions). There are two major “levels” of live regions: **assertive** and **polite**. Assertive will interrupt other announcements in a time-sensitive way, while polite will wait until other announcements in the queue have completed.
 
-Examples of when you'd use a live region
+## Using Live Regions
 
-Q: Can you play a sound with a live region (why would you want to?)
+You can create ARIA live regions in different ways:
 
-How to test live regions
+- With a role attribute, such as `role="status"`, `role="log"` or `role="alert"`.
+
+You can also make any other role into a live region with property attributes:
+
+- `aria-live="polite"` or `aria-live="assertive"`.
+
+Live Regions act as a message center, collecting text appended and announcing when it becomes available (with a couple of settings to vary how exactly this works, such as `aria-atomic` and `aria-relevant`). This means that live regions work best when they are on the page from the start. Create the live region on page load and then append messages to it as-needed.
+
+You can put a CSS class on a live region to hide it visually while still technically rendering it accessible to Assistive Technology. Common CSS utility classes of this nature in the community include `.sr-only` and `.visually-hidden` (they do basically the same thing).
+
+## Testing Live Regions
+
+The only real way to test a live region is to fire up a screen reader such as VoiceOver or NVDA. You’ll need to verify that the content announces when you expect and there isn’t anything interfering with it, such as other content or CSS. This is another example of something that could be easy to get wrong since ARIA attributes seem mostly “under the hood.”
+
+## Q: Can you play a sound with a live region?
+
+A: You possibly could, since live region content is typically appended with JavaScript. But the sound could interfere with the text content since it goes into an an announcement queue. Before sinking a ton of time into the concept, test a prototype with people who rely on screen readers to make sure it won’t annoy the heck out of them. It could be one of those things that sounds like a great idea (no pun intended) but really isn’t.

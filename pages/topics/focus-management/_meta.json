@@ -1,9 +1,9 @@
 {
-  "keyboard-only": "Keyboard Only",
-  "skip-links": "Skip Links",
-  "tab-key-navigation": "Tab Key Navigation",
-  "active-element": "Active Element",
-  "keyboard-trapping": "Keyboard Trapping",
-  "shortcuts": "Keyboard Shortcuts",
-  "exercise": "Exercise"
+	"keyboard-only": "Keyboard Only",
+	"skip-links": "Skip Links",
+	"tab-key-navigation": "Tab Key Navigation",
+	"active-element": "Active Element",
+	"keyboard-trapping": "Keyboard Trapping",
+	"shortcuts": "Keyboard Shortcuts",
+	"exercise-5": "Exercise 5"
 }
