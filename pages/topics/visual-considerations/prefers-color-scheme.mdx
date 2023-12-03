@@ -1,12 +1,51 @@
-import Callout from "../../../components/Callout";
 import StackBlitz from "../../../components/StackBlitz";
 
 # Prefers Color Scheme
 
-API for customizing light mode / dark mode
+Similar to `prefers-reduced-motion`, there is also a CSS Media Query for styling users’ preferred color scheme between `light` or `dark` mode: [`prefers-color-scheme`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme). Color schemes could be an accessibility issue for someone with light sensitivity.
 
-Show example of using the media query
+[Support is pretty good](https://caniuse.com/?search=prefers-color-scheme) and you could always make a custom toggle for any platforms that are slow on support. On a Mac, the setting to change the mode is under _System Settings > Appearance_.
 
-Remind to check color contrast in dark mode
+Here is what the CSS code looks like:
 
-Discuss Windows High Contrast Mode
+```css
+.theme-a {
+  background: #dca;
+  color: #731;
+}
+@media (prefers-color-scheme: dark) {
+  .theme-a.adaptive {
+    background: #753;
+    color: #dcb;
+    outline: 5px dashed #000;
+  }
+}
+```
+
+And just like Reduced Motion, you can match the `prefers-color-scheme` setting with JavaScript `matchMedia`. Say `light` is your default theme, and you watch to match on `dark` mode:
+
+```javascript
+const darkModeQuery = matchMedia('(prefers-color-scheme: dark)');
+  let userPrefersDarkMode = true;
+
+  function handleDarkModeChanged() {
+    if (darkModeQuery.matches) {
+      /* adjust color and other theme style properties */
+      userPrefersDarkMode = true;
+    } else {
+      /* standard theme */
+      userPrefersDarkMode = false;
+    }
+  }
+  darkModeQuery.addEventListener('change', handleDarkModeChanged);
+  
+  handleDarkModeChanged();
+```
+
+You can do some really cool things with `matchMedia` along with managing state in a JavaScript app like in this docs website’s theme ([Nextra / built with React](https://github.com/shuding/nextra/blob/66798f8e7f92cca80f2d62d19f9db5667bcc62ef/packages/nextra-theme-docs/src/components/theme-switch.tsx)). And if you need to target code or media that you have less control over–or you’re in a more vanilla web stack–`matchMedia` could be a nice tool to have in your back pocket.
+
+## A reminder about contrast
+
+Don’t forget to check color contrast in dark mode! In addition to the basic usability of form controls and other components in dark mode, your text and other components need to have accessible contrast ratios.
+
+Before we had `prefers-color-scheme`, there was [Windows High Contrast Mode](https://blogs.windows.com/msedgedev/2020/09/17/styling-for-windows-high-contrast-with-new-standards-for-forced-colors/). And this still exists! It would be worth testing if you have any site traffic on Windows, which most sites do. You will likely find some overlap with your styles for generic dark mode.

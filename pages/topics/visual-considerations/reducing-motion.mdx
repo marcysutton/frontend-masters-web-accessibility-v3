@@ -1,12 +1,72 @@
-import Callout from "../../../components/Callout";
-import StackBlitz from "../../../components/StackBlitz";
+import StackBlitz from '/components/StackBlitz';
 
 # Reducing Motion
 
-What is it, how to use it
+For many people, motion on a screen can [make them sick](https://source.opennews.org/articles/motion-sick/), cause seizures, significant distractability, and more. Fortunately, we have a feature in modern computing systems and browsers where we can make animation and transitions safer and more inclusive!
 
-Show an example of using the media query
+Reduced Motion was introduced a few years ago as a [`prefers-reduced-motion`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion) CSS Media Query and platform setting. It is [supported](https://caniuse.com/?search=reduced-motion) on Mac and iOS, Windows, and Android. With the ability to add a custom toggle to turn motion on or off, that means you can safely reduce motion pretty much anywhere.
 
-Discuss safe defaults
+## Turning on Reduced Motion
 
-Show support on Caniuse
+On the MacOS System Preferences under _Accessibility > Display_, there is a toggle for "Reduce Motion". Turning this on or off will impact how CSS Media Queries and related JavaScript matchMedia functions in web browsers.
+
+<figure className="my-6 text-center">
+    <img src="/reduced-motion.png" alt="MacOS System Preferences for Display" className="max-w-[480px] block mx-auto" />
+    <figcaption className="mt-2">MacOS Settings for Reduced Motion</figcaption>
+</figure>
+
+## Using safe defaults
+
+When you write your code for animation/transitions that will need Reduced Motion, you can go about it in a couple of ways:
+
+1. Non-animated by default, only moving if the setting exists and is unchecked (leveraging `prefers-reduced-motion: no-preference`)
+```css
+@media (prefers-reduced-motion: no-preference) {
+    .mask {
+        /* do animation stuff */
+    }
+}
+```
+2. Animated by default, stopping movement if the setting exists and is checked (using `prefers-reduced-motion: reduce`)
+```css
+@media (prefers-reduced-motion: reduce) {
+    .mask {
+        /* turn animations off */
+        animation: none;
+        transition: none;
+    }
+}
+```
+
+It’s a slight difference. Only the first option will contribute to safe animation by default, no matter whether `prefers-reduced-motion` is supported on the user’s device.
+
+## Example of the CSS media query
+
+Here is an example of how to respond to reduced motion with CSS:
+
+<StackBlitz name="web-platform-ypa7y9" view="both" />
+
+## Example of the JavaScript matchMedia query
+
+JavaScript also includes a function for matching the `prefers-reduced-motion` media query. It is useful for times when your animations are created with JavaScript, video backgrounds, etc.
+
+```javascript
+  const motionQuery = matchMedia('(prefers-reduced-motion: no-preference)');
+  let userPrefersMotion = true;
+
+  function handleReduceMotionChanged() {
+    if (motionQuery.matches) {
+      /* adjust 'transition' or 'animation' properties */
+      userPrefersMotion = true;
+    } else {
+      /* standard motion */
+      userPrefersMotion = false;
+    }
+  }
+  motionQuery.addEventListener('change', handleReduceMotionChanged);
+  
+  handleReduceMotionChanged(); // fire once on load
+```
+And here is an example using JavaScript `matchMedia`:
+
+<StackBlitz name="web-platform-3p4auo" view="both" openFile="script.js" />

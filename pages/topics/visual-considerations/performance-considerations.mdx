@@ -1,10 +1,46 @@
-import Callout from "../../../components/Callout";
-import StackBlitz from "../../../components/StackBlitz";
+import {DropCapQuote} from '/components/DropCap';
 
-# Performance as a User Experience Metric
+# Accessibility and Performance
 
-How many clicks/how long does it take someone to figure out an interface? Can they complete a task with a keyboard/screen reader?
+We briefly covered [Performance in Overlapping Areas](/topics/introduction/overlapping-areas#performance) of accessibility. To expand on that topic, let’s touch on a few design characteristics that intersect Accessibility and Performance.
 
-Nod to the classic text, Don't Make Me Think.
+## Page load time and “skeleton layouts”
 
-Simpler is usually better and easier to build & maintain.
+In recent years it has become commonplace to load a visual “skeleton” where layouts consist of faint grey boxes, borders, blocky lines and circles. The intent is to make our brains feel as if _something_ is loaded while we wait for data to be fetched, processed, and rendered on screen.
+
+<figure className="my-6">
+    <img className="block mx-auto" src="/skeleton-loader.jpg" alt="An example of a skeleton loader with gray boxes and lines" />
+</figure>
+
+But this is a very visual approach to a performance problem. If you can’t see the screen and rely on Assistive Technology, you might have no idea what’s happening...and this could be a bigger problem on slow networks and devices.
+
+To address this problem in an inclusive way, you could consider making a [screen reader announcement](/topics/ARIA/live-regions) as a part of loader components and skeleton layouts.
+
+### Minimize blocking interactions
+
+Performance isn’t just a honing-your-craft kind of thing. If your pages are slow to load, not only could you use customers...but you could also prevent keyboard and screen reader users from interacting with the page as it loads. That is because certain JavaScript can block the main thread and keep the page from becoming interactive.
+
+There are a couple of metrics you could measure to gauge the time it takes for a page to become usable with keyboards and screen readers:
+
+- [Total Blocking Time (TBT)](https://web.dev/articles/tbt)
+- [First Input Delay (FID)](https://web.dev/articles/fid)
+- [Interaction to Next Paint (INP)](https://web.dev/articles/inp) - a forthcoming metric
+- [Time to Interactive (TTI)](https://web.dev/articles/tti) - an older metric
+
+## Performance as a User Experience Metric
+
+<figure className="float-right ml-2 mb-4">
+<img src="/tootsie-pop-owl-pic.jpg" alt="The little boy and the owl from the Tootsie Pop commercial, 'how many licks does it take'" className="max-w-[320px]" />
+</figure>
+
+Code isn’t the only way to think about performance and accessibility. You could also quantify how much cognitive effort it takes to complete a task by counting the number of clicks or other interactions required to use an interface.
+
+<DropCapQuote>
+How many keystrokes does it take?
+</DropCapQuote>
+
+Furthermore, can someone complete a task with a keyboard alone, and/or with screen reader? Does the same task a keyboard user a significantly larger amount of time than a mouse user? This can be unavoidable. But if doing what you can in the design phase (along with some [keyboard shortcuts](/topics/focus-management/keyboard-shortcuts)), you could improve the experience quite a bit.
+
+There’s a classic text that was highly influential in how I think about user interfaces: [Don’t Make Me Think](https://sensible.com/dont-make-me-think/) by Steve Krug. It’s pretty dated by now. But the ideas proposed in it still stand: the more complex an interface is, the more thinking it requires. And we shouldn’t expect users to think hard at all in order to use our interfaces.
+
+There is a duality in this idea as well: **simpler is often better to use, and easier to build & maintain.**

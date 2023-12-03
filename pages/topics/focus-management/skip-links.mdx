@@ -1,10 +1,43 @@
-import Callout from "../../../components/Callout";
-import StackBlitz from "../../../components/StackBlitz";
-
 # Skip Links
 
-Show 1-2 examples of skip links
+When you navigate websites by keyboard alone, it can get tedious to have to navigate through large blocks of content. That’s where skip links come in: they provide easy ways for keyboard and screen reader users to skip to other parts of the page.
 
-Explain mechanics of a skip link
+Common examples include “Skip to Content” and “Back to top” links. These are also Level A requirements in WCAG under [Bypass Blocks](https://www.w3.org/TR/WCAG22/#bypass-blocks). That means that skip links aren‘t just a nice-to-have: they are accessibility requirements.
 
-Talk about use cases for sighted keyboard users, AT users, etc.
+Two things to note about skip links are:
+
+- They should become visible on focus for sighted keyboard users to use, as well as blind screen reader users. (This evolved since I got into web development.)
+
+- Make sure your skip links actually target elements on the page so they will function. Too many times, the skip links exist but don’t successfully move users to the section they intend to target.
+
+## Mechanics of skip links
+
+The mechanics of skip links are pretty simple: they are internal page links that jump users from an anchor element to an element with a matching ID.
+
+In their most basic form, skip links work like this:
+
+An anchor link contains an href attribute that points to an internal element via an in-page link.
+
+```html
+<a href="#main-content">Skip to main content</a>
+```
+
+A matching element “catches” the focus via an ID attribute. A `tabIndex="-1"` attribute can make doubly-sure that the element will receive focus, which I’ve seen when testing cross-platform. (You shouldn’t _need_ tabIndex for this, but testing has shown me otherwise.)
+
+```html
+<main id="main-content" tabIndex="-1"></div>
+```
+
+With CSS, you can show the skip link when it is focused using absolute positioning or some other technique. You can also decide whether to show the focus outline on the target element (e.g. `main`) by suppressing the focus style:
+
+```css
+[tabIndex="-1"]:focus { outline: none; }
+```
+Although, I would recommend keeping focus outlines whenever you can. It helps to show users where they are on the screen even when focus is moved programmatically. You could at least consider making focus outlines configurable via personalization and/or test with users with disabilities.
+
+## Examples of skip links
+
+Many websites have skip links. Here are some examples:
+
+- https://target.com
+- https://github.com

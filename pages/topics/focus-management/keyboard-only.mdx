@@ -1,10 +1,25 @@
-import Callout from "../../../components/Callout";
-import StackBlitz from "../../../components/StackBlitz";
-
 # Keyboard-Only Mindset
 
-Can I navigate to and operate all interactive controls?
+When people ask me about important aspects of accessibility that are frequently overlooked, keyboard access comes to mind. To succeed with keyboard accessibility requires a mindset of testing it frequently: a keyboard-only mindset, if you will.
 
-Can I see where my focus point is on the screen?
+I created a tool as a bit of a joke in the past called [No Mouse Days](https://www.a11yproject.com/posts/no-mouse-days/), as a nod to this idea. Turn your mouse cursor off one day a week (or more) with CSS and see if you can still navigate around. Spoiler alert: you will probably run into issues. And that’s a good thing, because you‘ll train yourself to anticipate keyboard accessibility problems before they ship.
 
-Show 1-2 examples of when keyboard access is missing, and No Mouse Days
+## A mantra for testing ⌨️
+
+There are some key questions you should ask when navigating around a webpage with your keyboard only:
+
+**1. Can I navigate to and operate all interactive controls?**
+
+Anything a mouse user can do, you should be able to do with the keyboard alone.
+
+It is also helpful that screen reader accessibility piggybacks on keyboard accessibility. But as we discussed in previous sections on screen readers and ARIA, there is more to do for those scenarios. Still, keyboard access is highly common for users and would be even more so if it wasn’t so frequently overlooked.
+
+**2. Can I see where my focus point is on the screen?**
+
+Are there visible focus outlines for interactions on the screen (and do they have adequate visual contrast)?
+
+Does your focus get lost behind any active layers or inactive menus?
+
+**3. Is my focus moved into new content and restored when tasks are complete?**
+
+In this section, we’ll dive further into the mechanics surrounding these questions.

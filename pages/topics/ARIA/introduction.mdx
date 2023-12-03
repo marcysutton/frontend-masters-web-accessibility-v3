@@ -19,6 +19,8 @@ Fortunately, the developer tools we use today make it easier to spot potential p
 
 [HTML and ARIA](https://web.dev/learn/accessibility/aria-html) work very closely together. Both standards affect how HTML tags turn into element objects that are rendered in a browser and screen readers.
 
+Only HTML will affect things like focusability, visual style, and behavior. ARIA will only affect the Accessibility Tree and Assistive Technology. An example is the `disabled` HTML attribute vs. `aria-disabled`: the former will render an input non-focusable and non-functional, as well as remove it from the accessibility tree. Meanwhile, `aria-disabled` will only remove it from the accessibility tree and the input will remain focusable.
+
 > You can think of accessibility information that comes from semantic HTML elements as built-in, while ARIA attributes are bolted-on.
 
 In future sections, we will dig into the parts and mechanics of ARIA so you can learn how to apply it to your own code responsibly.

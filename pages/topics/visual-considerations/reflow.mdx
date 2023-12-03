@@ -1,13 +1,29 @@
-import Callout from "../../../components/Callout";
-import StackBlitz from "../../../components/StackBlitz";
-
 # Reflow, Zoom and Magnification
 
-WCAG criterion for reflow: how accessibility and RWD are BFFs
-Using tools to test for reflow
+Accessibility and Responsive Web Design are BFFs. That’s because the same CSS that turns a multi-column layout into a single column for mobile viewports can be targeted when you zoom in to 200% or larger without horizontal scrolling.
 
-Using tools to test zoom/magnification, e.g. on Mac or third-party
-- Mention NoCoffee extension
-- Show process for debugging zoom levels
+There is a WCAG criterion for this kind of thing, called [Reflow](https://www.w3.org/TR/WCAG22/#reflow). You could think of it as the "mobile & accessibility criterion". There are a couple of exceptions that allow content to remain wider than a mobile viewport, such as data tables, canvas drawing apps, and more.
 
-Mention grouping like items, readability/size, single column view for forms to minimize horizontal scrolling
+## Designing for reflow
+
+Here are some techniques for designing for reflow:
+
+- Grouping items so they can reflow into a single column
+- Adjustable font size, margins/padding
+- Using a single column for form inputs and labels to minimize horizontal scrolling at any size
+
+## Web tools to test reflow
+
+You’ve got a pretty simple tool for testing reflow on a desktop browser: the built-in zoom function (Cmd+ on a Mac, Ctrl+ on Windows). 
+
+Chrome DevTools includes a pretty fabulous [Device Toolbar](https://developer.chrome.com/docs/devtools/device-mode/) button that you can toggle to test out various viewport sizes without having to fire up an actual device. Although, testing on an actual mobile device like an iPhone or Android device is always a good idea.
+
+## Tools to test zoom and magnification
+
+[Mac OS](https://support.apple.com/guide/mac-help/zoom-in-and-out-on-whats-onscreen-mchl779716b8/mac) and [iOS](https://support.apple.com/guide/iphone/zoom-in-iph3e2e367e/ios) also have platform Zoom settings you can enable, as well as magnification.
+
+Windows has a [Magnifier](https://support.microsoft.com/en-us/windows/use-magnifier-to-make-things-on-the-screen-easier-to-see-414948ba-8b1c-d3bd-8615-0e5e32204198) feature.
+
+Android includes a setting for [Magnification and Zoom](https://support.google.com/accessibility/android/answer/6006949?hl=en).
+
+There are also third-party tools for magnification, such as [ZoomText](https://www.freedomscientific.com/products/software/zoomtext/).

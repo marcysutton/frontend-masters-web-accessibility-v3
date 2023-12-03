@@ -1,19 +1,51 @@
-import Callout from "../../../components/Callout";
-import StackBlitz from "../../../components/StackBlitz";
+import Links from '/components/Links';
 
 # Color/Visual Contrast
 
-Font size, non-text contrast
+One of the most common issues on the web is poor visual contrast. If text colors or UI components are too faint over backgrounds, many users won’t be able to read or use a page.
 
-Show WebAIM numbers for how common this is
+Fortunately, there are some mathmatical formulas for calculating contrast that make it highly automatable with accessibility testing tools. The Axe API, WAVE, and other testing tools include contrast as one of their rules. There are also contrast checkers built into Firefox and Chrome that make debugging easy in the DOM.
 
-Tooling for checking it against WCAG
-- Chrome DevTools (discus limitations: parent/child els, variables)
-- Firefox DevTools
-- CCA
-- WebAIM contrast checker
-- Stark for Figma
+That’s not to say that contrast should be left until development. In fact, contrast is really a design issue that should be solved before it reaches developers. But if a contrast issue is discovered in development, well&hellip;better late than never.
 
-Talk through WCAG 2.2 vs. 3.0
+<figure className="my-6">
+    <img src="/accessibility-color-contrast-examples.png" alt="Accessibility color contrast examples" className="block mx-auto" />
+</figure>
 
-Colors & form error validation, links - not relying on color alone
+## The Requirements
+
+In WCAG 2.2, Level AA contrast is defined in [criterion 1.4.3](https://www.w3.org/TR/WCAG22/#contrast-minimum):
+
+- Regular/non-bold text size 24px and below must have a contrast ratio of at least `4.5:1`.
+- Large-scale text 24px or greater must have a contrast ratio of at least `3:1`.
+
+(WCAG actually mentions 18pt text, which is a unit we don’t use on the web. 18pt = 24px.)
+
+### Non-Text Contrast
+
+WCAG 2.1 introduced another success criterion for [_Non-Text Contrast_](https://www.w3.org/WAI/WCAG21/Understanding/non-text-contrast.html). This covers things like text button background colors, icon buttons, form controls, and more. These components need to meet at least `3:1`.
+
+##  Tooling for checking contrast
+
+- [Axe for Chrome or Firefox](https://www.deque.com/axe/)
+- [Firefox DevTools](https://firefox-source-docs.mozilla.org/devtools-user/page_inspector/how_to/inspect_and_select_colors/index.html)
+- [Chrome DevTools](https://webaim.org/articles/contrast/devtools) (has limitations / might not be as reliable as Firefox)
+- [Colour Contrast Analyzer](https://www.tpgi.com/color-contrast-checker/) (desktop app)
+- [WebAIM contrast checker](https://webaim.org/resources/contrastchecker/)
+- [Stark for Figma](https://www.figma.com/community/plugin/732603254453395948)
+
+There are [Level AA and AAA success criteria](https://webaim.org/articles/contrast/) in WCAG 2.2 for color contrast and a whole re-envisioning in WCAG 3.0. You should definitely stick with 2.2 for now.
+
+## Don’t rely on color alone
+
+In user interfaces, we can’t rely on color alone to communicate information. That’s because some people’s brains might interpret colors differently.
+
+Ensure that data visualizations, required form fields and error validation, links and more don’t rely on color by itself. Include patterns, underlines, shapes, labeling, or anything that can communicate something visually beyond color. There‘s even a WCAG success criterion for this: [Use of Color](https://www.w3.org/TR/WCAG22/#use-of-color)!
+
+<Links>
+Some interesting reads on contrast:
+
+- [Stripe, Designing Accessible Color Systems](https://stripe.com/blog/accessible-color-systems)
+- [TPGi: When I get that Low Contrast Feeling, I need Non-Textual Healing](https://www.tpgi.com/when-i-get-that-low-contrast-feeling-i-need-non-textual-healing/)
+- [Eric Eggert: WCAG 3 is not ready yet](https://yatil.net/blog/wcag-3-is-not-ready-yet)
+</Links>

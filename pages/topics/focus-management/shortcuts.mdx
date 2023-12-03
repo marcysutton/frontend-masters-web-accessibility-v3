@@ -1,8 +1,27 @@
-import Callout from "../../../components/Callout";
-import StackBlitz from "../../../components/StackBlitz";
-
 # Keyboard Shortcuts
 
-(Jon showed Twitter/FB keyboard shortcuts, incl. Shortcut.js library)
+It can be helpful to create keyboard shortcuts for UI actions, particularly if the shortcut takes less work than tabbing with the keyboard to get the page into a certain state.
 
-Talk about conflicts with screen reader commands
+Examples of built-in keyboard shortcuts include:
+
+- Cmd+F for Find
+- Cmd+P for Print
+- Cmd+A for Select All
+
+You can create custom keyboard shortcuts! There are a couple of libraries that could make this easier, since the managing multiple keys at a time (say, meta characters and certain alpha keys) takes some work.
+
+Two libraries you could check out are:
+
+- [Shortcut.js by Arthur Beaulieu](https://github.com/arthurbeaulieu/Shortcut.js)
+- [Shortcut.js by Jon Kuperman](https://github.com/jkup/shortcut)
+
+## Making shortcuts discoverable
+
+Your coolest shortcuts are pretty worthless if users can’t find them. Be sure to document your keyboard shortcuts and other tips in easily-discoverable documentation.
+
+If you have help docs, accessibility docs (or an accessibility statement), a help widget, or anything else users might reach to for help, include information about keyboard shortcuts.
+
+## Watch out for conflicts with screen reader commands
+
+Particularly on Windows, common key commands are already in use in  screen readers. For example, both NVDA and JAWS will cycle through headings using the H key. Depending on the [screen reader mode](https://tink.uk/understanding-screen-reader-interaction-modes/), your keyboard shortcut could at best, not work and at worst, conflict with an important screen reader command.
+

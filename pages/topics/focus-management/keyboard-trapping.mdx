@@ -1,12 +1,31 @@
-import Callout from "../../../components/Callout";
-import StackBlitz from "../../../components/StackBlitz";
-
 # Keyboard Trapping
 
-What is it, when to use it, when not
+For some parts of user interfaces, the best keyboard and screen reader experience is to focus only on a subset of elements. The user’s keyboard focus would cycle through the elements until they complete a task or close that layer (like in an accessible modal).
 
-Mention Escape key pattern
+There are a couple of ways to do this technically with JavaScript, including keeping track of the desired elements and sending focus to the beginning or end of the list if any other element on the page is focused.
 
-Show an example
+## Watch out for a pitfall
 
-(Maybe) Discuss tab trap vs. disabling background with inert/etc.
+Be careful about unintentional keyboard traps, though. They are the subject of a Level A success criterion in WCAG, [No Keyboard Traps](https://www.w3.org/TR/WCAG21/#no-keyboard-trap).
+
+One area where I see keyboard users get trapped undesirably is in web-based text editors like Codepen. When the Tab key is used for text editing, it can’t also function as a navigation key.
+
+A common convention you should consider is the Escape key to get out of a keyboard trap. It can be used in combination with custom Edit modes to get users in and out of editable sections of a page.
+
+## An example of a keyboard trap
+
+_Stackblitz Demo: React ARIA focus trap_
+
+https://react-spectrum.adobe.com/react-aria/FocusScope.html#example
+
+Modals are a great use case for keyboard trapping, so that users don’t get stuck navigating through content in the background.
+
+Chat and feedback widgets could mostly be considered non-modal dialogs. This means that we wouldn’t trap focus in the non-modal layer, so elements in the background should stay interactive. A skip link or keyboard shortcut to reach the chat widget could be helpful depending on where in the DOM the widget is located.
+
+## Do I need inert backgrounds?
+
+The proposed `inert` attribute (which is awesome) can also help with managing focusable elements on a page. It will add the effects of `aria-hidden="true"` to an element and `tabIndex="-1"` to all interactive elements inside when present, and clean up after itself when removed. It’s magical!
+
+Inert works best when used with content siblings, such as when a `<dialog>` is injected into the page as a sibling to `<main>`. You can then easily mark main as `<main inert>` (with a [polyfill](https://github.com/WICG/inert) for support) and you might not even need a focus trap for the modal as all other focusable elements on the page would be inert.
+
+It’s a different approach to a similar problem, and I happen to love it. Or you could use it in conjunction with a keyboard trap to be extra super duper sure no one is getting stuck in the wrong content. Another tool to have in your pocket!

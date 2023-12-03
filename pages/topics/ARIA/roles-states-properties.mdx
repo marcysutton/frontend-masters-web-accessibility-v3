@@ -59,4 +59,8 @@ ARIA attributes can provide some helpful selectors in CSS, such as:
 
 Now, you should really question whether it’s worth it to recreate a checkbox or other custom component when there are default components available for free. But elevating ARIA attributes to the style layer can make them less easy to ignore, and weave accessible state through your culture of styling.
 
-I could see a use case for styling `aria-disabled` since my team frequently discusses whether to use the `disabled` attribute on form components. There are plenty of other use cases where ARIA could make sense for styling hooks. My goal is to make you aware of attribute selectors as they apply to ARIA. Possibilities exist, and you can use them!
+Another use case could include styling off [`[aria-expanded="true"]`](https://www.w3.org/TR/wai-aria-1.2/#aria-expanded) state rather than maintaining an `.active` or similar CSS class to show/hide a group of content items (like a custom dropdown).
+
+You might have other ways of styling or showing/hiding content, such as with React where state variables in React/JSX will apply directly to component markup (rendering it in HTML or not based on conditionals in the code). Or, you might use Tailwind which can (for good and for bad) abstract the web coding experience away from writing CSS selectors at all, let alone things like `[aria-busy]`.
+
+It’s still helpful to have a range of tools in your pocket for manipulating the DOM and UI, and sometimes CSS attribute selectors targeting ARIA roles, states, or properties can do the trick!

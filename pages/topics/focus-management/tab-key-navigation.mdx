@@ -1,10 +1,48 @@
-import Callout from "../../../components/Callout";
-import StackBlitz from "../../../components/StackBlitz";
+import { DropCapQuote } from '/components/DropCap';
 
 # Tab Key Navigation
 
-When to use Tab vs. arrow keys - patterns and expected behavior
+My first recommended keyboard-testing tool is the Tab key. But it isn’t the only key relevant to keyboard accessibility! In fact, I’ve seen teams go too far with the Tab key and expect every element to become interactive, such as headings.
 
-What is tabbable by default (jkup/focusable)
+The Tab key should only reach _interactive_ elements such as buttons, links with href attributes, form inputs, selects, textareas, and custom interactive widgets.
 
-Using tabindex: Values, How to not mess it up with roles/nested el's/etc.
+The `tabIndex` attribute with `0` or positive integer values (like `1`, `5`, etc.) will put any generic element into the tab order when it would otherwise be skipped, while`tabIndex="-1"` will remove an element from the tab order. BUT I caution you to only manipulate `tabIndex` if you are ready to manage it:
+
+- Only use `tabIndex="0"` unless you want to manage an entire page‘s tab order. Which I highly doubt you will want to do!
+- Do not add `tabIndex` to things that don’t need it, such as headings. 
+- If you add `tabIndex="0"` to an element, you will also need to add interactive ARIA roles and all the other requirements for custom widgets (like accessible names and JavaScript keyboard events).
+
+Let me say this out loud:
+
+<DropCapQuote>
+Not every element needs to be interactive.
+
+Screen readers have other methods of navigation, such as by headings or key commands.
+</DropCapQuote>
+
+Another pitfall is that you can’t (or shouldn’t) nest interactive elements. That means you can’t put links within buttons, and you should avoid putting `tabindex="0"` on wrapper elements as they will undoubtedly have interactive elements inside. This is because of how interactive elements are communicated in Assistive Tech.
+
+## Tab Keys versus the Arrow Keys
+
+A question I get in nearly every workshop I teach is when to bind the Arrow keys. That will depend on [the pattern](https://www.w3.org/WAI/ARIA/apg/)! Desktop-style menus, selects, tab switchers, and date pickers all use the arrow keys to make each one focusable control (a single tab stop) with the arrow keys to navigate around.
+
+Website navigation, which mostly consists of lists of links, doesn’t typically require Arrow key navigation. Now, you might need focus management for an overall menu when it opens and closes. But you can let nav links keep their normal tab order and skip all the JavaScript event mechanics and ARIA roles expected of Arrow key navigation.
+
+<DropCapQuote>
+Do you need [ARIA menu roles](https://www.boia.org/blog/avoiding-common-mistakes-with-arias-menu-role) and arrow keys? _Probably not._
+</DropCapQuote>
+
+If you’re considering adding Arrow key navigation, test it with keyboard users and see if it helps. You might have varied results, as the patterns aren’t always as intuitive as we think.
+
+Here’s a screenshot of a megamenu that doesn’t use menu roles or arrow key navigation, on Costco.com (with mixed success):
+
+<figure className="my-6" >
+<a href="https://www.costco.com/" target="_blank"><img alt="Costco.com navigation open in Chrome DevTools, with unordered lists of links and no ARIA menus" src="/costco-nav.png" title="Costco.com" /></a>
+</figure>
+
+## What is tabbable by default?
+
+If you need a dynamic way to tell which elements on the page are tabbable/focusable, having JavaScript utilities can help. jQuery UI had a [selector utility](https://api.jqueryui.com/tabbable-selector/) for this back in the day that was super useful. 
+
+Our very own Jon Kuperman also created a utility for this purpose in the past which you can check out: https://github.com/jkup/focusable
+
