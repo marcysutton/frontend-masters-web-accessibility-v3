@@ -1,3 +1,7 @@
+html {
+  font-size: 18px;
+}
+
 .nextra-body.full {
   margin: 0 auto;
 }

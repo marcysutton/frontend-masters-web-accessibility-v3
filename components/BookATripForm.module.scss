@@ -47,7 +47,7 @@
     .inputTextlabel select,
     .childrenDropDownToggle {
         display: block;
-        height: 2em;
+        height: 2rem;
         margin-top: 0.5em;
     }
     .childrenDropDownToggle {
@@ -56,14 +56,63 @@
         background-color: field;
         line-height: inherit;
         font-size: 100%;
-        overflow: hidden;
         padding: 0;
-        padding-block: 1px;
-        padding-inline: 2px;
-        padding-inline-start: 1px;
+        position: relative;
         text-align: start;
     }
+    .childrenDropDownToggle > [role="button"],
+    .childrenDropDownToggle > button {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        padding-left: 4px;
+    }
     .dropdownMenu {
+        background-color: field;
+        display: none;
+        flex-direction: column;
+        gap: 2px;
+        position: absolute;
+        width: 100%;
 
+        &.active {
+            display: flex;
+        }
+
+        li {
+            display: grid;
+            grid-template-columns: repeat(6, minmax(0, 1fr));
+            padding: 4px;
+
+            input {
+                grid-column: span 1 / span 1;
+            }
+            label {
+                grid-column: span 4 / span 4;
+                vertical-align: text-top;
+            }
+            &> div {
+                display: flex;
+                grid-column: span 1 / span 1;
+                flex-direction: row;
+
+                button {
+
+                    &:last-of-type {
+                        margin-left: 4px;
+                        margin-right: 4px;
+                    }
+
+                    svg {
+                        min-height: 1rem;
+                        min-width: 1rem;
+                    }
+                }
+            }
+        }
+        .children-dropdown-icon-wrapper {
+            display: inline-block;
+            padding: 8px 0;
+        }
     }
 }
