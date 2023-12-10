@@ -99,6 +99,7 @@ const BookATripForm = () => {
 								<span id="numChildren">
 									{totalKids} {totalKids > 1 ? 'children' : 'child'}
 								</span>
+								<span className={`${styles.icon} ${childrenToggleHidden === false ? styles.active : ''}`}></span>
 							</div>
 							<ul className={`${styles.dropdownMenu} ${childrenToggleHidden ? '' : styles.active}`}>
 								<li className="children-infant">
@@ -146,6 +147,7 @@ const BookATripForm = () => {
 					</div>
 				</div>
 			</fieldset>
+			<input type="submit" />
 		</form>
 	);
 };

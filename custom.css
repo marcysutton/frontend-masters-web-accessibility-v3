@@ -1,3 +1,10 @@
+:root {
+  --field-bg-color: field;
+}
+.light:root {
+  --field-bg-color: #edecec;
+}
+
 html {
   font-size: 18px;
 }

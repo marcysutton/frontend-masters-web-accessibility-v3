@@ -1,6 +1,8 @@
 .bookATrip {
     border: 2px solid currentColor;
     border-radius: 10px;
+    display: flex;
+    flex-direction: column;
     max-width: 540px;
 
     fieldset {
@@ -22,6 +24,7 @@
     }
     .formGroup {
         display: grid;
+        gap: 1em;
         grid-template-columns: 1fr 1fr;
         padding: 1em 1em 0;
     }
@@ -37,7 +40,6 @@
     .inputTextlabel {
         display: flex;
         flex-direction: column;
-        margin: 0em 1em 1em 0;
     }
     .inputTextlabel[hidden] {
         display: none;
@@ -46,6 +48,7 @@
     .inputTextlabel input[type="date"],
     .inputTextlabel select,
     .childrenDropDownToggle {
+        background-color: var(--field-bg-color);
         display: block;
         height: 2rem;
         margin-top: 0.5em;
@@ -53,7 +56,6 @@
     .childrenDropDownToggle {
         align-items: center;
         appearance: auto;
-        background-color: field;
         line-height: inherit;
         font-size: 100%;
         padding: 0;
@@ -66,9 +68,31 @@
         align-items: center;
         height: 100%;
         padding-left: 4px;
+
+        .icon {
+            border-radius: 3px;
+            display: block;
+            height: 100%;
+            margin-left: auto;
+            padding-left: 4px;
+            padding-right: 4px;
+            position: relative;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            appearance: none;
+            border: none;
+            background: transparent url("data:image/svg+xml;utf8,<svg viewBox='0 0 140 140' width='12' height='12' xmlns='http://www.w3.org/2000/svg'><g><path d='m121.3,34.6c-1.6-1.6-4.2-1.6-5.8,0l-51,51.1-51.1-51.1c-1.6-1.6-4.2-1.6-5.8,0-1.6,1.6-1.6,4.2 0,5.8l53.9,53.9c0.8,0.8 1.8,1.2 2.9,1.2 1,0 2.1-0.4 2.9-1.2l53.9-53.9c1.7-1.6 1.7-4.2 0.1-5.8z' fill='white'/></g></svg>") no-repeat;
+            background-position: right 5px top 50%;
+            width: 1rem;
+
+            &.active {
+                margin-right: 4px;
+                transform: rotate(-180deg);
+            }
+        }
     }
     .dropdownMenu {
-        background-color: field;
+        background-color: var(--field-bg-color);
         display: none;
         flex-direction: column;
         gap: 2px;
@@ -80,11 +104,13 @@
         }
 
         li {
+            color: inherit;
             display: grid;
             grid-template-columns: repeat(6, minmax(0, 1fr));
             padding: 4px;
 
             input {
+                background-color: var(--field-bg-color);
                 grid-column: span 1 / span 1;
             }
             label {
@@ -114,5 +140,12 @@
             display: inline-block;
             padding: 8px 0;
         }
+    }
+    input[type="submit"] {
+        border-radius: 1rem;
+        border: 2px solid currentColor;
+        font-weight: bold;
+        margin: 1em 1em 1em auto;
+        padding: 1em;
     }
 }
