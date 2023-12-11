@@ -19,4 +19,5 @@ export type Product = {
 	price: string;
 	colors: string[];
 	colorwayImages: string[];
+	sizes: string[];
 };

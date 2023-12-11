@@ -16,6 +16,7 @@ export const ProductDogCoat: Product = {
 	price: '$89.95',
 	colors: ['Blue Dusk', 'Red Sumac', 'Wave Orange'],
 	colorwayImages: ['BLUDUS.jpg', 'REDSUM.jpg', 'WAVORA.jpg'],
+	sizes: ['XXS', 'XS', 'S', 'L', 'XL'],
 	images: {
 		imagePath: '/exercises/product-dog-coat/',
 		mainImage: {

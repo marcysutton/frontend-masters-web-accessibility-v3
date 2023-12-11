@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { Dispatch, useState, useRef } from 'react';
 import { HStack } from '@chakra-ui/react';
 
 import BuyBoxVariantSelector from './BuyBoxVariantSelector';
@@ -8,8 +8,9 @@ import type { Product } from '../types';
 
 type ProductDetailsProps = {
 	product: Product;
+	onAddToCart: Dispatch<any>;
 };
-const ProductDetails = ({ product }: ProductDetailsProps) => {
+const ProductDetails = ({ product, onAddToCart }: ProductDetailsProps) => {
 	const hasReviews = product.reviews.length > 0;
 	const maxProductCount = 10;
 	const [productCount, setProductCount] = useState<number>(0);
@@ -121,17 +122,16 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
 							role="button"
 							tabIndex={-1}>
 							<IconPlus className="w-[14px] h-[14px] mx-auto fill-none" />
-							{/* <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true" className="w-[9px] h-[9px] mx-auto">
-								<path
-									fill="currentColor"
-									d="M0,12a1.5,1.5,0,0,0,1.5,1.5h8.75a.25.25,0,0,1,.25.25V22.5a1.5,1.5,0,0,0,3,0V13.75a.25.25,0,0,1,.25-.25H22.5a1.5,1.5,0,0,0,0-3H13.75a.25.25,0,0,1-.25-.25V1.5a1.5,1.5,0,0,0-3,0v8.75a.25.25,0,0,1-.25.25H1.5A1.5,1.5,0,0,0,0,12Z"></path>
-							</svg> */}
 						</button>
 					</div>
 				</div>
 			</div>
 			<div className="flex flex-col mt-4 mr-4">
-				<button className="bg-black text-white font-bold py-2 mt-2 border-[1px] rounded-[100px]">Add to Cart</button>
+				<button
+					className="bg-black text-white font-bold py-2 mt-2 border-[1px] rounded-[100px]"
+					onClick={() => onAddToCart(product)}>
+					Add to Cart
+				</button>
 				<button className="bg-white text-black font-bold py-2 mt-2 border-[1px] border-black rounded-[100px] hover:bg-black hover:text-white">
 					Add to Wishlist
 				</button>
