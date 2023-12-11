@@ -7,13 +7,17 @@ const Banner = () => {
 	const slideCount = 3;
 	const [currentSlideNum, changeSlideNum] = useState<number>(1);
 	const decrementSlide = () => {
-		if (currentSlideNum > 0) {
+		if (currentSlideNum > 1) {
 			changeSlideNum(currentSlideNum - 1);
+		} else {
+			changeSlideNum(slideCount);
 		}
 	};
 	const incrementSlide = () => {
-		if (currentSlideNum < slideCount) {
+		if (currentSlideNum <= slideCount) {
 			changeSlideNum(currentSlideNum + 1);
+		} else {
+			changeSlideNum(1);
 		}
 	};
 	return (
