@@ -2,12 +2,20 @@ import { Product } from '../types';
 
 export const ProductDogCoat: Product = {
 	breadcrumb: { title: 'Dog Coats, Packs & PFDs', slug: '/dog-coats-packs-pfds' },
-	companyName: 'Fido Pro',
-	companySlug: '/fido-pro',
-	productTitle: 'Panza Harness + Deployable Emergency Dog Rescue Sling',
-	overallRating: '2.75 out of 5 stars',
-	reviews: [],
-	assetPath: '/exercises/product-dog-harness',
+	companyName: 'Ruffwear',
+	companySlug: '/ruffwear',
+	productTitle: 'K9 Float Coat',
+	overallRating: '5 out of 5 stars',
+	reviews: [
+		{
+			rating: 5,
+			comment: 'So glad I bought this',
+		},
+	],
+	assetPath: '/exercises/product-dog-coat/',
+	price: '$89.95',
+	colors: ['Blue Dusk', 'Red Sumac', 'Wave Orange'],
+	colorwayImages: ['BLUDUS.jpg', 'REDSUM.jpg', 'WAVORA.jpg'],
 	images: {
 		imagePath: '/exercises/product-dog-coat/',
 		mainImage: {
@@ -16,22 +24,22 @@ export const ProductDogCoat: Product = {
 		},
 		galleryImages: [
 			{
-				src: 'BLUDUS_D7',
+				src: 'BLUDUS_D7.jpg',
 			},
 			{
-				src: 'BLUDUS_D6',
+				src: 'BLUDUS_D6.jpg',
 			},
 			{
-				src: 'BLUDUS_D5',
+				src: 'BLUDUS_D5.jpg',
 			},
 			{
-				src: 'BLUDUS_D3',
+				src: 'BLUDUS_D3.jpg',
 			},
 			{
-				src: 'BLUDUS_D2',
+				src: 'BLUDUS_D2.jpg',
 			},
 			{
-				src: 'BLUDUS_D1',
+				src: 'BLUDUS_D1.jpg',
 			},
 		],
 	},
@@ -43,7 +51,10 @@ export const ProductDogHarness = {
 	productTitle: 'Panza Harness + Deployable Emergency Dog Rescue Sling',
 	overallRating: '2.75 out of 5 stars',
 	reviews: [],
-	assetPath: '/exercises/product-dog-harness',
+	price: '$139.00',
+	assetPath: '/exercises/product-dog-harness/',
+	colors: ['Black', 'Red'],
+	colorwayImages: ['/BLA.jpg', 'RED.jpg'],
 	images: {
 		imagePath: '/exercises/product-dog-harness/',
 		mainImage: {

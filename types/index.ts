@@ -14,6 +14,9 @@ export type Product = {
 	productTitle: string;
 	images: ImageData;
 	overallRating: string;
-	reviews: [];
+	reviews?: any[] | null;
 	assetPath: string;
+	price: string;
+	colors: string[];
+	colorwayImages: string[];
 };

@@ -1,3 +1,4 @@
+import ProductHeader from './ProductHeader';
 import ProductDetails from './ProductDetails';
 import ProductImageGallery from './ProductImageGallery';
 
@@ -13,16 +14,15 @@ const BackIcon = () => (
 
 type ProductPageProps = {
 	productData: Product;
-	children: React.ReactNode;
+	children?: React.ReactNode;
 };
+
 const ProductPage = ({ productData, children }: ProductPageProps) => {
 	return (
 		<ChakraProvider>
-			<div className="bg-white border-2 border-solid border-slate-600">
-				<header>
-					<img src="/exercises/header.png" alt="Backcountry.com header and navigation" />
-				</header>
-				<section className="text-black my-2">
+			<div className="bg-white border-2 border-solid border-slate-600 demo">
+				<ProductHeader />
+				<section className="text-black my-2 max-w-[1400px] mx-auto">
 					<HStack>
 						<Button variant="link" color="currentColor" size="sm" leftIcon={<BackIcon />}>
 							&lt; Back

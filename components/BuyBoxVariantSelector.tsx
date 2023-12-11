@@ -1,33 +1,43 @@
+import { useState } from 'react';
 const BuyBoxVariantSelector = ({ Product }) => {
+	const [selectedImageNum, selectImageNum] = useState<number>(1);
 	return (
 		<div id="buybox-variant-selector" className="my-6">
 			<div className="text-sm">
 				<span className="font-bold inline-block mr-1">Color:</span>
 				<span className="inline-block">Red</span>
 			</div>
-			<div data-id="colorTile" role="radiogroup" className="flex">
-				<label className="">
-					<input
-						type="radio"
-						name="buybox-color-selector"
-						value={`${Product.assetPath}/BLA.jpg`}
-						checked={true}
-						className="sr-only"
-						id="radio-29"
-					/>
-					<span className="sr-only">Black</span>
-					<div aria-hidden="true" data-id="color-available" className="border-[1px] border-solid border-gray-800">
-						<img
-							width="1"
-							height="1"
-							alt="Black"
-							src={`${Product.assetPath}/BLA.jpg`}
-							loading="lazy"
-							className="w-[70px] h-[70px]"
+			<div data-id="colorTile" role="radiogroup" className="flex gap-4">
+				{Product.colors.map((color, index) => (
+					<label key={`Product-${index}`}>
+						<input
+							type="radio"
+							name="buybox-color-selector"
+							value={`${Product.assetPath}${Product.colorwayImages[index]}`}
+							checked={true}
+							className="sr-only"
+							id="radio-29"
 						/>
-					</div>
-				</label>
-				<label>
+						<span className="sr-only">{color}</span>
+						<div
+							aria-hidden="true"
+							data-id="color-available"
+							className={`border-[1px] border-${
+								selectedImageNum === index ? 'gray-800' : 'transparent'
+							} hover:border-gray-800 border-solid cursor-pointer`}>
+							<img
+								width="1"
+								height="1"
+								alt={color}
+								src={`${Product.assetPath}${Product.colorwayImages[index]}`}
+								loading="lazy"
+								className="w-[70px] h-[70px]"
+							/>
+						</div>
+					</label>
+				))}
+
+				{/* <label>
 					<input
 						type="radio"
 						name="buybox-color-selector"
@@ -46,7 +56,7 @@ const BuyBoxVariantSelector = ({ Product }) => {
 							loading="lazy"
 						/>
 					</div>
-				</label>
+				</label> */}
 			</div>
 			<div className="flex flex-col">
 				<div className="mt-6 mb-2">

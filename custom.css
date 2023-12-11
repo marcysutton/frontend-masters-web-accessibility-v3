@@ -1,8 +1,12 @@
 :root {
   --field-bg-color: field;
+  --ol-item-bg-color: white;
+  --ol-item-text-color: black;
 }
 .light:root {
   --field-bg-color: #edecec;
+  --ol-item-bg-color: #333;
+  --ol-item-text-color: white;
 }
 
 html {
@@ -44,7 +48,44 @@ video {
 .light p, .light ol, .light li {
   color: #000;
 }
-
+.dark .demo p,
+.light .demo p {
+  color: inherit;
+}
+.styled-list ol {
+  counter-reset: section;
+}
+.styled-list ol > li {
+  counter-increment: section;
+  position: relative;
+}
+.styled-list ol > li::before {
+  background-color: var(--ol-item-bg-color);
+  border-radius: 50%;
+  box-sizing: content-box;
+  color: var(--ol-item-text-color);
+  content: counter(section);
+  font-size: 0.85rem;
+  display: inline-block;
+  font-weight: bold;
+  height: 1rem;
+  line-height: 1rem;
+  left: -1.5rem;
+  padding: 2px;
+  position: absolute;
+  top: 3px;
+  text-align: center;
+  width: 1rem;
+}
+.styled-list ol > li::marker {
+  color: var(--ol-item-text-color);
+  font-size: 0.85rem;
+  margin-right: 0.5em;
+}
+.overview-columns {
+  column-count: 2;
+  column-gap: 20px;
+}
 iframe {
   border-radius: 7px;
   margin: 2em 0;

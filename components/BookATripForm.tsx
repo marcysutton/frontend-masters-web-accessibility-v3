@@ -1,6 +1,6 @@
 import React, { FormEvent, useEffect, useState, useRef } from 'react';
 import styles from './BookATripForm.module.scss';
-import { IconMinus, IconPlus } from './Icons';
+import { IconMinusFilled, IconPlusFilled } from './Icons';
 
 const BookATripForm = () => {
 	const [isOneWay, setIsOneWay] = useState<boolean>(false);
@@ -115,10 +115,10 @@ const BookATripForm = () => {
 									<label htmlFor="infantCount">Ages 2-17</label>
 									<div className="symbol children-dropdown-icon-wrapper">
 										<button type="button" onClick={() => decrement(infantCount, updateInfantCount)}>
-											<IconMinus />
+											<IconMinusFilled />
 										</button>
 										<button type="button" onClick={() => increment(infantCount, updateInfantCount)}>
-											<IconPlus />
+											<IconPlusFilled />
 										</button>
 									</div>
 								</li>
@@ -135,10 +135,10 @@ const BookATripForm = () => {
 									<label htmlFor="KidCount">Under 2 (on lap)</label>
 									<div className="symbol children-dropdown-icon-wrapper">
 										<button type="button" onClick={() => decrement(kidCount, updateKidCount)}>
-											<IconMinus />
+											<IconMinusFilled />
 										</button>
 										<button type="button" onClick={() => increment(kidCount, updateKidCount)}>
-											<IconPlus />
+											<IconPlusFilled />
 										</button>
 									</div>
 								</li>
