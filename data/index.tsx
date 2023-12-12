@@ -56,6 +56,7 @@ export const ProductDogHarness = {
 	assetPath: '/exercises/product-dog-harness/',
 	colors: ['Black', 'Red'],
 	colorwayImages: ['/BLA.jpg', 'RED.jpg'],
+	sizes: ['One Size'],
 	images: {
 		imagePath: '/exercises/product-dog-harness/',
 		mainImage: {

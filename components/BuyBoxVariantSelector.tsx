@@ -46,7 +46,7 @@ const BuyBoxVariantSelector = ({ Product }) => {
 					</div>
 				</div>
 				<div data-id="sizeTile" role="radiogroup" className="flex flex-wrap">
-					{Product.sizes.length === 1 && (
+					{Product && Product.sizes.length === 1 && (
 						<label>
 							<input
 								type="radio"
@@ -66,7 +66,8 @@ const BuyBoxVariantSelector = ({ Product }) => {
 							</div>
 						</label>
 					)}
-					{Product.sizes.length > 1 &&
+					{Product &&
+						Product.sizes.length > 1 &&
 						Product.sizes.map((size, index) => (
 							<label className="css-0" key={`ProductSize-${size}`}>
 								<input
