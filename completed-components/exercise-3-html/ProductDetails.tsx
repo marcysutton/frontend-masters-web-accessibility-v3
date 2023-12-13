@@ -33,7 +33,7 @@ const ProductDetails = ({ product, onAddToCart }: ProductDetailsProps) => {
 	return (
 		<div className="light">
 			<h1>
-				<div className="css-ryjapq">
+				<div>
 					<a href={product.companySlug} className="font-normal">
 						{product.companyName}{' '}
 					</a>
@@ -44,7 +44,7 @@ const ProductDetails = ({ product, onAddToCart }: ProductDetailsProps) => {
 			</h1>
 			<div className="flex flex-row mt-2" data-id="buyboxRating">
 				<div className="css-0">
-					<a className="chakra-link css-g8cqra" href="#the-wall">
+					<a href="#the-wall">
 						{hasReviews && (
 							<>
 								<span className="sr-only">{product.overallRating}</span>
@@ -56,7 +56,7 @@ const ProductDetails = ({ product, onAddToCart }: ProductDetailsProps) => {
 										<IconStarRating rating={1} />
 										<IconStarRating rating={1} />
 									</div>
-									<span className="chakra-text css-0">
+									<span>
 										{product.reviews.length} Review{product.reviews.length > 1 ? 's' : null}
 									</span>
 								</HStack>
@@ -70,11 +70,11 @@ const ProductDetails = ({ product, onAddToCart }: ProductDetailsProps) => {
 			<div>
 				<div>
 					<h2 className="sr-only">Price:</h2>
-					<span className="chakra-text" data-id="pricing">
+					<span data-id="pricing">
 						<span className="font-bold text-xl">{product.price}</span>
 					</span>
 				</div>
-				<button type="button" className="">
+				<button type="button">
 					<div className="flex flex-row">
 						<IconTag />
 						<p>Lowest Price Guarantee</p>

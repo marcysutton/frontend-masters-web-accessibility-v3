@@ -1,3 +1,5 @@
+import StackBlitz from '/components/slides/StackBlitz';
+
 # Keyboard Trapping
 
 For some parts of user interfaces, the best keyboard and screen reader experience is to focus only on a subset of elements. The user’s keyboard focus would cycle through the elements until they complete a task or close that layer (like in an accessible modal).
@@ -14,9 +16,9 @@ A common convention you should consider is the Escape key to get out of a keyboa
 
 ## An example of a keyboard trap
 
-_Stackblitz Demo: React ARIA focus trap_
+The React ARIA FocusScope utility is pretty great.
 
-https://react-spectrum.adobe.com/react-aria/FocusScope.html#example
+<StackBlitz name="stackblitz-starters-k4cmlr" view="both" />
 
 Modals are a great use case for keyboard trapping, so that users don’t get stuck navigating through content in the background.
 

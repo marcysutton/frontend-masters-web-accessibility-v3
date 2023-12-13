@@ -3,7 +3,10 @@ import { IconButton } from '@chakra-ui/react';
 
 import { IconLeftArrow, IconRightArrow, IconHamburgerMenu, IconShoppingCart } from '../../components/Icons';
 
-const Banner = () => {
+type BannerProps = {
+	shouldAnimate?: boolean;
+};
+const Banner = ({ shouldAnimate = false }: BannerProps) => {
 	const slideCount = 3;
 	const [currentSlideNum, changeSlideNum] = useState<number>(1);
 	const [slidePercentage, updateSlidePercentage] = useState<number>(0);
@@ -115,7 +118,7 @@ const ProductHeader = ({ shoppingCartItems }: ProductHeaderProps) => {
 					<IconHamburgerMenu />
 				</IconButton>
 				<Logo />
-				<a href="#" className="block min-w-[40px] h-auto">
+				<a href="#" className="block min-w-[40px] h-auto mt-4">
 					<IconShoppingCart />
 					<span className="sr-only">
 						<p>Cart, contains {shoppingCartItems?.length === 1 ? 'item' : 'items'}</p>

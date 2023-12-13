@@ -1,3 +1,4 @@
+import StackBlitz from '/components/slides/StackBlitz';
 import { DropCapQuote } from '/components/slides/DropCap';
 
 # Tab Key Navigation
@@ -26,6 +27,10 @@ Another pitfall is that you can’t (or shouldn’t) nest interactive elements. 
 
 A question I get in nearly every workshop I teach is when to bind the Arrow keys. That will depend on [the pattern](https://www.w3.org/WAI/ARIA/apg/)! Desktop-style menus, selects, tab switchers, and date pickers all use the arrow keys to make each one focusable control (a single tab stop) with the arrow keys to navigate around.
 
+To visualize, here is a vanilla-JS tabs example from the [ARIA Authoring Practices Guide](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/examples/tabs-automatic/):
+
+<StackBlitz name="web-platform-loa4hr" view="both" />
+
 Website navigation, which mostly consists of lists of links, doesn’t typically require Arrow key navigation. Now, you might need focus management for an overall menu when it opens and closes. But you can let nav links keep their normal tab order and skip all the JavaScript event mechanics and ARIA roles expected of Arrow key navigation.
 
 <DropCapQuote>
@@ -45,4 +50,3 @@ Here’s a screenshot of a megamenu that doesn’t use menu roles or arrow key n
 If you need a dynamic way to tell which elements on the page are tabbable/focusable, having JavaScript utilities can help. jQuery UI had a [selector utility](https://api.jqueryui.com/tabbable-selector/) for this back in the day that was super useful. 
 
 Our very own Jon Kuperman also created a utility for this purpose in the past which you can check out: https://github.com/jkup/focusable
-

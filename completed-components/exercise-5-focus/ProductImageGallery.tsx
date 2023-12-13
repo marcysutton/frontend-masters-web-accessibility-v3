@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Image } from '@chakra-ui/react';
+import { Image, Modal, ModalOverlay, ModalContent, ModalBody, ModalCloseButton } from '@chakra-ui/react';
 import type { ImageData } from '../../types';
 
 type ProductImageGalleryProps = {
@@ -42,16 +42,15 @@ const ProductImageGallery = ({ imageData, onFullscreenOpen, onFullscreenClose }:
 				))}
 			</div>
 			{!!fullscreenImage && (
-				<div className="absolute top-0 left-0 right-0 bg-white">
-					<div
-						aria-label="Close modal"
-						className="button cursor-pointer absolute right-4 top-4 font-bold font-serif text-xl"
-						onClick={() => closeFullscreen()}
-						role="button">
-						X
-					</div>
-					<img src={imageData.imagePath + fullscreenImage.src} alt={fullscreenImage.alt} />
-				</div>
+				<Modal isOpen={!!fullscreenImage} onClose={closeFullscreen} size="full">
+					<ModalOverlay />
+					<ModalContent>
+						<ModalCloseButton />
+						<ModalBody>
+							<img src={imageData.imagePath + fullscreenImage.src} alt={fullscreenImage.alt} />
+						</ModalBody>
+					</ModalContent>
+				</Modal>
 			)}
 		</>
 	);

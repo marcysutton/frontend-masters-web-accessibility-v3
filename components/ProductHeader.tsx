@@ -134,10 +134,10 @@ const ProductHeader = ({ shoppingCartItems }: ProductHeaderProps) => {
 					<IconHamburgerMenu />
 				</IconButton>
 				<Logo />
-				<a href="#" className="block min-w-[40px] h-auto" aria-label="">
+				<a href="#" className="block min-w-[40px] h-auto mt-4" aria-label="">
 					<IconShoppingCart />
 					<span className="sr-only">
-						<p className="chakra-text css-0">Cart, contains {shoppingCartItems?.length === 1 ? 'item' : 'items'}</p>
+						<p>Cart, contains {shoppingCartItems?.length === 1 ? 'item' : 'items'}</p>
 					</span>
 				</a>
 			</header>

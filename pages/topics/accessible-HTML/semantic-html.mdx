@@ -6,6 +6,10 @@ Learn about the elements and use them! My favorite resource is [MDN](https://dev
 
 Each HTML tag you use becomes an object in the browser (i.e., part of the Document Object Model). Elements have names, properties, and attributes that are important and helpful to users of Assistive Technology. This is why it's important to avoid using generic elements for everything when more dedicated built-in elements exist.
 
+<figure className="my-6 text-center">
+    <img className="block mx-auto" src="/marklar.jpg" alt="A Marklar walks into a Marklar, asks the Marklar..." />
+</figure>
+
 ## Avoid DIV soup
 
 Unfortunately, many sites overuse the `<div>` element rather than creating a semantic structure with landmarks, forms, buttons, etc.
@@ -14,32 +18,40 @@ When the DOM on a site shows DIVs all the way down, we call it "Div Soup" or "Di
 
 ![Twitter's DIV Soup](/div-soup.png)
 
-## Look for built-in functionality
+## Use built-in functionality first
 
-Aside from landmark elements like `<nav>`, `<main>`, `<section>`, `<header>`, etc., there are numerous structural and grouping elements you can use. Unordered and ordered lists `<ul>` and `<ol>`, `<h1>` through `<h6>` tags, `<form>` `<fieldset>` and `<legend>`, and so much more.
+Use HTML first and benefit from all of its built-in functionality! Check [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element) for elements and attributes you might not know about.
 
-There are a ton of elements that provide interactive functionality, too: `<input>`, `<button>`, `<textarea>`, `<a>`, `<select>`, and more.
+There are numerous structural and grouping elements you can use to build a semantic outline. There are a ton of elements that provide interactive functionality accessibly, too!
 
-Landmark elements have semantic meaning AND functionality in assistive tech (aside, footer, header, etc.)
-- Mention aria labeling on nav/section
+## Headings
+- Use `h1-h6` headings to create an overall page outline.
+- Style headings with CSS so you can choose the right level for the content!
+- Avoid the [HTML5 heading algorithm](https://html5doctor.com/computer-says-no-to-html5-document-outline/) as it was never implemented for Assistive Tech (AT).
 
-## Headings and structure
-When to use nav and anchors vs. unordered lists
-Show the VO rotor, Accessibility Insights
-Explain using CSS classes to style things while using the right element (e.g. h2)
+## Landmark elements
+- Landmark elements create structure, too (`<nav>`, `<main>`, `<section>`, `<header>`, etc.). They give semantic meaning and functionality in AT.
+- Use `aria-label` or `aria-labelledby` to give unique labels to nav and section elements.
+- You can still wrap lists of links in nav landmarks.
 
-### The HTML5 Heading Algorithm
+## Lists
+- Don‘t sleep on unordered and ordered lists: `<ul>` and `<ol>`
+- Lists are automatically counted in AT. Safari might need [a little help](https://www.scottohara.me/blog/2019/01/12/lists-and-safari.html).
+- Ensure lists have only listitems as direct descendants.
 
 ## Forms
-- Labeling inputs/textareas/etc.
-    - Explicit and implicit pairings (when for is not required)
-- Only certain elements can be labeled/named
-- How and when to use visually-hidden class (punt on aria-label until later)
+- There are some powerful elements for accessibility: `<form>` `<fieldset>` and `<legend>`, and so much more.
+- Labels are essential for inputs/textareas/etc. in AT.
+- Explicit labels use `for` and `id`. Implicit is when a label wraps an input.
+- Form controls are getting easier to style!
+- Only certain elements can be labeled/named.
 
-## Buttons
-- Compare button to DIV button
-- Focusability, role, events (div[aria-label] in Jon's example isn't needed - but test it)
-- Compare button to link
+## Buttons and Links
+- HTML buttons give a lot of behavior for free: focusability, built-in role, and keyboard click events.
+- Links also have a ton of built-in behavior, like history.
+- Links need `href` to be keyboard accessible.
+- Buttons toggle things, while links navigate. Try to use them for their intended purpose!
 
 ## Details and Summary
-
+- The HTML details and summary elements are a built-in accordion-style disclosure widget.
+- They work pretty well but be sure to test your implementation.

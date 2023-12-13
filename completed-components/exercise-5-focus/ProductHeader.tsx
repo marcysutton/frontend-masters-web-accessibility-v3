@@ -24,11 +24,6 @@ const Banner = ({ shouldAnimate = false }: BannerProps) => {
 			changeSlideNum(1);
 		}
 	};
-	useEffect(() => {
-		const timeout = setTimeout(() => {
-			incrementSlide();
-		}, 500);
-	}, []);
 	return (
 		<div className="bg-black max-w-full w-full flex" id="banner" role="banner" aria-labelledby="carouselheading">
 			<div className="flex max-w-[1400px] mx-auto">
@@ -88,7 +83,7 @@ const Banner = ({ shouldAnimate = false }: BannerProps) => {
 										href="/rc/winter-footwear-accessories"
 										tabIndex={currentSlideNum === 3 ? 0 : -1}>
 										<div className="text-white">
-											<p className="chakra-text css-0">
+											<p>
 												Winter’s Warmest Boots, Beanies, Mittens &amp; More &nbsp;
 												<span className="chakra-text css-7eummh">Shop Now</span>
 											</p>
@@ -115,7 +110,7 @@ const Banner = ({ shouldAnimate = false }: BannerProps) => {
 const Logo = () => <div className="mx-auto font-bold text-black font-serif text-xl">Background</div>;
 
 type ProductHeaderProps = {
-	shoppingCartItems: any[];
+	shoppingCartItems?: any[];
 };
 
 const ProductHeader = ({ shoppingCartItems }: ProductHeaderProps) => {
@@ -127,10 +122,12 @@ const ProductHeader = ({ shoppingCartItems }: ProductHeaderProps) => {
 					<IconHamburgerMenu />
 				</IconButton>
 				<Logo />
-				<a href="#" className="block min-w-[40px] h-auto" aria-label="">
-					<IconShoppingCart />
+				<a href="#" className="block min-w-[40px] h-auto mt-4" aria-label="">
+					<div className="relative">
+						<IconShoppingCart />
+					</div>
 					<span className="sr-only">
-						<p className="chakra-text css-0">Cart, contains {shoppingCartItems?.length === 1 ? 'item' : 'items'}</p>
+						<p>Cart, contains {shoppingCartItems?.length === 1 ? 'item' : 'items'}</p>
 					</span>
 				</a>
 			</header>

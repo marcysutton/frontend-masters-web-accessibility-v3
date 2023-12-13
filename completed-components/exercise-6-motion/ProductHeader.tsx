@@ -104,7 +104,7 @@ const Banner = ({ shouldAnimate = false }: BannerProps) => {
 										href="/rc/winter-footwear-accessories"
 										tabIndex={currentSlideNum === 3 ? 0 : -1}>
 										<div className="text-white">
-											<p className="chakra-text css-0">
+											<p>
 												Winter’s Warmest Boots, Beanies, Mittens &amp; More &nbsp;
 												<span className="chakra-text css-7eummh">Shop Now</span>
 											</p>
@@ -146,7 +146,7 @@ const ProductHeader = ({ shoppingCartItems }: ProductHeaderProps) => {
 				<a href="#" className="block min-w-[40px] h-auto" aria-label="">
 					<IconShoppingCart />
 					<span className="sr-only">
-						<p className="chakra-text css-0">Cart, contains {shoppingCartItems?.length === 1 ? 'item' : 'items'}</p>
+						<p>Cart, contains {shoppingCartItems?.length === 1 ? 'item' : 'items'}</p>
 					</span>
 				</a>
 			</header>

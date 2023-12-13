@@ -3,6 +3,8 @@ import { IconButton } from '@chakra-ui/react';
 
 import { IconLeftArrow, IconRightArrow, IconHamburgerMenu, IconShoppingCart } from '../../components/Icons';
 
+import type { Product } from '../../types';
+
 type BannerProps = {
 	shouldAnimate?: boolean;
 };
@@ -24,12 +26,6 @@ const Banner = ({ shouldAnimate = false }: BannerProps) => {
 			changeSlideNum(1);
 		}
 	};
-	useEffect(() => {
-		const timeout = setTimeout(() => {
-			incrementSlide();
-			console.log('increment');
-		}, 500);
-	}, []);
 	return (
 		<div className="bg-black max-w-full w-full flex" id="banner" role="banner" aria-labelledby="carouselheading">
 			<div className="flex max-w-[1400px] mx-auto">
@@ -55,9 +51,9 @@ const Banner = ({ shouldAnimate = false }: BannerProps) => {
 								<div className="text-center mx-auto">
 									<a className="chakra-link popup-link" tabIndex={currentSlideNum === 1 ? 0 : -1}>
 										<div className="text-white">
-											<p className="chakra-text css-0 text-white">
+											<p className="text-white">
 												Get It By 12/24 W/ Free Standard Shipping &nbsp;
-												<span className="chakra-text css-7eummh">See Cutoff Dates</span>
+												<span>See Cutoff Dates</span>
 											</p>
 										</div>
 									</a>
@@ -72,9 +68,9 @@ const Banner = ({ shouldAnimate = false }: BannerProps) => {
 										href="/service/holiday-gift-guide"
 										tabIndex={currentSlideNum === 2 ? 0 : -1}>
 										<div className="text-white">
-											<p className="chakra-text css-0 text-white">
+											<p className="text-white">
 												Gear Gifts For Everyone On Your List &nbsp;
-												<span className="chakra-text css-7eummh">Shop Our Gift Guide</span>
+												<span>Shop Our Gift Guide</span>
 											</p>
 										</div>
 									</a>
@@ -89,9 +85,9 @@ const Banner = ({ shouldAnimate = false }: BannerProps) => {
 										href="/rc/winter-footwear-accessories"
 										tabIndex={currentSlideNum === 3 ? 0 : -1}>
 										<div className="text-white">
-											<p className="chakra-text css-0">
+											<p>
 												Winter’s Warmest Boots, Beanies, Mittens &amp; More &nbsp;
-												<span className="chakra-text css-7eummh">Shop Now</span>
+												<span>Shop Now</span>
 											</p>
 										</div>
 									</a>
@@ -116,10 +112,19 @@ const Banner = ({ shouldAnimate = false }: BannerProps) => {
 const Logo = () => <div className="mx-auto font-bold text-black font-serif text-xl">Background</div>;
 
 type ProductHeaderProps = {
-	shoppingCartItems: any[];
+	shoppingCartItems: Product[];
 };
 
 const ProductHeader = ({ shoppingCartItems }: ProductHeaderProps) => {
+	const [cartAnnouncementMessage, setCartAnnouncementMessage] = useState('');
+
+	useEffect(() => {
+		if (shoppingCartItems && shoppingCartItems.length > 0) {
+			const numItems = shoppingCartItems.length === 1 ? 'item' : 'items';
+			const message = `${shoppingCartItems.length} ${numItems} in your shopping cart.`;
+			setCartAnnouncementMessage(message);
+		}
+	}, [shoppingCartItems]);
 	return (
 		<>
 			<Banner />
@@ -128,13 +133,21 @@ const ProductHeader = ({ shoppingCartItems }: ProductHeaderProps) => {
 					<IconHamburgerMenu />
 				</IconButton>
 				<Logo />
-				<a href="#" className="block min-w-[40px] h-auto" aria-label="">
-					<IconShoppingCart />
+				<a href="#" className="block min-w-[40px] h-auto mt-4" aria-label="">
+					<div className="relative">
+						{shoppingCartItems && shoppingCartItems.length > 0 && (
+							<span className="badge">{shoppingCartItems.length}</span>
+						)}
+						<IconShoppingCart />
+					</div>
 					<span className="sr-only">
-						<p className="chakra-text css-0">Cart, contains {shoppingCartItems?.length === 1 ? 'item' : 'items'}</p>
+						<p>Cart, contains {shoppingCartItems?.length === 1 ? 'item' : 'items'}</p>
 					</span>
 				</a>
 			</header>
+			<div className="sr-only" role="status">
+				{cartAnnouncementMessage || ''}
+			</div>
 		</>
 	);
 };

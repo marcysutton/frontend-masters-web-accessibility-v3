@@ -8,7 +8,7 @@ import type { Product } from '../../types';
 
 type ProductDetailsProps = {
 	product: Product;
-	onAddToCart: Dispatch<any>;
+	onAddToCart: any;
 };
 const ProductDetails = ({ product, onAddToCart }: ProductDetailsProps) => {
 	const hasReviews = product.reviews.length > 0;
@@ -33,7 +33,7 @@ const ProductDetails = ({ product, onAddToCart }: ProductDetailsProps) => {
 	return (
 		<div className="light">
 			<h1>
-				<div className="css-ryjapq">
+				<div>
 					<a href={product.companySlug} className="font-normal">
 						{product.companyName}{' '}
 					</a>
@@ -44,7 +44,7 @@ const ProductDetails = ({ product, onAddToCart }: ProductDetailsProps) => {
 			</h1>
 			<div className="flex flex-row mt-2" data-id="buyboxRating">
 				<div className="css-0">
-					<a className="chakra-link css-g8cqra" href="#the-wall">
+					<a href="#the-wall">
 						{hasReviews && (
 							<>
 								<span className="sr-only">{product.overallRating}</span>
@@ -56,7 +56,7 @@ const ProductDetails = ({ product, onAddToCart }: ProductDetailsProps) => {
 										<IconStarRating rating={1} />
 										<IconStarRating rating={1} />
 									</div>
-									<span className="chakra-text css-0">
+									<span>
 										{product.reviews.length} Review{product.reviews.length > 1 ? 's' : null}
 									</span>
 								</HStack>
@@ -69,11 +69,11 @@ const ProductDetails = ({ product, onAddToCart }: ProductDetailsProps) => {
 			<hr className="my-6" />
 			<div>
 				<div>
-					<span className="chakra-text" data-id="pricing">
+					<span data-id="pricing">
 						<span className="font-bold text-xl">{product.price}</span>
 					</span>
 				</div>
-				<button type="button" className="">
+				<button type="button">
 					<div className="flex flex-row">
 						<IconTag />
 						<p>Lowest Price Guarantee</p>
@@ -83,7 +83,7 @@ const ProductDetails = ({ product, onAddToCart }: ProductDetailsProps) => {
 			<ProductBuyBoxVariantSelector Product={product} />
 			<div className="flex flex-row items-center">
 				<div className="flex flex-col">
-					<p className="font-bold">Quantity</p>
+					<h2 className="font-bold text-sm">Quantity:</h2>
 					<div className="flex flex-row items-start mt-2 gap-1">
 						<button
 							className="rounded-sm border-[1px] border-color-[#ccc] border-solid flex w-[32px] h-[38px] bg-slate-300 items-center text-center"
@@ -129,7 +129,10 @@ const ProductDetails = ({ product, onAddToCart }: ProductDetailsProps) => {
 			<div className="flex flex-col mt-4 mr-4">
 				<button
 					className="bg-black text-white font-bold py-2 mt-2 border-[1px] rounded-[100px]"
-					onClick={() => onAddToCart(product)}>
+					onClick={() => {
+						console.log(product);
+						onAddToCart(product);
+					}}>
 					Add to Cart
 				</button>
 				<button className="bg-white text-black font-bold py-2 mt-2 border-[1px] border-black rounded-[100px] hover:bg-black hover:text-white">

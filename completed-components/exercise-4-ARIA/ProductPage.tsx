@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ChakraProvider, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Button, HStack, Text } from '@chakra-ui/react';
 
 import ProductHeader from './ProductHeader';
@@ -13,8 +13,13 @@ type ProductPageProps = {
 };
 
 const ProductPage = ({ productData }: ProductPageProps) => {
-	const [shoppingCartItems, updateShoppingCartItems] = useState<any>(null);
+	const [shoppingCartItems, updateShoppingCartItems] = useState<Product[]>([]);
 	const [isFullscreenShowing, setFullscreenShowing] = useState<boolean>(false);
+
+	const onAddToCart = (product) => {
+		const items = [...shoppingCartItems, product];
+		updateShoppingCartItems(items);
+	};
 
 	const onFullscreen = () => {
 		setFullscreenShowing(true);
@@ -29,7 +34,7 @@ const ProductPage = ({ productData }: ProductPageProps) => {
 					isFullscreenShowing ? 'overflow-hidden max-h-screen w-100' : ''
 				}`}>
 				<ProductHeader shoppingCartItems={shoppingCartItems} />
-				<section className="text-black my-2 max-w-[1400px] mx-auto">
+				<main className="text-black my-2 max-w-[1400px] mx-auto">
 					<HStack>
 						<Button variant="link" color="currentColor" size="sm" leftIcon={<IconBack />}>
 							&lt; Back
@@ -57,10 +62,10 @@ const ProductPage = ({ productData }: ProductPageProps) => {
 							/>
 						</div>
 						<div className="col-span-2 px-4 md:px-0">
-							<ProductDetails product={productData} onAddToCart={updateShoppingCartItems} />
+							<ProductDetails product={productData} onAddToCart={onAddToCart} />
 						</div>
 					</div>
-				</section>
+				</main>
 			</div>
 		</ChakraProvider>
 	);
