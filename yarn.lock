@@ -5368,10 +5368,6 @@ which@^2.0.1:
   dependencies:
     isexe "^2.0.0"
 
-wicg-inert@wicg/inert:
-  version "3.1.2"
-  resolved "https://codeload.github.com/wicg/inert/tar.gz/cdd48a847470ae9e551fba7ac32d670f6756b478"
-
 wrappy@1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/wrappy/-/wrappy-1.0.2.tgz#b5243d8f3ec1aa35f1364605bc0d1036e30ab69f"

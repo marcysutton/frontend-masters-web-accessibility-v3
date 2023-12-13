@@ -18,6 +18,7 @@ class MyDocument extends Document {
 				<body>
 					<Main />
 					<NextScript />
+					<script src="https://polyfill.io/v3/polyfill.min.js?features=Element.prototype.inert"></script>
 				</body>
 			</Html>
 		);
