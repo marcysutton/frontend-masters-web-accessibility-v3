@@ -7,7 +7,7 @@ import { IconLeftArrow, IconRightArrow, IconHamburgerMenu, IconShoppingCart } fr
 type BannerProps = {
 	shouldAnimate?: boolean;
 };
-const Banner = ({ shouldAnimate = false }: BannerProps) => {
+const Banner = ({ shouldAnimate = true }: BannerProps) => {
 	const slideCount = 3;
 	const [currentSlideNum, changeSlideNum] = useState<number>(1);
 	const [slidePercentage, updateSlidePercentage] = useState<number>(0);
@@ -32,9 +32,9 @@ const Banner = ({ shouldAnimate = false }: BannerProps) => {
 		updateSlidePercentage(((currentSlideNum - 1) / 3) * 100);
 	}, [currentSlideNum]);
 
-	async function animate() {
-		if (userPrefersReducedMotion) incrementSlide();
-	}
+	const animate = () => {
+		if (!userPrefersReducedMotion) incrementSlide();
+	};
 
 	useEffect(() => {
 		if (shouldAnimate) animate();
@@ -132,12 +132,13 @@ const Logo = () => <div className="mx-auto font-bold text-black font-serif text-
 
 type ProductHeaderProps = {
 	shoppingCartItems: any[];
+	shouldAnimate: boolean;
 };
 
-const ProductHeader = ({ shoppingCartItems }: ProductHeaderProps) => {
+const ProductHeader = ({ shoppingCartItems, shouldAnimate }: ProductHeaderProps) => {
 	return (
 		<>
-			<Banner shouldAnimate={true} />
+			<Banner shouldAnimate={shouldAnimate} />
 			<header className="flex flex-row items-center py-2 max-w-[1400px] mx-auto md:min-w-[65%] lg:min-w-[70%]">
 				<IconButton aria-label="" type="button" colorScheme="white">
 					<IconHamburgerMenu />

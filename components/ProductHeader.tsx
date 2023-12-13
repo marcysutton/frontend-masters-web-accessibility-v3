@@ -123,12 +123,13 @@ const Logo = () => <div className="mx-auto font-bold text-black font-serif text-
 
 type ProductHeaderProps = {
 	shoppingCartItems: any[];
+	shouldAnimate?: boolean;
 };
 
-const ProductHeader = ({ shoppingCartItems }: ProductHeaderProps) => {
+const ProductHeader = ({ shoppingCartItems, shouldAnimate }: ProductHeaderProps) => {
 	return (
 		<>
-			<Banner />
+			<Banner shouldAnimate={shouldAnimate} />
 			<header className="flex flex-row items-center py-2 max-w-[1400px] mx-auto md:min-w-[65%] lg:min-w-[70%]">
 				<IconButton aria-label="" type="button" colorScheme="white">
 					<IconHamburgerMenu />
