@@ -58,6 +58,7 @@ video {
 .styled-list ol > li {
   counter-increment: section;
   position: relative;
+  break-inside: avoid;
 }
 .styled-list ol > li::before {
   background-color: var(--ol-item-bg-color);
