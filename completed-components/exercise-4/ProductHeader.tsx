@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { IconButton } from '@chakra-ui/react';
 
-import { IconLeftArrow, IconRightArrow, IconHamburgerMenu, IconShoppingCart } from './Icons';
+import { IconLeftArrow, IconRightArrow, IconHamburgerMenu, IconShoppingCart } from '../../components/Icons';
 
 type BannerProps = {
 	shouldAnimate?: boolean;
@@ -18,52 +18,46 @@ const Banner = ({ shouldAnimate = false }: BannerProps) => {
 		}
 	};
 	const incrementSlide = () => {
-		if (currentSlideNum < slideCount) {
+		if (currentSlideNum <= slideCount) {
 			changeSlideNum(currentSlideNum + 1);
 		} else {
 			changeSlideNum(1);
 		}
 	};
 	useEffect(() => {
-		updateSlidePercentage(((currentSlideNum - 1) / 3) * 100);
-	}, [currentSlideNum]);
-
-	async function animate() {
-		incrementSlide();
-	}
-
-	useEffect(() => {
-		if (shouldAnimate) animate();
+		const timeout = setTimeout(() => {
+			incrementSlide();
+			console.log('increment');
+		}, 500);
 	}, []);
-
-	if (shouldAnimate) {
-		setTimeout(() => {
-			animate();
-		}, 3000);
-	}
-
 	return (
 		<div className="bg-black max-w-full w-full flex" id="banner" role="banner" aria-labelledby="carouselheading">
 			<div className="flex max-w-[1400px] mx-auto">
 				<div className="mx-auto md:max-w-[65%] lg:max-w-[70%] flex">
-					<p id="carouselheading" className="hidden">
+					<p id="carouselheading" className="sr-only">
 						Announcements
 					</p>
-					<IconButton colorScheme="black" onClick={decrementSlide} type="button" aria-label="" aria-hidden="true">
+					<IconButton
+						colorScheme="black"
+						onClick={decrementSlide}
+						type="button"
+						aria-label="Previous Slide"
+						aria-hidden="true">
 						<IconLeftArrow />
 					</IconButton>
 					<div className="overflow-hidden w-full">
 						<ul
+							role="list"
 							className={`grid list-none grid-cols-3 h-full items-center w-[300%] text-white 
                 transition-transform duration-500 ease-out`}
 							style={{ transform: `translateX(-${slidePercentage}%)` }}>
 							<li aria-hidden={currentSlideNum === 1 ? 'true' : 'false'} className="flex items-center">
 								<div className="text-center mx-auto">
-									<a tabIndex={currentSlideNum === 1 ? 0 : -1}>
+									<a className="chakra-link popup-link" tabIndex={currentSlideNum === 1 ? 0 : -1}>
 										<div className="text-white">
-											<p className="text-white">
+											<p className="chakra-text css-0 text-white">
 												Get It By 12/24 W/ Free Standard Shipping &nbsp;
-												<span>See Cutoff Dates</span>
+												<span className="chakra-text css-7eummh">See Cutoff Dates</span>
 											</p>
 										</div>
 									</a>
@@ -78,9 +72,9 @@ const Banner = ({ shouldAnimate = false }: BannerProps) => {
 										href="/service/holiday-gift-guide"
 										tabIndex={currentSlideNum === 2 ? 0 : -1}>
 										<div className="text-white">
-											<p className="text-white">
+											<p className="chakra-text css-0 text-white">
 												Gear Gifts For Everyone On Your List &nbsp;
-												<span>Shop Our Gift Guide</span>
+												<span className="chakra-text css-7eummh">Shop Our Gift Guide</span>
 											</p>
 										</div>
 									</a>
@@ -95,9 +89,9 @@ const Banner = ({ shouldAnimate = false }: BannerProps) => {
 										href="/rc/winter-footwear-accessories"
 										tabIndex={currentSlideNum === 3 ? 0 : -1}>
 										<div className="text-white">
-											<p>
+											<p className="chakra-text css-0">
 												Winter’s Warmest Boots, Beanies, Mittens &amp; More &nbsp;
-												<span>Shop Now</span>
+												<span className="chakra-text css-7eummh">Shop Now</span>
 											</p>
 										</div>
 									</a>

@@ -2,9 +2,9 @@ import { Dispatch, useState, useRef } from 'react';
 import { HStack } from '@chakra-ui/react';
 
 import ProductBuyBoxVariantSelector from './ProductBuyBoxVariantSelector';
-import { IconStarRating, IconTag, IconMinus, IconPlus } from './Icons';
+import { IconStarRating, IconTag, IconMinus, IconPlus } from '../../components/Icons';
 
-import type { Product } from '../types';
+import type { Product } from '../../types';
 
 type ProductDetailsProps = {
 	product: Product;
@@ -33,7 +33,7 @@ const ProductDetails = ({ product, onAddToCart }: ProductDetailsProps) => {
 	return (
 		<div className="light">
 			<h1>
-				<div>
+				<div className="css-ryjapq">
 					<a href={product.companySlug} className="font-normal">
 						{product.companyName}{' '}
 					</a>
@@ -44,10 +44,10 @@ const ProductDetails = ({ product, onAddToCart }: ProductDetailsProps) => {
 			</h1>
 			<div className="flex flex-row mt-2" data-id="buyboxRating">
 				<div className="css-0">
-					<a href="#the-wall">
+					<a className="chakra-link css-g8cqra" href="#the-wall">
 						{hasReviews && (
 							<>
-								<span className="hidden">{product.overallRating}</span>
+								<span className="sr-only">{product.overallRating}</span>
 								<HStack>
 									<div>
 										<IconStarRating rating={1} />
@@ -56,7 +56,7 @@ const ProductDetails = ({ product, onAddToCart }: ProductDetailsProps) => {
 										<IconStarRating rating={1} />
 										<IconStarRating rating={1} />
 									</div>
-									<span>
+									<span className="chakra-text css-0">
 										{product.reviews.length} Review{product.reviews.length > 1 ? 's' : null}
 									</span>
 								</HStack>
@@ -69,16 +69,16 @@ const ProductDetails = ({ product, onAddToCart }: ProductDetailsProps) => {
 			<hr className="my-6" />
 			<div>
 				<div>
-					<span data-id="pricing">
+					<span className="chakra-text" data-id="pricing">
 						<span className="font-bold text-xl">{product.price}</span>
 					</span>
 				</div>
-				<div className="button">
+				<button type="button" className="">
 					<div className="flex flex-row">
 						<IconTag />
 						<p>Lowest Price Guarantee</p>
 					</div>
-				</div>
+				</button>
 			</div>
 			<ProductBuyBoxVariantSelector Product={product} />
 			<div className="flex flex-row items-center">
@@ -90,14 +90,14 @@ const ProductDetails = ({ product, onAddToCart }: ProductDetailsProps) => {
 							disabled={false}
 							onClick={decrementProductCount}
 							type="button"
-							aria-label=""
+							aria-label="Remove one"
 							role="button"
 							tabIndex={-1}
 							aria-disabled="true">
 							<IconMinus />
 						</button>
 						<input
-							className="block w-[40px] h-[38px] rounded border-2 text-center font-bold bg-white"
+							className="block w-[40px] h-[38px] rounded border-2 text-center"
 							type="number"
 							inputMode="decimal"
 							pattern="[0-9]*(.[0-9]+)?"
@@ -118,7 +118,7 @@ const ProductDetails = ({ product, onAddToCart }: ProductDetailsProps) => {
 							className="rounded-sm border-solid border-color-[#ccc] border-[1px] flex w-[32px] h-[38px] items-center text-center"
 							type="button"
 							onClick={incrementProductCount}
-							aria-label=""
+							aria-label="Add one"
 							role="button"
 							tabIndex={-1}>
 							<IconPlus className="w-[14px] h-[14px] mx-auto fill-none" />
@@ -127,14 +127,14 @@ const ProductDetails = ({ product, onAddToCart }: ProductDetailsProps) => {
 				</div>
 			</div>
 			<div className="flex flex-col mt-4 mr-4">
-				<div
-					className="bg-black text-white font-bold py-2 mt-2 border-[1px] rounded-[100px] text-center"
+				<button
+					className="bg-black text-white font-bold py-2 mt-2 border-[1px] rounded-[100px]"
 					onClick={() => onAddToCart(product)}>
 					Add to Cart
-				</div>
-				<div className="bg-white text-black font-bold py-2 mt-2 border-[1px] border-black rounded-[100px] hover:bg-black hover:text-white text-center">
+				</button>
+				<button className="bg-white text-black font-bold py-2 mt-2 border-[1px] border-black rounded-[100px] hover:bg-black hover:text-white">
 					Add to Wishlist
-				</div>
+				</button>
 			</div>
 		</div>
 	);

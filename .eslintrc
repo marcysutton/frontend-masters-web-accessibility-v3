@@ -1,3 +1,7 @@
 {
-    "extends": ["next", "prettier"]
+	"extends": ["next", "prettier"],
+	"rules": {
+		// Allows the use of the `inert` attribute until https://github.com/facebook/react/pull/24730 is merged.
+		"react/no-unknown-property": ["error", { "ignore": ["inert"] }]
+	}
 }

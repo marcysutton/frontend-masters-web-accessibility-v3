@@ -1,5 +1,5 @@
 import { useState } from 'react';
-const BuyBoxVariantSelector = ({ Product }) => {
+const ProductBuyBoxVariantSelector = ({ Product }) => {
 	const [selectedColor, selectColor] = useState<string | null>(null);
 	const [selectedSize, selectSize] = useState<string | null>(null);
 	return (
@@ -94,4 +94,4 @@ const BuyBoxVariantSelector = ({ Product }) => {
 	);
 };
 
-export default BuyBoxVariantSelector;
+export default ProductBuyBoxVariantSelector;

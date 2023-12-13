@@ -1,12 +1,13 @@
 import { useState } from 'react';
+import Head from 'next/head';
 import { ChakraProvider, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Button, HStack, Text } from '@chakra-ui/react';
 
 import ProductHeader from './ProductHeader';
 import ProductDetails from './ProductDetails';
 import ProductImageGallery from './ProductImageGallery';
-import { IconBack } from './Icons';
+import { IconBack } from '../../components/Icons';
 
-import type { Product } from '../types';
+import type { Product } from '../../types';
 
 type ProductPageProps = {
 	productData: Product;
@@ -24,12 +25,17 @@ const ProductPage = ({ productData }: ProductPageProps) => {
 	};
 	return (
 		<ChakraProvider>
+			<Head>
+				<title>
+					{productData.productTitle} by {productData.companyName} - Background
+				</title>
+			</Head>
 			<div
 				className={`bg-white border-2 border-solid border-slate-600 demo relative ${
 					isFullscreenShowing ? 'overflow-hidden max-h-screen w-100' : ''
 				}`}>
 				<ProductHeader shoppingCartItems={shoppingCartItems} />
-				<div className="text-black my-2 max-w-[1400px] mx-auto">
+				<main className="text-black my-2 max-w-[1400px] mx-auto">
 					<HStack>
 						<Button variant="link" color="currentColor" size="sm" leftIcon={<IconBack />}>
 							&lt; Back
@@ -48,7 +54,7 @@ const ProductPage = ({ productData }: ProductPageProps) => {
 							</BreadcrumbItem>
 						</Breadcrumb>
 					</HStack>
-					<div className="grid grid-cols-1 gap-2 md:grid-cols-6">
+					<section className="grid grid-cols-1 gap-2 md:grid-cols-6" aria-label="Product details">
 						<div className="col-span-4">
 							<ProductImageGallery
 								imageData={productData.images}
@@ -59,8 +65,8 @@ const ProductPage = ({ productData }: ProductPageProps) => {
 						<div className="col-span-2 px-4 md:px-0">
 							<ProductDetails product={productData} onAddToCart={updateShoppingCartItems} />
 						</div>
-					</div>
-				</div>
+					</section>
+				</main>
 			</div>
 		</ChakraProvider>
 	);

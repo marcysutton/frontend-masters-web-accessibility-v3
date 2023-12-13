@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import 'wicg-inert';
 import React from "react";
 
 export default function Index() {

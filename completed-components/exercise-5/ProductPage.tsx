@@ -4,9 +4,9 @@ import { ChakraProvider, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Button, HSt
 import ProductHeader from './ProductHeader';
 import ProductDetails from './ProductDetails';
 import ProductImageGallery from './ProductImageGallery';
-import { IconBack } from './Icons';
+import { IconBack } from '../../components/Icons';
 
-import type { Product } from '../types';
+import type { Product } from '../../types';
 
 type ProductPageProps = {
 	productData: Product;
@@ -29,7 +29,7 @@ const ProductPage = ({ productData }: ProductPageProps) => {
 					isFullscreenShowing ? 'overflow-hidden max-h-screen w-100' : ''
 				}`}>
 				<ProductHeader shoppingCartItems={shoppingCartItems} />
-				<div className="text-black my-2 max-w-[1400px] mx-auto">
+				<section className="text-black my-2 max-w-[1400px] mx-auto">
 					<HStack>
 						<Button variant="link" color="currentColor" size="sm" leftIcon={<IconBack />}>
 							&lt; Back
@@ -60,7 +60,7 @@ const ProductPage = ({ productData }: ProductPageProps) => {
 							<ProductDetails product={productData} onAddToCart={updateShoppingCartItems} />
 						</div>
 					</div>
-				</div>
+				</section>
 			</div>
 		</ChakraProvider>
 	);
