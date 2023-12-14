@@ -14,7 +14,7 @@ type ProductPageProps = {
 };
 
 const ProductPage = ({ productData }: ProductPageProps) => {
-	const [shoppingCartItems, updateShoppingCartItems] = useState<any>(null);
+	const [shoppingCartItems, updateShoppingCartItems] = useState<Product[]>([]);
 	const [isFullscreenShowing, setFullscreenShowing] = useState<boolean>(false);
 
 	const onFullscreen = () => {

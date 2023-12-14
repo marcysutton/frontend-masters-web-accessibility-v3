@@ -145,7 +145,7 @@ const ProductHeader = ({ shoppingCartItems }: ProductHeaderProps) => {
 					</span>
 				</a>
 			</header>
-			<div className="sr-only" role="status">
+			<div className="sr-only" role="alert">
 				{cartAnnouncementMessage || ''}
 			</div>
 		</>

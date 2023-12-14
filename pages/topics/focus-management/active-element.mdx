@@ -1,19 +1,23 @@
 # Active Element
 
-There is a DOM API that can come in handy for debugging focus management: the [`activeElement` API](https://developer.mozilla.org/en-US/docs/Web/API/Document/activeElement). Sometimes it can be unclear which element(s) are focused in a given sequence and you need to log the currently focused element. You can inspect the readonly `document.activeElement` property from a JavaScript event!
+There’s a DOM API that comes in handy for debugging focus: the [`activeElement` API](https://developer.mozilla.org/en-US/docs/Web/API/Document/activeElement). It can be unclear which element is focused in a sequence, and you might need to log out the currently focused element. You can inspect the readonly `document.activeElement` property from a JavaScript event!
 
 ```javascript
 document.body.addEventListener('focusin', () => console.log(document.activeElement));
 ```
 
-This snippet will log the `activeElement` to the browser console when you use your Tab key to cycle through any element on the page. It can surface elements that should be hidden fully but aren’t, or elements you didn’t even know about that are receiving focus (like a duplicate element for a mobile layout).
+This snippet will log to the browser console when you Tab through focusable elements on the page. It can surface elements that should be hidden fully but aren’t, or elements you didn’t even realize could receive focus (like a duplicate element for a mobile layout).
+
+You can also watch `activeElement` in Chrome DevTools by clicking on the eye icon for the expression editor:
+
+<figure className="text-center">
+    <img alt="activeElement live expression in Chrome DevTools" src="/activeElement.jpg" className="block mx-auto my-4" />
+</figure>
 
 Another use case includes storing the previously-focused element in a variable when opening a modal, so you can restore focus on close. We’ll do something similar in a later example.
 
 ## Don’t forget visual focus styles
 
-While we’re talking about which element is focused on the screen, it's important to discuss focus outlines. For any interactive element that a keyboard user can reach, there should be a [visual focus outline](https://www.w3.org/WAI/WCAG21/Understanding/focus-visible.html) like a border, underline, or contrasting glow. There are some exceptions, but generally we could use more focus outlines on the web...not less.
-
-That’s where debugging of `activeElement` can be so useful: you can find elements that need to be fully hidden from the tab order or made visible if they’re relevant.
+For any interactive element that a keyboard user can reach, there should be a [visual focus outline](https://www.w3.org/WAI/WCAG21/Understanding/focus-visible.html) like a border, underline, or contrasting glow. There are some exceptions, but generally we could use more focus outlines on the web...not less.
 
 There has an unfortunate legacy on the web of `reset.css` files that included CSS `outline: none`. You will probably find this the second you start testing with the keyboard. See how many of them you can replace with focus styles through debugging!
