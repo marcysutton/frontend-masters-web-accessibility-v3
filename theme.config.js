@@ -1,7 +1,7 @@
 const theme = {
-  docsRepositoryBase: "https://github.com/marcysutton/FEM-web-accessibility",
+  docsRepositoryBase: "https://github.com/marcysutton/frontend-masters-web-accessibility-v3",
   project: {
-    link: "https://github.com/marcysutton/FEM-web-accessibility"
+    link: "https://github.com/marcysutton/frontend-masters-web-accessibility-v3"
   },
   logo: () => (
     <>
