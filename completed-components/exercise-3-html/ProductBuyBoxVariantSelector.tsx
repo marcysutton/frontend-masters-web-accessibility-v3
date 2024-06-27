@@ -4,10 +4,10 @@ const ProductBuyBoxVariantSelector = ({ Product }) => {
 	const [selectedSize, selectSize] = useState<string | null>(null);
 	return (
 		<div id="buybox-variant-selector" className="my-6">
-			<h2 className="text-sm mb-2">
-				<span className="font-bold inline-block mr-1">Color:</span>
+			<div className="text-sm mb-2 flex flex-row">
+				<h2 className="font-bold inline-block mr-1">Color:</h2>
 				<span className="inline-block">{selectedColor}</span>
-			</h2>
+			</div>
 			<div data-id="colorTile" role="radiogroup" className="flex gap-4">
 				{Product.colors.map((color, index) => (
 					<label key={`Product-${index}`}>
@@ -40,9 +40,9 @@ const ProductBuyBoxVariantSelector = ({ Product }) => {
 			</div>
 			<div className="flex flex-col">
 				<div className="mt-6 mb-2">
-					<h2 className="flex">
-						<p className="font-bold mb-0 text-sm">Size:</p>
-					</h2>
+					<div className="flex">
+						<h2 className="font-bold mb-0 text-sm">Size:</h2>
+					</div>
 				</div>
 				<div data-id="sizeTile" role="radiogroup" className="flex flex-wrap">
 					{Product && Product.sizes.length === 1 && (
