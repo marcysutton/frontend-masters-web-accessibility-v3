@@ -44,10 +44,11 @@ const ProductDetails = ({ product, onAddToCart }: ProductDetailsProps) => {
 			</h1>
 			<div className="flex flex-row mt-2" data-id="buyboxRating">
 				<div className="css-0">
+					<h2 className="sr-only">Reviews</h2>
 					<a href="#the-wall">
 						{hasReviews && (
 							<>
-								<span className="sr-only">{product.overallRating}</span>
+								<span className="hidden">{product.overallRating}</span>
 								<HStack>
 									<div>
 										<IconStarRating rating={1} />
@@ -69,22 +70,22 @@ const ProductDetails = ({ product, onAddToCart }: ProductDetailsProps) => {
 			<hr className="my-6" />
 			<div>
 				<div>
-					<h2 className="sr-only">Price:</h2>
+					<h2 className="sr-only">Price</h2>
 					<span data-id="pricing">
 						<span className="font-bold text-xl">{product.price}</span>
 					</span>
 				</div>
-				<button type="button">
+				<div className="button">
 					<div className="flex flex-row">
 						<IconTag />
 						<p>Lowest Price Guarantee</p>
 					</div>
-				</button>
+				</div>
 			</div>
 			<ProductBuyBoxVariantSelector Product={product} />
 			<div className="flex flex-row items-center">
 				<div className="flex flex-col">
-					<h2 className="font-bold text-sm">Quantity:</h2>
+					<h2 className="font-bold">Quantity</h2>
 					<div className="flex flex-row items-start mt-2 gap-1">
 						<button
 							className="rounded-sm border-[1px] border-color-[#ccc] border-solid flex w-[32px] h-[38px] bg-slate-300 items-center text-center"
@@ -98,11 +99,11 @@ const ProductDetails = ({ product, onAddToCart }: ProductDetailsProps) => {
 							<IconMinus />
 						</button>
 						<input
-							className="block w-[40px] h-[38px] rounded border-2 text-center"
+							className="block w-[40px] h-[38px] rounded border-2 text-center font-bold bg-white"
 							type="number"
 							inputMode="decimal"
 							pattern="[0-9]*(.[0-9]+)?"
-							aria-label="Quantity"
+							aria-label="Product count"
 							value={productCount}
 							onChange={(event) => setProductCount(parseInt(event.target.value))}
 							role="spinbutton"
@@ -128,14 +129,14 @@ const ProductDetails = ({ product, onAddToCart }: ProductDetailsProps) => {
 				</div>
 			</div>
 			<div className="flex flex-col mt-4 mr-4">
-				<button
-					className="bg-black text-white font-bold py-2 mt-2 border-[1px] rounded-[100px]"
+				<div
+					className="bg-black text-white font-bold py-2 mt-2 border-[1px] rounded-[100px] text-center"
 					onClick={() => onAddToCart(product)}>
 					Add to Cart
-				</button>
-				<button className="bg-white text-black font-bold py-2 mt-2 border-[1px] border-black rounded-[100px] hover:bg-black hover:text-white">
+				</div>
+				<div className="bg-white text-black font-bold py-2 mt-2 border-[1px] border-black rounded-[100px] hover:bg-black hover:text-white text-center">
 					Add to Wishlist
-				</button>
+				</div>
 			</div>
 		</div>
 	);

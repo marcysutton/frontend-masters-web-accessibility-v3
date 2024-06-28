@@ -20,36 +20,57 @@ const Banner = ({ shouldAnimate = false }: BannerProps) => {
 		}
 	};
 	const incrementSlide = () => {
-		if (currentSlideNum <= slideCount) {
+		if (currentSlideNum < slideCount) {
 			changeSlideNum(currentSlideNum + 1);
 		} else {
 			changeSlideNum(1);
 		}
 	};
+
+	const setInert = (node, slideNumber) => {
+		// workaround for React not recognizing inert
+		// https://github.com/facebook/react/pull/24730
+		return (
+			node && (currentSlideNum === slideNumber ? node.removeAttribute('inert', '') : node.setAttribute('inert', ''))
+		);
+	};
+
+	useEffect(() => {
+		updateSlidePercentage(((currentSlideNum - 1) / 3) * 100);
+	}, [currentSlideNum]);
+
+	async function animate() {
+		incrementSlide();
+	}
+
+	useEffect(() => {
+		if (shouldAnimate) animate();
+	}, []);
+
+	if (shouldAnimate) {
+		setTimeout(() => {
+			animate();
+		}, 3000);
+	}
+
 	return (
-		<div className="bg-black max-w-full w-full flex" id="banner" role="banner" aria-labelledby="carouselheading">
+		<div className="bg-black max-w-full w-full flex" id="banner" role="region" aria-labelledby="carouselheading">
 			<div className="flex max-w-[1400px] mx-auto">
 				<div className="mx-auto md:max-w-[65%] lg:max-w-[70%] flex">
-					<p id="carouselheading" className="sr-only">
+					<p id="carouselheading" className="hidden">
 						Announcements
 					</p>
-					<IconButton
-						colorScheme="black"
-						onClick={decrementSlide}
-						type="button"
-						aria-label="Previous Slide"
-						aria-hidden="true">
+					<IconButton colorScheme="black" onClick={decrementSlide} type="button" aria-label="Previous slide">
 						<IconLeftArrow />
 					</IconButton>
 					<div className="overflow-hidden w-full">
 						<ul
-							role="list"
 							className={`grid list-none grid-cols-3 h-full items-center w-[300%] text-white 
                 transition-transform duration-500 ease-out`}
 							style={{ transform: `translateX(-${slidePercentage}%)` }}>
-							<li aria-hidden={currentSlideNum === 1 ? 'true' : 'false'} className="flex items-center">
+							<li className="flex items-center" ref={(node) => setInert(node, 1)}>
 								<div className="text-center mx-auto">
-									<a className="chakra-link popup-link" tabIndex={currentSlideNum === 1 ? 0 : -1}>
+									<a tabIndex={currentSlideNum === 1 ? 0 : -1}>
 										<div className="text-white">
 											<p className="text-white">
 												Get It By 12/24 W/ Free Standard Shipping &nbsp;
@@ -59,9 +80,7 @@ const Banner = ({ shouldAnimate = false }: BannerProps) => {
 									</a>
 								</div>
 							</li>
-							<li
-								aria-hidden={currentSlideNum === 2 ? 'true' : 'false'}
-								className="flex items-center text-white text-center">
+							<li className="flex items-center text-white text-center" ref={(node) => setInert(node, 2)}>
 								<div className="text-center mx-auto">
 									<a
 										className="text-white"
@@ -76,9 +95,7 @@ const Banner = ({ shouldAnimate = false }: BannerProps) => {
 									</a>
 								</div>
 							</li>
-							<li
-								aria-hidden={currentSlideNum === 3 ? 'true' : 'false'}
-								className="flex items-center text-white text-center">
+							<li className="flex items-center text-white text-center" ref={(node) => setInert(node, 3)}>
 								<div className="text-center mx-auto">
 									<a
 										className="text-white"
@@ -95,12 +112,7 @@ const Banner = ({ shouldAnimate = false }: BannerProps) => {
 							</li>
 						</ul>
 					</div>
-					<IconButton
-						colorScheme="black"
-						onClick={incrementSlide}
-						type="button"
-						aria-label="Next Slide"
-						aria-hidden="true">
+					<IconButton colorScheme="black" onClick={incrementSlide} type="button" aria-label="Next Slide">
 						<IconRightArrow />
 					</IconButton>
 				</div>
@@ -113,41 +125,39 @@ const Logo = () => <div className="mx-auto font-bold text-black font-serif text-
 
 type ProductHeaderProps = {
 	shoppingCartItems: Product[];
+	shouldAnimate?: boolean;
 };
 
-const ProductHeader = ({ shoppingCartItems }: ProductHeaderProps) => {
+const ProductHeader = ({ shoppingCartItems, shouldAnimate }: ProductHeaderProps) => {
 	const [cartAnnouncementMessage, setCartAnnouncementMessage] = useState('');
 
 	useEffect(() => {
 		if (shoppingCartItems && shoppingCartItems.length > 0) {
-			const numItems = shoppingCartItems.length === 1 ? 'item' : 'items';
-			const message = `${shoppingCartItems.length} ${numItems} in your shopping cart.`;
-			setCartAnnouncementMessage(message);
+			const itemOrItems = shoppingCartItems?.length === 1 ? 'item' : 'items';
+			setCartAnnouncementMessage(`There are ${shoppingCartItems.length} ${itemOrItems} in your cart.`);
 		}
 	}, [shoppingCartItems]);
 	return (
 		<>
-			<Banner />
+			<Banner shouldAnimate={shouldAnimate} />
 			<header className="flex flex-row items-center py-2 max-w-[1400px] mx-auto md:min-w-[65%] lg:min-w-[70%]">
-				<IconButton aria-label="" type="button" colorScheme="white">
+				<IconButton aria-label="Menu" type="button" colorScheme="white">
 					<IconHamburgerMenu />
 				</IconButton>
 				<Logo />
-				<a href="#" className="block min-w-[40px] h-auto mt-4" aria-label="">
-					<div className="relative">
-						{shoppingCartItems && shoppingCartItems.length > 0 && (
-							<span className="badge">{shoppingCartItems.length}</span>
-						)}
-						<IconShoppingCart />
-					</div>
+				<a href="#" className="block min-w-[40px] h-auto mt-4">
+					{shoppingCartItems && shoppingCartItems.length > 0 && (
+						<span className="badge">{shoppingCartItems.length}</span>
+					)}
+					<IconShoppingCart />
 					<span className="sr-only">
 						<p>Cart, contains {shoppingCartItems?.length === 1 ? 'item' : 'items'}</p>
 					</span>
 				</a>
+				<div role="alert" className="sr-only">
+					{cartAnnouncementMessage}
+				</div>
 			</header>
-			<div className="sr-only" role="alert">
-				{cartAnnouncementMessage || ''}
-			</div>
 		</>
 	);
 };

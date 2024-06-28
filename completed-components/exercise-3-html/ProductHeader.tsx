@@ -18,12 +18,13 @@ const Banner = ({ shouldAnimate = false }: BannerProps) => {
 		}
 	};
 	const incrementSlide = () => {
-		if (currentSlideNum <= slideCount) {
+		if (currentSlideNum < slideCount) {
 			changeSlideNum(currentSlideNum + 1);
 		} else {
 			changeSlideNum(1);
 		}
 	};
+
 	const setInert = (node, slideNumber) => {
 		// workaround for React not recognizing inert
 		// https://github.com/facebook/react/pull/24730
@@ -31,28 +32,43 @@ const Banner = ({ shouldAnimate = false }: BannerProps) => {
 			node && (currentSlideNum === slideNumber ? node.removeAttribute('inert', '') : node.setAttribute('inert', ''))
 		);
 	};
+
 	useEffect(() => {
 		updateSlidePercentage(((currentSlideNum - 1) / 3) * 100);
 	}, [currentSlideNum]);
+
+	async function animate() {
+		incrementSlide();
+	}
+
+	useEffect(() => {
+		if (shouldAnimate) animate();
+	}, []);
+
+	if (shouldAnimate) {
+		setTimeout(() => {
+			animate();
+		}, 3000);
+	}
+
 	return (
 		<div className="bg-black max-w-full w-full flex" id="banner" role="region" aria-labelledby="carouselheading">
 			<div className="flex max-w-[1400px] mx-auto">
 				<div className="mx-auto md:max-w-[65%] lg:max-w-[70%] flex">
-					<p id="carouselheading" className="sr-only">
+					<p id="carouselheading" className="hidden">
 						Announcements
 					</p>
-					<IconButton colorScheme="black" onClick={decrementSlide} type="button" aria-label="Previous Slide">
+					<IconButton colorScheme="black" onClick={decrementSlide} type="button" aria-label="Previous slide">
 						<IconLeftArrow />
 					</IconButton>
 					<div className="overflow-hidden w-full">
 						<ul
-							role="list"
 							className={`grid list-none grid-cols-3 h-full items-center w-[300%] text-white 
                 transition-transform duration-500 ease-out`}
-							style={{ transform: `translateX(-${slidePercentage}%` }}>
-							<li ref={(node) => setInert(node, 1)} className="flex items-center">
+							style={{ transform: `translateX(-${slidePercentage}%)` }}>
+							<li className="flex items-center" ref={(node) => setInert(node, 1)}>
 								<div className="text-center mx-auto">
-									<a className="chakra-link popup-link" tabIndex={currentSlideNum === 1 ? 0 : -1}>
+									<a tabIndex={currentSlideNum === 1 ? 0 : -1}>
 										<div className="text-white">
 											<p className="text-white">
 												Get It By 12/24 W/ Free Standard Shipping &nbsp;
@@ -62,7 +78,7 @@ const Banner = ({ shouldAnimate = false }: BannerProps) => {
 									</a>
 								</div>
 							</li>
-							<li ref={(node) => setInert(node, 2)} className="flex items-center text-white text-center">
+							<li className="flex items-center text-white text-center" ref={(node) => setInert(node, 2)}>
 								<div className="text-center mx-auto">
 									<a
 										className="text-white"
@@ -77,14 +93,14 @@ const Banner = ({ shouldAnimate = false }: BannerProps) => {
 									</a>
 								</div>
 							</li>
-							<li ref={(node) => setInert(node, 3)} className="flex items-center text-white text-center">
+							<li className="flex items-center text-white text-center" ref={(node) => setInert(node, 3)}>
 								<div className="text-center mx-auto">
 									<a
 										className="text-white"
 										href="/rc/winter-footwear-accessories"
 										tabIndex={currentSlideNum === 3 ? 0 : -1}>
 										<div className="text-white">
-											<p className="text-white">
+											<p>
 												Winter’s Warmest Boots, Beanies, Mittens &amp; More &nbsp;
 												<span>Shop Now</span>
 											</p>
@@ -107,12 +123,13 @@ const Logo = () => <div className="mx-auto font-bold text-black font-serif text-
 
 type ProductHeaderProps = {
 	shoppingCartItems: any[];
+	shouldAnimate?: boolean;
 };
 
-const ProductHeader = ({ shoppingCartItems }: ProductHeaderProps) => {
+const ProductHeader = ({ shoppingCartItems, shouldAnimate }: ProductHeaderProps) => {
 	return (
 		<>
-			<Banner />
+			<Banner shouldAnimate={shouldAnimate} />
 			<header className="flex flex-row items-center py-2 max-w-[1400px] mx-auto md:min-w-[65%] lg:min-w-[70%]">
 				<IconButton aria-label="Menu" type="button" colorScheme="white">
 					<IconHamburgerMenu />
