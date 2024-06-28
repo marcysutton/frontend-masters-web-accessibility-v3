@@ -25,7 +25,7 @@ An anchor link contains an href attribute that points to an internal element via
 A matching element “catches” the focus via an ID attribute. A `tabIndex="-1"` attribute can make doubly-sure that the element will receive focus, which I’ve seen when testing cross-platform. (You shouldn’t _need_ tabIndex for this, but testing has shown me otherwise.)
 
 ```html
-<main id="main-content" tabIndex="-1"></div>
+<main id="main-content" tabIndex="-1"></main>
 ```
 
 With CSS, you can show the skip link when it is focused using absolute positioning or some other technique. You can also decide whether to show the focus outline on the target element (e.g. `main`) by suppressing the focus style:
