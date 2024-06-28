@@ -16,19 +16,23 @@ const ProductPage = ({ productData }: ProductPageProps) => {
 	const [shoppingCartItems, updateShoppingCartItems] = useState<Product[]>([]);
 	const [isFullscreenShowing, setFullscreenShowing] = useState<boolean>(false);
 
-	const onAddToCart = (product) => {
-		const items = [...shoppingCartItems, product];
-		updateShoppingCartItems(items);
-	};
-
 	const onFullscreen = () => {
 		setFullscreenShowing(true);
 	};
 	const onFullscreenClose = () => {
 		setFullscreenShowing(false);
 	};
+	const onAddToCart = (product: Product) => {
+		const items = [...shoppingCartItems, product];
+		updateShoppingCartItems(items);
+	};
 	return (
 		<ChakraProvider>
+			<Head>
+				<title>
+					{productData.productTitle} by {productData.companyName} - Background
+				</title>
+			</Head>
 			<div
 				className={`bg-white border-2 border-solid border-slate-600 demo relative ${
 					isFullscreenShowing ? 'overflow-hidden max-h-screen w-100' : ''
@@ -53,7 +57,7 @@ const ProductPage = ({ productData }: ProductPageProps) => {
 							</BreadcrumbItem>
 						</Breadcrumb>
 					</HStack>
-					<div className="grid grid-cols-1 gap-2 md:grid-cols-6">
+					<section className="grid grid-cols-1 gap-2 md:grid-cols-6" aria-label="Product details">
 						<div className="col-span-4">
 							<ProductImageGallery
 								imageData={productData.images}
@@ -64,7 +68,7 @@ const ProductPage = ({ productData }: ProductPageProps) => {
 						<div className="col-span-2 px-4 md:px-0">
 							<ProductDetails product={productData} onAddToCart={onAddToCart} />
 						</div>
-					</div>
+					</section>
 				</main>
 			</div>
 		</ChakraProvider>
