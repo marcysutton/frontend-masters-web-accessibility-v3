@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Image, Modal, ModalOverlay, ModalContent, ModalBody, ModalCloseButton } from '@chakra-ui/react';
+import { Image, Modal, ModalHeader, ModalOverlay, ModalContent, ModalBody, ModalCloseButton } from '@chakra-ui/react';
 import type { ImageData } from '../../types';
 
 type ProductImageGalleryProps = {
@@ -31,7 +31,7 @@ const ProductImageGallery = ({ imageData, onFullscreenOpen, onFullscreenClose }:
 				className="grid gap-2 grid-cols-none grid-flow-row
 			grid-cols[repeat(2, minmax(0, 1fr))] m-4 cursor-pointer">
 				<div className="col-span-2 row-span-2 block">
-					<button onClick={() => setFullscreenImage(imageData.mainImage)}>
+					<button onClick={() => setFullscreenImage(imageData.mainImage)} aria-label="Open image in full-screen">
 						<Image src={imageData.imagePath + imageData.mainImage.src} alt={imageData.mainImage.alt} />
 					</button>
 				</div>
@@ -41,17 +41,20 @@ const ProductImageGallery = ({ imageData, onFullscreenOpen, onFullscreenClose }:
 					</button>
 				))}
 			</div>
-			{!!fullscreenImage && (
-				<Modal isOpen={!!fullscreenImage} onClose={closeFullscreen} size="full">
-					<ModalOverlay />
-					<ModalContent>
-						<ModalCloseButton />
-						<ModalBody>
-							<img src={imageData.imagePath + fullscreenImage.src} alt={fullscreenImage.alt} />
-						</ModalBody>
-					</ModalContent>
-				</Modal>
-			)}
+			<div className="relative">
+				{!!fullscreenImage && (
+					<Modal isOpen={!!fullscreenImage} onClose={closeFullscreen} size="full">
+						<ModalOverlay />
+						<ModalContent>
+							<ModalHeader>{imageData.mainImage.alt}</ModalHeader>
+							<ModalCloseButton />
+							<ModalBody>
+								<Image src={imageData.imagePath + imageData.mainImage.src} alt={imageData.mainImage.alt} />
+							</ModalBody>
+						</ModalContent>
+					</Modal>
+				)}
+			</div>
 		</>
 	);
 };
